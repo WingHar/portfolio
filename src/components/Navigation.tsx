@@ -1,11 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Film } from 'lucide-react';
+import { Menu, X, Film, LogOut } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '@/components/auth/AuthProvider';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { user, isAdmin, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,10 +21,16 @@ const Navigation = () => {
 
   const navItems = [
     { label: 'Projects', href: '#projects' },
+    { label: 'Case Studies', href: '/case-studies' },
     { label: 'About', href: '#about' },
     { label: 'Experience', href: '#experience' },
     { label: 'Contact', href: '#contact' }
   ];
+
+  const handleSignOut = async () => {
+    await signOut();
+    setIsOpen(false);
+  };
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -30,28 +39,60 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center">
+          <Link to="/" className="flex items-center">
             <Film className="w-8 h-8 text-portfolio-tertiary mr-2" />
             <span className="text-xl font-bold text-white">Portfolio</span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 font-medium"
-              >
-                {item.label}
-              </a>
+              item.href.startsWith('#') ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 font-medium"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 font-medium"
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
-            <Button 
-              size="sm"
-              className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white font-semibold"
-            >
-              Get In Touch
-            </Button>
+            
+            {user ? (
+              <div className="flex items-center space-x-4">
+                {isAdmin && (
+                  <span className="text-xs bg-portfolio-tertiary px-2 py-1 rounded text-white">
+                    Admin
+                  </span>
+                )}
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={handleSignOut}
+                  className="border-portfolio-tertiary/30 text-portfolio-primary-light hover:bg-portfolio-tertiary/20"
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <Link to="/auth">
+                <Button 
+                  size="sm"
+                  className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white font-semibold"
+                >
+                  Sign In
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -72,22 +113,55 @@ const Navigation = () => {
           <div className="md:hidden bg-portfolio-primary-dark/95 backdrop-blur-md border-t border-portfolio-secondary/20">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="block px-3 py-2 text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.label}
-                </a>
+                item.href.startsWith('#') ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="block px-3 py-2 text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className="block px-3 py-2 text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )
               ))}
+              
               <div className="px-3 py-2">
-                <Button 
-                  size="sm"
-                  className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white font-semibold w-full"
-                >
-                  Get In Touch
-                </Button>
+                {user ? (
+                  <div className="space-y-2">
+                    {isAdmin && (
+                      <span className="text-xs bg-portfolio-tertiary px-2 py-1 rounded text-white">
+                        Admin
+                      </span>
+                    )}
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={handleSignOut}
+                      className="w-full border-portfolio-tertiary/30 text-portfolio-primary-light hover:bg-portfolio-tertiary/20"
+                    >
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Sign Out
+                    </Button>
+                  </div>
+                ) : (
+                  <Link to="/auth" onClick={() => setIsOpen(false)}>
+                    <Button 
+                      size="sm"
+                      className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white font-semibold w-full"
+                    >
+                      Sign In
+                    </Button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
