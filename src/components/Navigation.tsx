@@ -20,7 +20,7 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { label: 'Projects', href: '#projects' },
+    { label: 'Projects', href: '/projects' },
     { label: 'Case Studies', href: '/case-studies' },
     { label: 'About', href: '/about' },
     { label: 'Experience', href: '#experience' },
@@ -39,7 +39,7 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
             <Film className="w-8 h-8 text-portfolio-tertiary mr-2" />
             <span className="text-xl font-bold text-white">Portfolio</span>
           </Link>
