@@ -5,7 +5,10 @@ import { Card } from '@/components/ui/card';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { supabase } from '@/integrations/supabase/client';
 import { Plus } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import CaseStudyForm from '@/components/CaseStudyForm';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
 
 interface CaseStudy {
@@ -22,6 +25,7 @@ const CaseStudies = () => {
   const [showForm, setShowForm] = useState(false);
   const { isAdmin } = useAuth();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCaseStudies();
@@ -59,6 +63,10 @@ const CaseStudies = () => {
     });
   };
 
+  const handleCaseStudyClick = (id: string) => {
+    navigate(`/case-studies/${id}`);
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-portfolio-primary-dark flex items-center justify-center">
@@ -68,8 +76,10 @@ const CaseStudies = () => {
   }
 
   return (
-    <div className="min-h-screen bg-portfolio-primary-dark">
-      <div className="max-w-7xl mx-auto px-4 py-16">
+    <div className="min-h-screen bg-portfolio-primary-dark flex flex-col">
+      <Navigation />
+      
+      <div className="flex-1 max-w-7xl mx-auto px-4 py-16 mt-16">
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-4xl font-bold text-white mb-2">Case Studies</h1>
@@ -100,7 +110,11 @@ const CaseStudies = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {caseStudies.map((caseStudy) => (
-            <Card key={caseStudy.id} className="bg-portfolio-secondary/20 border-portfolio-tertiary/20 overflow-hidden project-card-hover">
+            <Card 
+              key={caseStudy.id} 
+              className="bg-portfolio-secondary/20 border-portfolio-tertiary/20 overflow-hidden project-card-hover cursor-pointer"
+              onClick={() => handleCaseStudyClick(caseStudy.id)}
+            >
               {caseStudy.image_url && (
                 <div className="aspect-video bg-portfolio-primary-dark/50">
                   <img
@@ -136,6 +150,8 @@ const CaseStudies = () => {
           </div>
         )}
       </div>
+
+      <Footer />
     </div>
   );
 };
