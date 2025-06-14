@@ -22,7 +22,7 @@ const Navigation = () => {
   const navItems = [
     { label: 'Projects', href: '#projects' },
     { label: 'Case Studies', href: '/case-studies' },
-    { label: 'About', href: '#about' },
+    { label: 'About', href: '/about' },
     { label: 'Experience', href: '#experience' },
     { label: 'Contact', href: '#contact' }
   ];
