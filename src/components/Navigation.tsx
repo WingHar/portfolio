@@ -24,7 +24,7 @@ const Navigation = () => {
     { label: 'Case Studies', href: '/case-studies' },
     { label: 'About', href: '/about' },
     { label: 'Experience', href: '#experience' },
-    { label: 'Contact', href: '#contact' }
+    { label: 'Contact', href: 'mailto:winghar@outlook.com' }
   ];
 
   const handleSignOut = async () => {
@@ -47,7 +47,7 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              item.href.startsWith('#') ? (
+              item.href.startsWith('#') || item.href.startsWith('mailto:') ? (
                 <a
                   key={item.label}
                   href={item.href}
@@ -113,7 +113,7 @@ const Navigation = () => {
           <div className="md:hidden bg-portfolio-primary-dark/95 backdrop-blur-md border-t border-portfolio-secondary/20">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
-                item.href.startsWith('#') ? (
+                item.href.startsWith('#') || item.href.startsWith('mailto:') ? (
                   <a
                     key={item.label}
                     href={item.href}
