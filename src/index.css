@@ -25,7 +25,7 @@
     --muted: 30 41 59;
     --muted-foreground: 203 213 225;
 
-    --accent: 194 132 122;
+    --accent: 229 199 44;
     --accent-foreground: 15 23 42;
 
     --destructive: 0 84.2% 60.2%;
@@ -96,7 +96,7 @@
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, #197B9E 0%, #C2847A 100%);
+    background: linear-gradient(135deg, #197B9E 0%, #E5C72C 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
