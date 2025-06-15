@@ -162,28 +162,50 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
                       <Card 
                         className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden cursor-pointer h-full"
                       >
-                        <div className="relative overflow-hidden">
+                        <div className="relative overflow-hidden h-full">
                           <img 
                             src={project.featured_image_url || project.image_url} 
                             alt={project.title}
-                            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                          
+                          {/* Category badge - always visible */}
                           <div className="absolute top-4 left-4">
                             <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
                               {project.category}
                             </span>
                           </div>
                           
-                          {/* Netflix-style overlay on hover */}
-                          <div className="absolute inset-0 bg-portfolio-primary-dark/90 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                          {/* Card content overlay - only visible on hover */}
+                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-portfolio-primary-dark via-portfolio-primary-dark/90 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                            <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors">
+                              {project.title}
+                            </h3>
+                            <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-2 mb-3">
+                              {project.description}
+                            </p>
+                            <div className="flex gap-2 flex-wrap">
+                              {project.technologies.slice(0, 3).map((tech) => (
+                                <span 
+                                  key={tech}
+                                  className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-2 py-1 rounded text-xs"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                          
+                          {/* Netflix-style overlay on hover - for additional info */}
+                          <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 flex items-center justify-center">
                             <div className="text-center p-4">
-                              <h3 className="text-white font-bold text-lg mb-2">{project.title}</h3>
-                              <p className="text-portfolio-primary-light text-sm mb-4 line-clamp-3">
+                              <h3 className="text-white font-bold text-xl mb-3">{project.title}</h3>
+                              <p className="text-portfolio-primary-light text-sm mb-4 line-clamp-4">
                                 {project.description}
                               </p>
-                              <div className="flex gap-2 justify-center">
-                                {project.technologies.slice(0, 3).map((tech) => (
+                              <div className="flex gap-2 justify-center flex-wrap mb-4">
+                                {project.technologies.map((tech) => (
                                   <span 
                                     key={tech}
                                     className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-2 py-1 rounded text-xs"
@@ -192,18 +214,12 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
                                   </span>
                                 ))}
                               </div>
+                              <div className="text-portfolio-tertiary text-sm font-medium">
+                                Click to view details →
+                              </div>
                             </div>
                           </div>
                         </div>
-                        
-                        <CardContent className="p-4">
-                          <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors truncate">
-                            {project.title}
-                          </h3>
-                          <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-2">
-                            {project.description}
-                          </p>
-                        </CardContent>
                       </Card>
                     </Link>
                   </CarouselItem>
