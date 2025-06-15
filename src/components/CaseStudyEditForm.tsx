@@ -15,6 +15,8 @@ interface CaseStudy {
   title: string;
   body: string;
   image_url: string | null;
+  featured_image_url: string | null;
+  general_images: string[] | null;
   featured: boolean | null;
   created_at: string;
 }
@@ -33,15 +35,25 @@ const CaseStudyEditForm: React.FC<CaseStudyEditFormProps> = ({
   const [title, setTitle] = useState(caseStudy.title);
   const [body, setBody] = useState(caseStudy.body);
   const [featured, setFeatured] = useState(caseStudy.featured || false);
-  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [featuredImageFile, setFeaturedImageFile] = useState<File | null>(null);
+  const [generalImageFiles, setGeneralImageFiles] = useState<File[]>([]);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFeaturedImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setImageFile(file);
+      setFeaturedImageFile(file);
     }
+  };
+
+  const handleGeneralImagesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    setGeneralImageFiles(prev => [...prev, ...files]);
+  };
+
+  const removeGeneralImage = (index: number) => {
+    setGeneralImageFiles(prev => prev.filter((_, i) => i !== index));
   };
 
   const uploadImage = async (file: File): Promise<string | null> => {
@@ -70,20 +82,28 @@ const CaseStudyEditForm: React.FC<CaseStudyEditFormProps> = ({
     setLoading(true);
 
     try {
-      let imageUrl = caseStudy.image_url;
+      let featuredImageUrl = caseStudy.featured_image_url;
+      let generalImageUrls = caseStudy.general_images || [];
       
-      if (imageFile) {
-        const newImageUrl = await uploadImage(imageFile);
-        if (!newImageUrl) {
+      if (featuredImageFile) {
+        const newFeaturedImageUrl = await uploadImage(featuredImageFile);
+        if (!newFeaturedImageUrl) {
           toast({
             title: "Error",
-            description: "Failed to upload image",
+            description: "Failed to upload featured image",
             variant: "destructive",
           });
           setLoading(false);
           return;
         }
-        imageUrl = newImageUrl;
+        featuredImageUrl = newFeaturedImageUrl;
+      }
+
+      for (const file of generalImageFiles) {
+        const url = await uploadImage(file);
+        if (url) {
+          generalImageUrls.push(url);
+        }
       }
 
       const { error } = await supabase
@@ -92,7 +112,8 @@ const CaseStudyEditForm: React.FC<CaseStudyEditFormProps> = ({
           title,
           body,
           featured,
-          image_url: imageUrl,
+          featured_image_url: featuredImageUrl,
+          general_images: generalImageUrls,
           updated_at: new Date().toISOString(),
         })
         .eq('id', caseStudy.id);
@@ -172,45 +193,102 @@ const CaseStudyEditForm: React.FC<CaseStudyEditFormProps> = ({
         </div>
 
         <div>
-          <Label htmlFor="image" className="text-portfolio-primary-light">
-            Current Image
+          <Label htmlFor="featured-image" className="text-portfolio-primary-light">
+            Current Featured Image
           </Label>
-          {caseStudy.image_url && (
+          {caseStudy.featured_image_url && (
             <div className="mt-2 mb-4">
               <img
-                src={caseStudy.image_url}
+                src={caseStudy.featured_image_url}
                 alt={caseStudy.title}
                 className="w-32 h-24 object-cover rounded border border-portfolio-tertiary/30"
               />
             </div>
           )}
-          <Label htmlFor="new-image" className="text-portfolio-primary-light">
-            Upload New Image (optional)
+          <Label htmlFor="new-featured-image" className="text-portfolio-primary-light">
+            Upload New Featured Image (optional)
           </Label>
           <div className="mt-1">
             <label className="flex items-center justify-center w-full h-32 border-2 border-dashed border-portfolio-tertiary/30 rounded-md cursor-pointer hover:border-portfolio-tertiary/50 transition-colors">
               <div className="text-center">
-                {imageFile ? (
+                {featuredImageFile ? (
                   <div className="text-portfolio-primary-light">
                     <Upload className="w-6 h-6 mx-auto mb-2" />
-                    <span className="text-sm">{imageFile.name}</span>
+                    <span className="text-sm">{featuredImageFile.name}</span>
                   </div>
                 ) : (
                   <div className="text-portfolio-primary-light">
                     <Upload className="w-6 h-6 mx-auto mb-2" />
-                    <span className="text-sm">Click to upload a new image</span>
+                    <span className="text-sm">Click to upload new featured image</span>
                   </div>
                 )}
               </div>
               <input
-                id="new-image"
+                id="new-featured-image"
                 type="file"
                 accept="image/*"
-                onChange={handleImageChange}
+                onChange={handleFeaturedImageChange}
                 className="hidden"
               />
             </label>
           </div>
+        </div>
+
+        <div>
+          <Label className="text-portfolio-primary-light">
+            Current General Images
+          </Label>
+          {caseStudy.general_images && caseStudy.general_images.length > 0 && (
+            <div className="mt-2 mb-4 grid grid-cols-3 gap-2">
+              {caseStudy.general_images.map((imageUrl, index) => (
+                <img
+                  key={index}
+                  src={imageUrl}
+                  alt={`${caseStudy.title} - ${index + 1}`}
+                  className="w-full h-20 object-cover rounded border border-portfolio-tertiary/30"
+                />
+              ))}
+            </div>
+          )}
+          <Label htmlFor="new-general-images" className="text-portfolio-primary-light">
+            Upload Additional General Images (optional)
+          </Label>
+          <div className="mt-1">
+            <label className="flex items-center justify-center w-full h-32 border-2 border-dashed border-portfolio-tertiary/30 rounded-md cursor-pointer hover:border-portfolio-tertiary/50 transition-colors">
+              <div className="text-center">
+                <div className="text-portfolio-primary-light">
+                  <Upload className="w-6 h-6 mx-auto mb-2" />
+                  <span className="text-sm">Click to upload additional images</span>
+                </div>
+              </div>
+              <input
+                id="new-general-images"
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={handleGeneralImagesChange}
+                className="hidden"
+              />
+            </label>
+          </div>
+          {generalImageFiles.length > 0 && (
+            <div className="mt-2 space-y-2">
+              {generalImageFiles.map((file, index) => (
+                <div key={index} className="flex items-center justify-between bg-portfolio-primary-dark/30 p-2 rounded">
+                  <span className="text-portfolio-primary-light text-sm">{file.name}</span>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => removeGeneralImage(index)}
+                    className="text-red-400 hover:text-red-300"
+                  >
+                    <X className="w-4 h-4" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="flex justify-end space-x-2 pt-4">

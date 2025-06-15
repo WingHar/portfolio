@@ -15,6 +15,8 @@ interface Project {
   description: string;
   body: string;
   image_url: string;
+  featured_image_url: string | null;
+  general_images: string[] | null;
   technologies: string[];
   live_url?: string;
   github_url?: string;
@@ -152,7 +154,7 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
                     >
                       <div className="relative overflow-hidden">
                         <img 
-                          src={project.image_url} 
+                          src={project.featured_image_url || project.image_url} 
                           alt={project.title}
                           className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                         />

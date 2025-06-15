@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Calendar, ExternalLink, Github } from 'lucide-react';
+import { ArrowLeft, Calendar, ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -15,6 +15,8 @@ interface Project {
   description: string;
   body: string;
   image_url: string;
+  featured_image_url: string | null;
+  general_images: string[] | null;
   technologies: string[];
   live_url?: string;
   github_url?: string;
@@ -27,6 +29,7 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -80,6 +83,22 @@ const ProjectDetail = () => {
     return null;
   }
 
+  const displayImages = project.general_images && project.general_images.length > 0 
+    ? project.general_images 
+    : project.image_url ? [project.image_url] : [];
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => 
+      prev === displayImages.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => 
+      prev === 0 ? displayImages.length - 1 : prev - 1
+    );
+  };
+
   return (
     <div className="min-h-screen bg-portfolio-primary-dark flex flex-col">
       <Navigation />
@@ -95,18 +114,59 @@ const ProjectDetail = () => {
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Project Image */}
+          {/* Project Images */}
           <div className="relative overflow-hidden rounded-lg">
-            <img
-              src={project.image_url}
-              alt={project.title}
-              className="w-full h-auto object-cover"
-            />
-            <div className="absolute top-4 left-4">
-              <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
-                {project.category}
-              </span>
-            </div>
+            {displayImages.length > 0 ? (
+              <div className="relative">
+                <img
+                  src={displayImages[currentImageIndex]}
+                  alt={`${project.title} - Image ${currentImageIndex + 1}`}
+                  className="w-full h-auto object-cover"
+                />
+                {displayImages.length > 1 && (
+                  <>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={prevImage}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-portfolio-primary-dark/80 hover:bg-portfolio-primary-dark text-white p-2"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={nextImage}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-portfolio-primary-dark/80 hover:bg-portfolio-primary-dark text-white p-2"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </Button>
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                      {displayImages.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`w-2 h-2 rounded-full transition-colors ${
+                            index === currentImageIndex 
+                              ? 'bg-portfolio-tertiary' 
+                              : 'bg-white/50'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
+                <div className="absolute top-4 left-4">
+                  <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
+                    {project.category}
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div className="w-full aspect-video bg-portfolio-secondary/20 border border-portfolio-tertiary/20 rounded-lg flex items-center justify-center">
+                <span className="text-portfolio-primary-light">No image available</span>
+              </div>
+            )}
           </div>
 
           {/* Project Info */}

@@ -27,21 +27,44 @@ const ProjectForm = ({ project, onSuccess, onCancel }: ProjectFormProps) => {
     live_url: project?.live_url || '',
     github_url: project?.github_url || '',
     featured: project?.featured || false,
-    image_url: project?.image_url || ''
   });
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string>(project?.image_url || '');
+  const [featuredImageFile, setFeaturedImageFile] = useState<File | null>(null);
+  const [generalImageFiles, setGeneralImageFiles] = useState<File[]>([]);
+  const [featuredImagePreview, setFeaturedImagePreview] = useState<string>(project?.featured_image_url || '');
+  const [generalImagesPreview, setGeneralImagesPreview] = useState<string[]>(project?.general_images || []);
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFeaturedImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setImageFile(file);
+      setFeaturedImageFile(file);
       const reader = new FileReader();
       reader.onload = (e) => {
-        setImagePreview(e.target?.result as string);
+        setFeaturedImagePreview(e.target?.result as string);
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const handleGeneralImagesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    setGeneralImageFiles(prev => [...prev, ...files]);
+    
+    files.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setGeneralImagesPreview(prev => [...prev, e.target?.result as string]);
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const removeGeneralImage = (index: number) => {
+    const isNewFile = index >= (project?.general_images?.length || 0);
+    if (isNewFile) {
+      const newFileIndex = index - (project?.general_images?.length || 0);
+      setGeneralImageFiles(prev => prev.filter((_, i) => i !== newFileIndex));
+    }
+    setGeneralImagesPreview(prev => prev.filter((_, i) => i !== index));
   };
 
   const uploadImage = async (file: File): Promise<string> => {
@@ -69,10 +92,16 @@ const ProjectForm = ({ project, onSuccess, onCancel }: ProjectFormProps) => {
     setIsSubmitting(true);
 
     try {
-      let imageUrl = formData.image_url;
+      let featuredImageUrl = project?.featured_image_url || '';
+      let generalImageUrls = project?.general_images || [];
       
-      if (imageFile) {
-        imageUrl = await uploadImage(imageFile);
+      if (featuredImageFile) {
+        featuredImageUrl = await uploadImage(featuredImageFile);
+      }
+
+      for (const file of generalImageFiles) {
+        const url = await uploadImage(file);
+        generalImageUrls.push(url);
       }
 
       const projectData = {
@@ -84,7 +113,8 @@ const ProjectForm = ({ project, onSuccess, onCancel }: ProjectFormProps) => {
         live_url: formData.live_url || null,
         github_url: formData.github_url || null,
         featured: formData.featured,
-        image_url: imageUrl,
+        featured_image_url: featuredImageUrl || null,
+        general_images: generalImageUrls,
         updated_at: new Date().toISOString()
       };
 
@@ -206,13 +236,13 @@ const ProjectForm = ({ project, onSuccess, onCancel }: ProjectFormProps) => {
       </div>
 
       <div className="space-y-2">
-        <Label>Project Image</Label>
+        <Label>Featured Image (for homepage display)</Label>
         <div className="space-y-4">
-          {imagePreview && (
+          {featuredImagePreview && (
             <div className="relative">
               <img 
-                src={imagePreview} 
-                alt="Project preview" 
+                src={featuredImagePreview} 
+                alt="Featured preview" 
                 className="w-full h-48 object-cover rounded-lg"
               />
               <Button
@@ -221,9 +251,8 @@ const ProjectForm = ({ project, onSuccess, onCancel }: ProjectFormProps) => {
                 size="sm"
                 className="absolute top-2 right-2"
                 onClick={() => {
-                  setImagePreview('');
-                  setImageFile(null);
-                  setFormData({ ...formData, image_url: '' });
+                  setFeaturedImagePreview('');
+                  setFeaturedImageFile(null);
                 }}
               >
                 <X className="w-4 h-4" />
@@ -234,7 +263,45 @@ const ProjectForm = ({ project, onSuccess, onCancel }: ProjectFormProps) => {
             <Input
               type="file"
               accept="image/*"
-              onChange={handleImageChange}
+              onChange={handleFeaturedImageChange}
+              className="bg-portfolio-primary-dark border-portfolio-secondary text-white file:text-white"
+            />
+            <Upload className="w-5 h-5 text-portfolio-tertiary" />
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <Label>General Images (for detail page gallery)</Label>
+        <div className="space-y-4">
+          {generalImagesPreview.length > 0 && (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+              {generalImagesPreview.map((preview, index) => (
+                <div key={index} className="relative">
+                  <img 
+                    src={preview} 
+                    alt={`General preview ${index + 1}`} 
+                    className="w-full h-32 object-cover rounded-lg"
+                  />
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    size="sm"
+                    className="absolute top-1 right-1"
+                    onClick={() => removeGeneralImage(index)}
+                  >
+                    <X className="w-3 h-3" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          )}
+          <div className="flex items-center space-x-2">
+            <Input
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleGeneralImagesChange}
               className="bg-portfolio-primary-dark border-portfolio-secondary text-white file:text-white"
             />
             <Upload className="w-5 h-5 text-portfolio-tertiary" />

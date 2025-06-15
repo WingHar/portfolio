@@ -13,6 +13,8 @@ interface CaseStudy {
   title: string;
   body: string;
   image_url: string | null;
+  featured_image_url: string | null;
+  general_images: string[] | null;
   featured?: boolean;
   created_at: string;
 }
@@ -117,9 +119,9 @@ const FeaturedCaseStudies = () => {
                       className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden cursor-pointer h-full"
                     >
                       <div className="relative overflow-hidden">
-                        {caseStudy.image_url ? (
+                        {(caseStudy.featured_image_url || caseStudy.image_url) ? (
                           <img 
-                            src={caseStudy.image_url} 
+                            src={caseStudy.featured_image_url || caseStudy.image_url || ''} 
                             alt={caseStudy.title}
                             className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                           />

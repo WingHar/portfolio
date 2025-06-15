@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Calendar, Star } from 'lucide-react';
+import { ArrowLeft, Calendar, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -13,6 +13,8 @@ interface CaseStudy {
   title: string;
   body: string;
   image_url: string | null;
+  featured_image_url: string | null;
+  general_images: string[] | null;
   featured: boolean | null;
   created_at: string;
 }
@@ -22,6 +24,7 @@ const CaseStudyDetail = () => {
   const navigate = useNavigate();
   const [caseStudy, setCaseStudy] = useState<CaseStudy | null>(null);
   const [loading, setLoading] = useState(true);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -75,6 +78,22 @@ const CaseStudyDetail = () => {
     return null;
   }
 
+  const displayImages = caseStudy.general_images && caseStudy.general_images.length > 0 
+    ? caseStudy.general_images 
+    : caseStudy.image_url ? [caseStudy.image_url] : [];
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => 
+      prev === displayImages.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => 
+      prev === 0 ? displayImages.length - 1 : prev - 1
+    );
+  };
+
   return (
     <div className="min-h-screen bg-portfolio-primary-dark flex flex-col">
       <Navigation />
@@ -90,14 +109,49 @@ const CaseStudyDetail = () => {
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Case Study Image */}
+          {/* Case Study Images */}
           <div className="relative overflow-hidden rounded-lg">
-            {caseStudy.image_url ? (
-              <img
-                src={caseStudy.image_url}
-                alt={caseStudy.title}
-                className="w-full h-auto object-cover"
-              />
+            {displayImages.length > 0 ? (
+              <div className="relative">
+                <img
+                  src={displayImages[currentImageIndex]}
+                  alt={`${caseStudy.title} - Image ${currentImageIndex + 1}`}
+                  className="w-full h-auto object-cover"
+                />
+                {displayImages.length > 1 && (
+                  <>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={prevImage}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-portfolio-primary-dark/80 hover:bg-portfolio-primary-dark text-white p-2"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={nextImage}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-portfolio-primary-dark/80 hover:bg-portfolio-primary-dark text-white p-2"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </Button>
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                      {displayImages.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`w-2 h-2 rounded-full transition-colors ${
+                            index === currentImageIndex 
+                              ? 'bg-portfolio-tertiary' 
+                              : 'bg-white/50'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
             ) : (
               <div className="w-full aspect-video bg-portfolio-secondary/20 border border-portfolio-tertiary/20 rounded-lg flex items-center justify-center">
                 <span className="text-portfolio-primary-light">No image available</span>

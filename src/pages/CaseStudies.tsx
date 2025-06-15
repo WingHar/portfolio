@@ -28,6 +28,8 @@ interface CaseStudy {
   title: string;
   body: string;
   image_url: string | null;
+  featured_image_url: string | null;
+  general_images: string[] | null;
   featured: boolean | null;
   created_at: string;
 }
@@ -166,7 +168,14 @@ const CaseStudies = () => {
         {showForm && (
           <div className="mb-8">
             <CaseStudyForm
-              onSuccess={handleCaseStudyCreated}
+              onSuccess={() => {
+                setShowForm(false);
+                fetchCaseStudies();
+                toast({
+                  title: "Success",
+                  description: "Case study created successfully!",
+                });
+              }}
               onCancel={() => setShowForm(false)}
             />
           </div>
@@ -176,7 +185,14 @@ const CaseStudies = () => {
           <div className="mb-8">
             <CaseStudyEditForm
               caseStudy={editingCaseStudy}
-              onSuccess={handleCaseStudyUpdated}
+              onSuccess={() => {
+                setEditingCaseStudy(null);
+                fetchCaseStudies();
+                toast({
+                  title: "Success",
+                  description: "Case study updated successfully!",
+                });
+              }}
               onCancel={() => setEditingCaseStudy(null)}
             />
           </div>
@@ -187,7 +203,7 @@ const CaseStudies = () => {
             <Card 
               key={caseStudy.id} 
               className="bg-portfolio-secondary/20 border-portfolio-tertiary/20 overflow-hidden project-card-hover cursor-pointer relative"
-              onClick={() => handleCaseStudyClick(caseStudy.id)}
+              onClick={() => !editingCaseStudy && navigate(`/case-studies/${caseStudy.id}`)}
             >
               {caseStudy.featured && (
                 <div className="absolute top-3 right-3 z-10">
@@ -199,7 +215,11 @@ const CaseStudies = () => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={(e) => handleEditClick(e, caseStudy)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setEditingCaseStudy(caseStudy);
+                      setShowForm(false);
+                    }}
                     className="bg-portfolio-primary-dark/80 hover:bg-portfolio-primary-dark text-portfolio-tertiary hover:text-white p-2"
                   >
                     <Edit className="w-4 h-4" />
@@ -227,7 +247,35 @@ const CaseStudies = () => {
                           Cancel
                         </AlertDialogCancel>
                         <AlertDialogAction
-                          onClick={() => handleDeleteCaseStudy(caseStudy.id)}
+                          onClick={async () => {
+                            try {
+                              const { error } = await supabase
+                                .from('case_studies')
+                                .delete()
+                                .eq('id', caseStudy.id);
+
+                              if (error) {
+                                toast({
+                                  title: "Error",
+                                  description: "Failed to delete case study",
+                                  variant: "destructive",
+                                });
+                              } else {
+                                fetchCaseStudies();
+                                toast({
+                                  title: "Success",
+                                  description: "Case study deleted successfully!",
+                                });
+                              }
+                            } catch (error) {
+                              console.error('Error deleting case study:', error);
+                              toast({
+                                title: "Error",
+                                description: "An unexpected error occurred",
+                                variant: "destructive",
+                              });
+                            }
+                          }}
                           className="bg-red-600 hover:bg-red-700 text-white"
                         >
                           Delete
@@ -238,10 +286,10 @@ const CaseStudies = () => {
                 </div>
               )}
               
-              {caseStudy.image_url && (
+              {(caseStudy.featured_image_url || caseStudy.image_url) && (
                 <div className="aspect-video bg-portfolio-primary-dark/50">
                   <img
-                    src={caseStudy.image_url}
+                    src={caseStudy.featured_image_url || caseStudy.image_url || ''}
                     alt={caseStudy.title}
                     className="w-full h-full object-cover"
                   />

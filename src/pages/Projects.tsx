@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -30,6 +29,8 @@ interface Project {
   description: string;
   body: string;
   image_url: string;
+  featured_image_url: string | null;
+  general_images: string[] | null;
   technologies: string[];
   live_url?: string;
   github_url?: string;
@@ -130,7 +131,10 @@ const Projects = () => {
           {isAdmin && (
             <div className="mt-8">
               <Button
-                onClick={handleCreateProject}
+                onClick={() => {
+                  setEditingProject(null);
+                  setIsDialogOpen(true);
+                }}
                 className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white font-semibold"
               >
                 <Plus className="w-5 h-5 mr-2" />
@@ -158,7 +162,7 @@ const Projects = () => {
                 >
                   <div className="relative overflow-hidden">
                     <img 
-                      src={project.image_url} 
+                      src={project.featured_image_url || project.image_url} 
                       alt={project.title}
                       className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                     />
@@ -224,7 +228,7 @@ const Projects = () => {
                       {project.technologies.map((tech) => (
                         <span 
                           key={tech}
-                          className="bg-portfolio-secondary/20 text-portfolio-primary-light px-3 py-1 rounded-full text-sm border border-portfolio-secondary/30"
+                          className="bg-portfolio-secondary/20 text-portfolio-primary-light px-3 py-1 rounded-full text-sm font-medium"
                         >
                           {tech}
                         </span>
@@ -282,7 +286,7 @@ const Projects = () => {
                 >
                   <div className="relative overflow-hidden">
                     <img 
-                      src={project.image_url} 
+                      src={project.featured_image_url || project.image_url} 
                       alt={project.title}
                       className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
