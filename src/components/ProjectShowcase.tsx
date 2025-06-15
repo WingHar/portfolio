@@ -177,34 +177,14 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
                             </span>
                           </div>
                           
-                          {/* Card content overlay - only visible on hover */}
-                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-portfolio-primary-dark via-portfolio-primary-dark/90 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                            <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors">
-                              {project.title}
-                            </h3>
-                            <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-2 mb-3">
-                              {project.description}
-                            </p>
-                            <div className="flex gap-2 flex-wrap">
-                              {project.technologies.slice(0, 3).map((tech) => (
-                                <span 
-                                  key={tech}
-                                  className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-2 py-1 rounded text-xs"
-                                >
-                                  {tech}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                          
-                          {/* Netflix-style overlay on hover - for additional info */}
-                          <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 flex items-center justify-center">
-                            <div className="text-center p-4">
-                              <h3 className="text-white font-bold text-xl mb-3">{project.title}</h3>
-                              <p className="text-portfolio-primary-light text-sm mb-4 line-clamp-4">
+                          {/* Centered overlay on hover */}
+                          <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                            <div className="text-center p-6">
+                              <h3 className="text-white font-bold text-xl mb-4">{project.title}</h3>
+                              <p className="text-portfolio-primary-light text-sm mb-6 line-clamp-4 leading-relaxed">
                                 {project.description}
                               </p>
-                              <div className="flex gap-2 justify-center flex-wrap mb-4">
+                              <div className="flex gap-2 justify-center flex-wrap mb-6">
                                 {project.technologies.map((tech) => (
                                   <span 
                                     key={tech}

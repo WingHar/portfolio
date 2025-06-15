@@ -141,29 +141,11 @@ const FeaturedCaseStudies = () => {
                             </span>
                           </div>
                           
-                          {/* Card content overlay - only visible on hover */}
-                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-portfolio-primary-dark via-portfolio-primary-dark/90 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
-                            <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors">
-                              {caseStudy.title}
-                            </h3>
-                            <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-2 mb-3">
-                              {caseStudy.body.length > 100 
-                                ? `${caseStudy.body.substring(0, 100)}...` 
-                                : caseStudy.body
-                              }
-                            </p>
-                            <div className="flex justify-center">
-                              <span className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-2 py-1 rounded text-xs">
-                                {new Date(caseStudy.created_at).getFullYear()}
-                              </span>
-                            </div>
-                          </div>
-                          
-                          {/* Netflix-style overlay on hover - for additional info */}
-                          <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200 flex items-center justify-center">
-                            <div className="text-center p-4">
-                              <h3 className="text-white font-bold text-xl mb-3">{caseStudy.title}</h3>
-                              <p className="text-portfolio-primary-light text-sm mb-4 line-clamp-4">
+                          {/* Centered overlay on hover */}
+                          <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                            <div className="text-center p-6">
+                              <h3 className="text-white font-bold text-xl mb-4">{caseStudy.title}</h3>
+                              <p className="text-portfolio-primary-light text-sm mb-6 line-clamp-4 leading-relaxed">
                                 {caseStudy.body.length > 200 
                                   ? `${caseStudy.body.substring(0, 200)}...` 
                                   : caseStudy.body
