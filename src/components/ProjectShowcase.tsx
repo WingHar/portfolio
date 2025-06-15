@@ -3,54 +3,89 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ExternalLink, Github } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 interface Project {
   id: string;
   title: string;
   category: string;
   description: string;
-  image: string;
+  body: string;
+  image_url: string;
   technologies: string[];
-  liveUrl?: string;
-  githubUrl?: string;
+  live_url?: string;
+  github_url?: string;
+  featured?: boolean;
 }
 
-const projects: Project[] = [
-  {
-    id: '1',
-    title: 'E-Commerce Platform',
-    category: 'Full Stack Development',
-    description: 'Built a scalable e-commerce platform with React, Node.js, and PostgreSQL. Handles 10K+ daily users.',
-    image: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=6052&auto=format&fit=crop',
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe']
-  },
-  {
-    id: '2',
-    title: 'CTV Campaign Management',
-    category: 'Digital Marketing',
-    description: 'Managed $500K+ CTV advertising budget across multiple platforms with 300% ROAS improvement.',
-    image: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=6052&auto=format&fit=crop',
-    technologies: ['The Trade Desk', 'Samsung DSP', 'Analytics', 'Attribution']
-  },
-  {
-    id: '3',
-    title: 'Real-Time Analytics Dashboard',
-    category: 'Full Stack Development',
-    description: 'Developed real-time analytics dashboard processing millions of data points with sub-second latency.',
-    image: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=6052&auto=format&fit=crop',
-    technologies: ['React', 'WebSocket', 'Redis', 'Chart.js']
-  },
-  {
-    id: '4',
-    title: 'Multi-Platform Ad Strategy',
-    category: 'Digital Marketing',
-    description: 'Orchestrated integrated campaigns across Google, Facebook, TikTok, and billboards for 500% growth.',
-    image: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=6052&auto=format&fit=crop',
-    technologies: ['Google Ads', 'Facebook Ads', 'TikTok Ads', 'Programmatic']
-  }
-];
-
 const ProjectShowcase = () => {
+  const { data: featuredProjects = [], isLoading } = useQuery({
+    queryKey: ['featured-projects'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('projects')
+        .select('*')
+        .eq('featured', true)
+        .order('created_at', { ascending: false })
+        .limit(4);
+      
+      if (error) throw error;
+      return data as Project[];
+    }
+  });
+
+  if (isLoading) {
+    return (
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 animate-slide-up">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+              <span className="text-gradient">Featured Projects</span>
+            </h2>
+            <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
+              A showcase of engineering excellence and marketing innovation
+            </p>
+          </div>
+          <div className="text-center text-portfolio-primary-light">
+            Loading featured projects...
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (featuredProjects.length === 0) {
+    return (
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 animate-slide-up">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+              <span className="text-gradient">Featured Projects</span>
+            </h2>
+            <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
+              A showcase of engineering excellence and marketing innovation
+            </p>
+          </div>
+          <div className="text-center">
+            <p className="text-portfolio-primary-light mb-8">
+              No featured projects available at the moment.
+            </p>
+            <Button 
+              size="lg"
+              variant="outline"
+              className="border-portfolio-tertiary text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white px-8 py-4 text-lg font-semibold"
+              asChild
+            >
+              <Link to="/projects">View All Projects</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
       <div className="max-w-7xl mx-auto">
@@ -64,7 +99,7 @@ const ProjectShowcase = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+          {featuredProjects.map((project, index) => (
             <Card 
               key={project.id} 
               className="bg-portfolio-primary border-portfolio-secondary project-card-hover group overflow-hidden"
@@ -72,7 +107,7 @@ const ProjectShowcase = () => {
             >
               <div className="relative overflow-hidden">
                 <img 
-                  src={project.image} 
+                  src={project.image_url} 
                   alt={project.title}
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
                 />
@@ -89,7 +124,7 @@ const ProjectShowcase = () => {
                   {project.title}
                 </h3>
                 <p className="text-portfolio-primary-light mb-4 leading-relaxed">
-                  {project.description}
+                  {project.body || project.description}
                 </p>
                 
                 <div className="flex flex-wrap gap-2 mb-6">
@@ -104,23 +139,29 @@ const ProjectShowcase = () => {
                 </div>
 
                 <div className="flex gap-3">
-                  {project.liveUrl && (
+                  {project.live_url && (
                     <Button 
                       size="sm" 
                       className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white"
+                      asChild
                     >
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Live Demo
+                      <a href={project.live_url} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Live Demo
+                      </a>
                     </Button>
                   )}
-                  {project.githubUrl && (
+                  {project.github_url && (
                     <Button 
                       variant="outline" 
                       size="sm"
                       className="border-portfolio-secondary text-portfolio-primary-light hover:bg-portfolio-secondary hover:text-white"
+                      asChild
                     >
-                      <Github className="w-4 h-4 mr-2" />
-                      Code
+                      <a href={project.github_url} target="_blank" rel="noopener noreferrer">
+                        <Github className="w-4 h-4 mr-2" />
+                        Code
+                      </a>
                     </Button>
                   )}
                 </div>
@@ -134,8 +175,9 @@ const ProjectShowcase = () => {
             size="lg"
             variant="outline"
             className="border-portfolio-tertiary text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white px-8 py-4 text-lg font-semibold"
+            asChild
           >
-            View All Projects
+            <Link to="/projects">View All Projects</Link>
           </Button>
         </div>
       </div>
