@@ -2,8 +2,17 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Film, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
+  const quickLinks = [
+    { label: 'Projects', href: '/projects', isExternal: false },
+    { label: 'About', href: '/about', isExternal: false },
+    { label: 'Experience', href: '/experience', isExternal: false },
+    { label: 'Case Studies', href: '/case-studies', isExternal: false },
+    { label: 'Contact', href: 'mailto:winghar@outlook.com', isExternal: true }
+  ];
+
   return (
     <footer className="bg-portfolio-primary-dark border-t border-portfolio-secondary/20 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,15 +56,25 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <h3 className="text-lg font-semibold text-white mb-6">Quick Links</h3>
             <ul className="space-y-3">
-              {['Projects', 'About', 'Experience', 'Blog', 'Contact'].map((link) => (
-                <li key={link}>
-                  <a 
-                    href={`#${link.toLowerCase()}`}
-                    className="text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 flex items-center"
-                  >
-                    {link}
-                    <ExternalLink className="w-3 h-3 ml-1 opacity-50" />
-                  </a>
+              {quickLinks.map((link) => (
+                <li key={link.label}>
+                  {link.isExternal ? (
+                    <a 
+                      href={link.href}
+                      className="text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 flex items-center"
+                    >
+                      {link.label}
+                      <ExternalLink className="w-3 h-3 ml-1 opacity-50" />
+                    </a>
+                  ) : (
+                    <Link 
+                      to={link.href}
+                      className="text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 flex items-center"
+                    >
+                      {link.label}
+                      <ExternalLink className="w-3 h-3 ml-1 opacity-50" />
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -70,8 +89,11 @@ const Footer = () => {
             <Button 
               size="lg"
               className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white font-semibold w-full lg:w-auto"
+              asChild
             >
-              Start a Conversation
+              <a href="mailto:winghar@outlook.com">
+                Start a Conversation
+              </a>
             </Button>
           </div>
         </div>
