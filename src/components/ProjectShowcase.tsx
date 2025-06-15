@@ -1,8 +1,8 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
 import { ExternalLink, Github } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useQuery } from '@tanstack/react-query';
@@ -26,6 +26,10 @@ interface ProjectShowcaseProps {
 }
 
 const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+
   const { data: featuredProjects = [], isLoading } = useQuery({
     queryKey: ['featured-projects'],
     queryFn: async () => {
@@ -40,6 +44,30 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
       return data as Project[];
     }
   });
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    const onSelect = () => {
+      setCanScrollPrev(api.canScrollPrev());
+      setCanScrollNext(api.canScrollNext());
+    };
+
+    onSelect();
+    api.on("reInit", onSelect);
+    api.on("select", onSelect);
+
+    return () => {
+      api?.off("select", onSelect);
+    };
+  }, [api]);
+
+  // Determine if arrows should be shown
+  const shouldShowArrows = featuredProjects.length > 3;
+  const showLeftArrow = shouldShowArrows && canScrollPrev;
+  const showRightArrow = shouldShowArrows && canScrollNext;
 
   if (isLoading) {
     return (
@@ -105,6 +133,7 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
 
         <div className="relative px-12">
           <Carousel
+            setApi={setApi}
             opts={{
               align: "start",
               loop: true,
@@ -168,8 +197,12 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
-            <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
+            {showLeftArrow && (
+              <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
+            )}
+            {showRightArrow && (
+              <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
+            )}
           </Carousel>
         </div>
 
