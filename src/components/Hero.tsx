@@ -51,7 +51,7 @@ const Hero = ({ onHoverChange }: HeroProps) => {
       <div className="absolute inset-0 netflix-gradient z-10 transition-all duration-700" 
            style={{
              background: isHovered 
-               ? `linear-gradient(${mousePosition.x}deg, rgba(47, 75, 38, 0.6) 0%, rgba(45, 51, 25, 0.8) 50%, rgba(18, 26, 15, 0.95) 100%)`
+               ? `linear-gradient(${mousePosition.x}deg, rgba(25, 123, 158, 0.6) 0%, rgba(25, 123, 158, 0.8) 50%, rgba(15, 23, 42, 0.95) 100%)`
                : undefined
            }} />
       
@@ -71,7 +71,7 @@ const Hero = ({ onHoverChange }: HeroProps) => {
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-portfolio-tertiary rounded-full opacity-40 animate-pulse"
+            className="absolute w-1 h-1 bg-portfolio-primary rounded-full opacity-40 animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -88,7 +88,7 @@ const Hero = ({ onHoverChange }: HeroProps) => {
 
       <div className="absolute inset-0 z-15 pointer-events-none">
         <div 
-          className="absolute top-20 left-10 w-8 h-8 bg-portfolio-tertiary/30 rounded-full transition-all duration-500 hover:scale-150"
+          className="absolute top-20 left-10 w-8 h-8 bg-portfolio-primary/30 rounded-full transition-all duration-500 hover:scale-150"
           style={{
             transform: `translate(${mousePosition.x * 0.05}px, ${mousePosition.y * 0.05}px) rotate(${mousePosition.x * 0.5}deg)`,
           }}
@@ -110,12 +110,12 @@ const Hero = ({ onHoverChange }: HeroProps) => {
       {isHovered && (
         <div 
           ref={cursorRef}
-          className="fixed w-8 h-8 bg-portfolio-tertiary/20 rounded-full pointer-events-none z-50 backdrop-blur-sm border border-portfolio-tertiary/30"
+          className="fixed w-8 h-8 bg-portfolio-primary/20 rounded-full pointer-events-none z-50 backdrop-blur-sm border border-portfolio-primary/30"
           style={{
             transform: 'scale(1.5)',
           }}
         >
-          <Sparkles className="w-4 h-4 text-portfolio-tertiary m-2 animate-spin" />
+          <Sparkles className="w-4 h-4 text-portfolio-primary m-2 animate-spin" />
         </div>
       )}
 
@@ -211,7 +211,7 @@ const Hero = ({ onHoverChange }: HeroProps) => {
           style={{
             left: `${mousePosition.x * window.innerWidth / 100 - 192}px`,
             top: `${mousePosition.y * window.innerHeight / 100 - 192}px`,
-            background: `radial-gradient(circle, rgba(194, 132, 122, 0.3) 0%, transparent 70%)`,
+            background: `radial-gradient(circle, rgba(25, 123, 158, 0.3) 0%, transparent 70%)`,
             filter: 'blur(40px)',
           }}
         />

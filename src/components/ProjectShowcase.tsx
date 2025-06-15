@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -41,7 +40,7 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
   });
 
   const sectionStyle = {
-    backgroundColor: isHeroHovered ? '#2F4B26' : undefined,
+    backgroundColor: isHeroHovered ? '#197B9E' : undefined,
     transition: 'background-color 0.7s ease',
   };
 
