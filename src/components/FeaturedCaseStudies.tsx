@@ -88,112 +88,124 @@ const FeaturedCaseStudies = () => {
   }
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 animate-slide-up">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            <span className="text-gradient">Featured Case Studies</span>
-          </h2>
-          <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
-            Explore our most impactful success stories and achievements
-          </p>
-        </div>
+    <>
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 animate-slide-up">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+              <span className="text-gradient">Featured Case Studies</span>
+            </h2>
+            <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
+              Explore our most impactful success stories and achievements
+            </p>
+          </div>
 
-        <div className="relative px-12">
-          <Carousel
-            setApi={setApi}
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {featuredCaseStudies.map((caseStudy) => (
-                <CarouselItem key={caseStudy.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <Link 
-                    to={`/case-studies/${caseStudy.id}`}
-                    className="block group"
-                  >
-                    <Card 
-                      className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden cursor-pointer h-full"
+          <div className="relative px-12">
+            <Carousel
+              setApi={setApi}
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {featuredCaseStudies.map((caseStudy) => (
+                  <CarouselItem key={caseStudy.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                    <Link 
+                      to={`/case-studies/${caseStudy.id}`}
+                      className="block group"
                     >
-                      <div className="relative overflow-hidden">
-                        {(caseStudy.featured_image_url || caseStudy.image_url) ? (
-                          <img 
-                            src={caseStudy.featured_image_url || caseStudy.image_url || ''} 
-                            alt={caseStudy.title}
-                            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-                          />
-                        ) : (
-                          <div className="w-full h-48 bg-portfolio-secondary/50 flex items-center justify-center">
-                            <Calendar className="w-12 h-12 text-portfolio-tertiary/50" />
+                      <Card 
+                        className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden cursor-pointer h-full"
+                      >
+                        <div className="relative overflow-hidden">
+                          {(caseStudy.featured_image_url || caseStudy.image_url) ? (
+                            <img 
+                              src={caseStudy.featured_image_url || caseStudy.image_url || ''} 
+                              alt={caseStudy.title}
+                              className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                            />
+                          ) : (
+                            <div className="w-full h-48 bg-portfolio-secondary/50 flex items-center justify-center">
+                              <Calendar className="w-12 h-12 text-portfolio-tertiary/50" />
+                            </div>
+                          )}
+                          
+                          <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                          <div className="absolute top-4 left-4">
+                            <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
+                              Case Study
+                            </span>
                           </div>
-                        )}
-                        
-                        <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-                        <div className="absolute top-4 left-4">
-                          <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
-                            Case Study
-                          </span>
-                        </div>
-                        
-                        {/* Netflix-style overlay on hover */}
-                        <div className="absolute inset-0 bg-portfolio-primary-dark/90 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                          <div className="text-center p-4">
-                            <h3 className="text-white font-bold text-lg mb-2">{caseStudy.title}</h3>
-                            <p className="text-portfolio-primary-light text-sm mb-4 line-clamp-3">
-                              {caseStudy.body.length > 150 
-                                ? `${caseStudy.body.substring(0, 150)}...` 
-                                : caseStudy.body
-                              }
-                            </p>
-                            <div className="flex justify-center">
-                              <span className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-2 py-1 rounded text-xs">
-                                {new Date(caseStudy.created_at).getFullYear()}
-                              </span>
+                          
+                          {/* Netflix-style overlay on hover */}
+                          <div className="absolute inset-0 bg-portfolio-primary-dark/90 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                            <div className="text-center p-4">
+                              <h3 className="text-white font-bold text-lg mb-2">{caseStudy.title}</h3>
+                              <p className="text-portfolio-primary-light text-sm mb-4 line-clamp-3">
+                                {caseStudy.body.length > 150 
+                                  ? `${caseStudy.body.substring(0, 150)}...` 
+                                  : caseStudy.body
+                                }
+                              </p>
+                              <div className="flex justify-center">
+                                <span className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-2 py-1 rounded text-xs">
+                                  {new Date(caseStudy.created_at).getFullYear()}
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      
-                      <CardContent className="p-4">
-                        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors truncate">
-                          {caseStudy.title}
-                        </h3>
-                        <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-2">
-                          {caseStudy.body.length > 100 
-                            ? `${caseStudy.body.substring(0, 100)}...` 
-                            : caseStudy.body
-                          }
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            {showLeftArrow && (
-              <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
-            )}
-            {showRightArrow && (
-              <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
-            )}
-          </Carousel>
+                        
+                        <CardContent className="p-4">
+                          <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors truncate">
+                            {caseStudy.title}
+                          </h3>
+                          <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-2">
+                            {caseStudy.body.length > 100 
+                              ? `${caseStudy.body.substring(0, 100)}...` 
+                              : caseStudy.body
+                            }
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              {showLeftArrow && (
+                <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
+              )}
+              {showRightArrow && (
+                <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
+              )}
+            </Carousel>
+          </div>
         </div>
+      </section>
 
-        <div className="text-center mt-12">
-          <Button 
-            size="lg"
-            variant="outline"
-            className="border-portfolio-tertiary text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white px-8 py-4 text-lg font-semibold"
-            asChild
-          >
-            <Link to="/case-studies">View All Case Studies</Link>
-          </Button>
+      {/* Full-width banner for "View All Case Studies" with yellow gold color */}
+      <div className="w-full bg-portfolio-tertiary py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+            <div className="text-center">
+              <p className="text-portfolio-primary-dark text-xl font-medium">
+                Explore all case studies and success stories
+              </p>
+            </div>
+            <Button 
+              size="lg"
+              variant="outline"
+              className="bg-white text-portfolio-tertiary border-white hover:bg-gray-100 px-8 py-4 text-lg font-semibold flex-shrink-0"
+              asChild
+            >
+              <Link to="/case-studies">View All Case Studies</Link>
+            </Button>
+          </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 
