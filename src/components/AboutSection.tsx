@@ -20,7 +20,7 @@ const skills = [
     category: 'Product Management',
     icon: Lightbulb,
     skills: ['Product Strategy', 'Roadmap Planning', 'User Research', 'Feature Prioritization', 'A/B Testing', 'Analytics'],
-    color: 'portfolio-primary'
+    color: 'portfolio-tertiary'
   }
 ];
 
@@ -75,16 +75,16 @@ const AboutSection = () => {
             ))}
           </div>
           
-          {/* Second row - Product Management (centered) */}
+          {/* Second row - Product Management (centered and wider) */}
           <div className="flex justify-center">
-            <div className="w-full max-w-md lg:max-w-lg">
+            <div className="w-full max-w-2xl lg:max-w-3xl">
               <Card 
                 className="bg-portfolio-primary-dark border-portfolio-secondary project-card-hover"
                 style={{ animationDelay: '0.6s' }}
               >
                 <CardContent className="p-8">
                   <div className="flex items-center mb-6">
-                    <Lightbulb className="w-8 h-8 text-portfolio-primary mr-4" />
+                    <Lightbulb className="w-8 h-8 text-portfolio-tertiary mr-4" />
                     <h3 className="text-2xl font-bold text-white">Product Management</h3>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
