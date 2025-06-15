@@ -39,17 +39,9 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
     }
   });
 
-  const sectionStyle = {
-    backgroundColor: isHeroHovered ? '#197B9E' : undefined,
-    transition: 'background-color 0.7s ease',
-  };
-
   if (isLoading) {
     return (
-      <section 
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark"
-        style={sectionStyle}
-      >
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-slide-up">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -69,10 +61,7 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
 
   if (featuredProjects.length === 0) {
     return (
-      <section 
-        className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark"
-        style={sectionStyle}
-      >
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-slide-up">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -101,10 +90,7 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
   }
 
   return (
-    <section 
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark"
-      style={sectionStyle}
-    >
+    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl sm:text-5xl font-bold mb-6">
