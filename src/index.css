@@ -102,6 +102,48 @@
     background-clip: text;
   }
 
+  /* Holographic card effect */
+  .holographic-card {
+    position: relative;
+    transition: all 0.5s ease;
+    border-radius: 0.75rem;
+  }
+
+  .holographic-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      0deg, 
+      transparent, 
+      transparent 30%, 
+      rgba(229, 199, 44, 0.3)
+    );
+    transform: rotate(-45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .holographic-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(229, 199, 44, 0.4);
+  }
+
+  .holographic-card:hover::before {
+    opacity: 1;
+    transform: rotate(-45deg) translateY(100%);
+  }
+
+  .holographic-card > * {
+    position: relative;
+    z-index: 2;
+  }
+
   /* Line clamp utilities for text truncation */
   .line-clamp-2 {
     display: -webkit-box;

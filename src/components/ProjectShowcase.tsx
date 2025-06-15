@@ -119,19 +119,7 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
                     className="block group"
                   >
                     <Card 
-                      className="bg-portfolio-primary border-portfolio-secondary overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-portfolio-tertiary/20 animate-bounce h-full"
-                      style={{ 
-                        animationDelay: `${index * 0.1}s`,
-                        animationDuration: '0.6s',
-                        animationFillMode: 'both'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.animation = 'none';
-                        e.currentTarget.style.transform = 'scale(1.05) translateY(-5px)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'scale(1) translateY(0)';
-                      }}
+                      className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden cursor-pointer h-full"
                     >
                       <div className="relative overflow-hidden">
                         <img 
