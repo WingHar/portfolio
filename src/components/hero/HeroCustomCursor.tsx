@@ -11,7 +11,7 @@ const HeroCustomCursor = ({ isHovered }: HeroCustomCursorProps) => {
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (cursorRef.current && isHovered) {
+      if (cursorRef.current) {
         cursorRef.current.style.left = `${e.clientX - 16}px`;
         cursorRef.current.style.top = `${e.clientY - 16}px`;
       }
@@ -19,9 +19,7 @@ const HeroCustomCursor = ({ isHovered }: HeroCustomCursorProps) => {
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [isHovered]);
-
-  if (!isHovered) return null;
+  }, []);
 
   return (
     <div 
