@@ -41,11 +41,11 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
 
   if (isLoading) {
     return (
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
+      <section id="projects-section" className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-slide-up">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-              <span className="text-gradient">Featured Projects</span>
+              <span className="text-gradient">Available Projects and Experience</span>
             </h2>
             <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
               A showcase of engineering excellence and marketing innovation
@@ -61,11 +61,11 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
 
   if (featuredProjects.length === 0) {
     return (
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
+      <section id="projects-section" className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-slide-up">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-              <span className="text-gradient">Featured Projects</span>
+              <span className="text-gradient">Available Projects and Experience</span>
             </h2>
             <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
               A showcase of engineering excellence and marketing innovation
@@ -90,11 +90,11 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
   }
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
+    <section id="projects-section" className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            <span className="text-gradient">Featured Projects</span>
+            <span className="text-gradient">Available Projects and Experience</span>
           </h2>
           <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
             A showcase of engineering excellence and marketing innovation

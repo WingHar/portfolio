@@ -9,6 +9,16 @@ interface HeroContentProps {
 }
 
 const HeroContent = ({ isHovered, mousePosition }: HeroContentProps) => {
+  const handleViewWorkClick = () => {
+    const projectsSection = document.getElementById('projects-section');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <div className="relative z-20 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <div className="animate-fade-in">
@@ -58,6 +68,7 @@ const HeroContent = ({ isHovered, mousePosition }: HeroContentProps) => {
           <Button 
             size="lg" 
             className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white px-8 py-4 text-lg font-semibold transition-all duration-[400ms] hover:scale-110 hover:shadow-lg hover:shadow-portfolio-tertiary/30 group"
+            onClick={handleViewWorkClick}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = `scale(1.1) rotate(${Math.random() * 4 - 2}deg)`;
             }}
