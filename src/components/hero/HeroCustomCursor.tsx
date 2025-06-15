@@ -24,12 +24,12 @@ const HeroCustomCursor = ({ isHovered }: HeroCustomCursorProps) => {
   return (
     <div 
       ref={cursorRef}
-      className="fixed w-8 h-8 bg-portfolio-primary/20 rounded-full pointer-events-none z-50 backdrop-blur-sm border border-portfolio-primary/30 transition-opacity duration-500"
+      className="fixed w-8 h-8 bg-white/20 rounded-full pointer-events-none z-50 backdrop-blur-sm border border-white/30 transition-opacity duration-500"
       style={{
         transform: 'scale(1.5)',
       }}
     >
-      <Sparkles className="w-4 h-4 text-portfolio-primary m-2 animate-spin" />
+      <Sparkles className="w-4 h-4 text-white m-2 animate-spin" />
     </div>
   );
 };
