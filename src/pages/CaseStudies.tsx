@@ -142,29 +142,35 @@ const CaseStudies = () => {
     <div className="min-h-screen bg-portfolio-primary-dark flex flex-col">
       <Navigation />
       
-      <div className="flex-1 max-w-7xl mx-auto px-4 py-16 mt-16">
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-4xl font-bold text-white mb-2">Case Studies</h1>
-            <p className="text-portfolio-primary-light">
-              Explore our featured projects and success stories
-            </p>
-          </div>
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-5xl sm:text-6xl font-bold mb-6 animate-fade-in">
+            <span className="text-gradient">My Case Studies</span>
+          </h1>
+          <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto animate-fade-in">
+            Explore detailed analyses of successful projects and strategic implementations that demonstrate expertise in full-stack development and digital marketing solutions.
+          </p>
           
           {isAdmin && (
-            <Button
-              onClick={() => {
-                setShowForm(true);
-                setEditingCaseStudy(null);
-              }}
-              className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90"
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Add Case Study
-            </Button>
+            <div className="mt-8">
+              <Button
+                onClick={() => {
+                  setShowForm(true);
+                  setEditingCaseStudy(null);
+                }}
+                className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white font-semibold"
+              >
+                <Plus className="w-5 h-5 mr-2" />
+                Add Case Study
+              </Button>
+            </div>
           )}
         </div>
+      </section>
 
+      {/* Content Section */}
+      <div className="flex-1 max-w-7xl mx-auto px-4 pb-16">
         {showForm && (
           <div className="mb-8">
             <CaseStudyForm
