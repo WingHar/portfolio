@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -134,7 +133,7 @@ const Experience = () => {
                     <div className={`w-full md:w-5/12 ml-16 md:ml-0 ${
                       index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'
                     }`}>
-                      <Card className="bg-portfolio-primary-dark border-portfolio-secondary hover:border-portfolio-tertiary/50 transition-all duration-300 holographic-card">
+                      <Card className="bg-portfolio-primary-dark border-portfolio-secondary hover:border-portfolio-tertiary/50 transition-all duration-300 holographic-card-reverse">
                         <CardContent className="p-6">
                           {/* Header */}
                           <div className="mb-4">

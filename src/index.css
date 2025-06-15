@@ -144,6 +144,48 @@
     z-index: 2;
   }
 
+  /* Reverse holographic card effect for timeline cards */
+  .holographic-card-reverse {
+    position: relative;
+    transition: all 0.5s ease;
+    border-radius: 0.75rem;
+  }
+
+  .holographic-card-reverse::before {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      180deg, 
+      transparent, 
+      transparent 30%, 
+      rgba(229, 199, 44, 0.3)
+    );
+    transform: rotate(135deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .holographic-card-reverse:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(229, 199, 44, 0.4);
+  }
+
+  .holographic-card-reverse:hover::before {
+    opacity: 1;
+    transform: rotate(135deg) translateY(-100%);
+  }
+
+  .holographic-card-reverse > * {
+    position: relative;
+    z-index: 2;
+  }
+
   /* Line clamp utilities for text truncation */
   .line-clamp-2 {
     display: -webkit-box;
