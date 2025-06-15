@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -21,6 +22,7 @@ import { useAuth } from '@/components/auth/AuthProvider';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 interface Project {
   id: string;
@@ -98,9 +100,6 @@ const Projects = () => {
     queryClient.invalidateQueries({ queryKey: ['projects'] });
   };
 
-  const featuredProjects = projects.filter(project => project.featured);
-  const otherProjects = projects.filter(project => !project.featured);
-
   if (isLoading) {
     return (
       <div className="min-h-screen bg-portfolio-primary-dark">
@@ -145,28 +144,23 @@ const Projects = () => {
         </div>
       </section>
 
-      {/* Featured Projects */}
-      {featuredProjects.length > 0 && (
+      {/* All Projects */}
+      {projects.length > 0 && (
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold text-white mb-12 text-center">
-              Featured Projects
-            </h2>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {featuredProjects.map((project, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {projects.map((project, index) => (
                 <Card 
                   key={project.id} 
-                  className="bg-portfolio-primary border-portfolio-secondary project-card-hover group overflow-hidden"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden group"
                 >
                   <div className="relative overflow-hidden">
                     <img 
                       src={project.featured_image_url || project.image_url} 
                       alt={project.title}
-                      className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
                     <div className="absolute top-4 left-4">
                       <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
                         {project.category}
@@ -174,130 +168,6 @@ const Projects = () => {
                     </div>
                     {isAdmin && (
                       <div className="absolute top-4 right-4 flex gap-2">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => handleEditProject(project)}
-                          className="bg-portfolio-primary-dark/80 border-portfolio-secondary hover:bg-portfolio-secondary"
-                        >
-                          <Edit className="w-4 h-4" />
-                        </Button>
-                        <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                            <Button
-                              size="sm"
-                              variant="destructive"
-                              className="bg-red-600/80 hover:bg-red-600"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
-                          </AlertDialogTrigger>
-                          <AlertDialogContent className="bg-portfolio-primary border-portfolio-secondary">
-                            <AlertDialogHeader>
-                              <AlertDialogTitle className="text-white">Delete Project</AlertDialogTitle>
-                              <AlertDialogDescription className="text-portfolio-primary-light">
-                                Are you sure you want to delete "{project.title}"? This action cannot be undone.
-                              </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                              <AlertDialogCancel className="border-portfolio-secondary text-portfolio-primary-light hover:bg-portfolio-secondary">
-                                Cancel
-                              </AlertDialogCancel>
-                              <AlertDialogAction
-                                onClick={() => handleDeleteProject(project.id)}
-                                className="bg-red-600 hover:bg-red-700 text-white"
-                              >
-                                Delete
-                              </AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        </AlertDialog>
-                      </div>
-                    )}
-                  </div>
-                  
-                  <CardContent className="p-6">
-                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-portfolio-tertiary transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-portfolio-primary-light mb-4 leading-relaxed">
-                      {project.body || project.description}
-                    </p>
-                    
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.technologies.map((tech) => (
-                        <span 
-                          key={tech}
-                          className="bg-portfolio-secondary/20 text-portfolio-primary-light px-3 py-1 rounded-full text-sm font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="flex gap-3">
-                      {project.live_url && (
-                        <Button 
-                          size="sm" 
-                          className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white"
-                          asChild
-                        >
-                          <a href={project.live_url} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="w-4 h-4 mr-2" />
-                            Live Demo
-                          </a>
-                        </Button>
-                      )}
-                      {project.github_url && (
-                        <Button 
-                          variant="outline" 
-                          size="sm"
-                          className="border-portfolio-secondary text-portfolio-primary-light hover:bg-portfolio-secondary hover:text-white"
-                          asChild
-                        >
-                          <a href={project.github_url} target="_blank" rel="noopener noreferrer">
-                            <Github className="w-4 h-4 mr-2" />
-                            Code
-                          </a>
-                        </Button>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Other Projects */}
-      {otherProjects.length > 0 && (
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-portfolio-primary/50">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold text-white mb-12 text-center">
-              {featuredProjects.length > 0 ? 'More Projects' : 'All Projects'}
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {otherProjects.map((project, index) => (
-                <Card 
-                  key={project.id} 
-                  className="bg-portfolio-primary border-portfolio-secondary hover:border-portfolio-tertiary/50 transition-colors group"
-                >
-                  <div className="relative overflow-hidden">
-                    <img 
-                      src={project.featured_image_url || project.image_url} 
-                      alt={project.title}
-                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/60 to-transparent" />
-                    <div className="absolute top-3 left-3">
-                      <span className="bg-portfolio-tertiary/90 text-white px-2 py-1 rounded text-xs font-medium">
-                        {project.category}
-                      </span>
-                    </div>
-                    {isAdmin && (
-                      <div className="absolute top-3 right-3 flex gap-1">
                         <Button
                           size="sm"
                           variant="outline"
@@ -341,10 +211,10 @@ const Projects = () => {
                   </div>
                   
                   <CardContent className="p-4">
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors">
+                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors truncate">
                       {project.title}
                     </h3>
-                    <p className="text-portfolio-primary-light text-sm mb-3 leading-relaxed">
+                    <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-2 mb-4">
                       {project.description}
                     </p>
                     
@@ -352,7 +222,7 @@ const Projects = () => {
                       {project.technologies.slice(0, 3).map((tech) => (
                         <span 
                           key={tech}
-                          className="bg-portfolio-secondary/20 text-portfolio-primary-light px-2 py-1 rounded text-xs border border-portfolio-secondary/30"
+                          className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-2 py-1 rounded text-xs"
                         >
                           {tech}
                         </span>
@@ -364,11 +234,11 @@ const Projects = () => {
                       )}
                     </div>
 
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-wrap">
                       {project.live_url && (
                         <Button 
                           size="sm" 
-                          className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white flex-1 text-xs"
+                          className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white text-xs flex-1 min-w-0"
                           asChild
                         >
                           <a href={project.live_url} target="_blank" rel="noopener noreferrer">
@@ -381,7 +251,7 @@ const Projects = () => {
                         <Button 
                           variant="outline" 
                           size="sm"
-                          className="border-portfolio-secondary text-portfolio-primary-light hover:bg-portfolio-secondary hover:text-white flex-1 text-xs"
+                          className="border-portfolio-secondary text-portfolio-primary-light hover:bg-portfolio-secondary hover:text-white text-xs flex-1 min-w-0"
                           asChild
                         >
                           <a href={project.github_url} target="_blank" rel="noopener noreferrer">
@@ -390,6 +260,16 @@ const Projects = () => {
                           </a>
                         </Button>
                       )}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="border-portfolio-tertiary text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white text-xs flex-1 min-w-0"
+                        asChild
+                      >
+                        <Link to={`/projects/${project.id}`}>
+                          Read More
+                        </Link>
+                      </Button>
                     </div>
                   </CardContent>
                 </Card>

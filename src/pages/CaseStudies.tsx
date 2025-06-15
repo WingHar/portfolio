@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { supabase } from '@/integrations/supabase/client';
 import { Plus, Edit, Star, Trash2 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import CaseStudyForm from '@/components/CaseStudyForm';
 import CaseStudyEditForm from '@/components/CaseStudyEditForm';
 import Navigation from '@/components/Navigation';
@@ -202,8 +202,7 @@ const CaseStudies = () => {
           {caseStudies.map((caseStudy) => (
             <Card 
               key={caseStudy.id} 
-              className="bg-portfolio-secondary/20 border-portfolio-tertiary/20 overflow-hidden project-card-hover cursor-pointer relative"
-              onClick={() => !editingCaseStudy && navigate(`/case-studies/${caseStudy.id}`)}
+              className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden group"
             >
               {caseStudy.featured && (
                 <div className="absolute top-3 right-3 z-10">
@@ -220,9 +219,9 @@ const CaseStudies = () => {
                       setEditingCaseStudy(caseStudy);
                       setShowForm(false);
                     }}
-                    className="bg-portfolio-primary-dark/80 hover:bg-portfolio-primary-dark text-portfolio-tertiary hover:text-white p-2"
+                    className="bg-portfolio-primary-dark/80 hover:bg-portfolio-primary-dark text-portfolio-tertiary hover:text-white p-1 h-auto"
                   >
-                    <Edit className="w-4 h-4" />
+                    <Edit className="w-3 h-3" />
                   </Button>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
@@ -230,9 +229,9 @@ const CaseStudies = () => {
                         variant="ghost"
                         size="sm"
                         onClick={(e) => e.stopPropagation()}
-                        className="bg-red-600/80 hover:bg-red-600 text-white p-2"
+                        className="bg-red-600/80 hover:bg-red-600 text-white p-1 h-auto"
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="w-3 h-3" />
                       </Button>
                     </AlertDialogTrigger>
                     <AlertDialogContent className="bg-portfolio-primary border-portfolio-secondary">
@@ -286,24 +285,38 @@ const CaseStudies = () => {
                 </div>
               )}
               
-              {(caseStudy.featured_image_url || caseStudy.image_url) && (
-                <div className="aspect-video bg-portfolio-primary-dark/50">
+              <div className="relative overflow-hidden">
+                {(caseStudy.featured_image_url || caseStudy.image_url) && (
                   <img
                     src={caseStudy.featured_image_url || caseStudy.image_url || ''}
                     alt={caseStudy.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                   />
-                </div>
-              )}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3">
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+              </div>
+              
+              <div className="p-4">
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors truncate">
                   {caseStudy.title}
                 </h3>
-                <p className="text-portfolio-primary-light line-clamp-3">
+                <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-2 mb-4">
                   {caseStudy.body}
                 </p>
-                <div className="mt-4 text-sm text-portfolio-tertiary">
-                  {new Date(caseStudy.created_at).toLocaleDateString()}
+                <div className="flex justify-between items-center">
+                  <div className="text-xs text-portfolio-tertiary">
+                    {new Date(caseStudy.created_at).toLocaleDateString()}
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-portfolio-tertiary text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white text-xs"
+                    asChild
+                  >
+                    <Link to={`/case-studies/${caseStudy.id}`}>
+                      Read More
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </Card>
