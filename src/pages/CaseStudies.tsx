@@ -4,13 +4,24 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { supabase } from '@/integrations/supabase/client';
-import { Plus, Edit, Star } from 'lucide-react';
+import { Plus, Edit, Star, Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import CaseStudyForm from '@/components/CaseStudyForm';
 import CaseStudyEditForm from '@/components/CaseStudyEditForm';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 interface CaseStudy {
   id: string;
@@ -73,6 +84,36 @@ const CaseStudies = () => {
       title: "Success",
       description: "Case study updated successfully!",
     });
+  };
+
+  const handleDeleteCaseStudy = async (caseStudyId: string) => {
+    try {
+      const { error } = await supabase
+        .from('case_studies')
+        .delete()
+        .eq('id', caseStudyId);
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: "Failed to delete case study",
+          variant: "destructive",
+        });
+      } else {
+        fetchCaseStudies();
+        toast({
+          title: "Success",
+          description: "Case study deleted successfully!",
+        });
+      }
+    } catch (error) {
+      console.error('Error deleting case study:', error);
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleCaseStudyClick = (id: string) => {
@@ -154,7 +195,7 @@ const CaseStudies = () => {
                 </div>
               )}
               {isAdmin && (
-                <div className="absolute top-3 left-3 z-10">
+                <div className="absolute top-3 left-3 z-10 flex gap-2">
                   <Button
                     variant="ghost"
                     size="sm"
@@ -163,6 +204,37 @@ const CaseStudies = () => {
                   >
                     <Edit className="w-4 h-4" />
                   </Button>
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={(e) => e.stopPropagation()}
+                        className="bg-red-600/80 hover:bg-red-600 text-white p-2"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent className="bg-portfolio-primary border-portfolio-secondary">
+                      <AlertDialogHeader>
+                        <AlertDialogTitle className="text-white">Delete Case Study</AlertDialogTitle>
+                        <AlertDialogDescription className="text-portfolio-primary-light">
+                          Are you sure you want to delete "{caseStudy.title}"? This action cannot be undone.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel className="border-portfolio-secondary text-portfolio-primary-light hover:bg-portfolio-secondary">
+                          Cancel
+                        </AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={() => handleDeleteCaseStudy(caseStudy.id)}
+                          className="bg-red-600 hover:bg-red-700 text-white"
+                        >
+                          Delete
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
                 </div>
               )}
               
