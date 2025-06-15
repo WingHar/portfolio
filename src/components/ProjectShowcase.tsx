@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -93,6 +92,45 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
 
   if (featuredProjects.length === 0) {
     return (
+      <>
+        <section id="projects-section" className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16 animate-slide-up">
+              <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+                <span className="text-gradient">Available Projects and Experience</span>
+              </h2>
+              <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
+                A showcase of engineering excellence and marketing innovation
+              </p>
+            </div>
+          </div>
+        </section>
+        {/* Full-width banner */}
+        <div className="w-full bg-portfolio-primary py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+              <div className="text-center">
+                <p className="text-white text-xl font-medium">
+                  Take a look at the other projects I've done that are public
+                </p>
+              </div>
+              <Button 
+                size="lg"
+                variant="outline"
+                className="bg-white text-portfolio-primary border-white hover:bg-gray-100 px-8 py-4 text-lg font-semibold flex-shrink-0"
+                asChild
+              >
+                <Link to="/projects">View All Projects</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  return (
+    <>
       <section id="projects-section" className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-slide-up">
@@ -103,137 +141,105 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
               A showcase of engineering excellence and marketing innovation
             </p>
           </div>
-          <div className="w-full bg-portfolio-primary p-8 rounded-lg">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="text-center md:text-left">
-                <p className="text-white text-xl font-medium">
-                  Take a look at the other projects I've done that are public
-                </p>
-              </div>
-              <Button 
-                size="lg"
-                variant="outline"
-                className="bg-white text-portfolio-primary border-white hover:bg-gray-100 px-8 py-4 text-lg font-semibold flex-shrink-0"
-                asChild
-              >
-                <Link to="/projects">View All Projects</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
-  return (
-    <section id="projects-section" className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 animate-slide-up">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            <span className="text-gradient">Available Projects and Experience</span>
-          </h2>
-          <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
-            A showcase of engineering excellence and marketing innovation
-          </p>
-        </div>
-
-        <div className="relative px-12">
-          <Carousel
-            setApi={setApi}
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {featuredProjects.map((project, index) => (
-                <CarouselItem key={project.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <Link 
-                    to={`/projects/${project.id}`}
-                    className="block group"
-                  >
-                    <Card 
-                      className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden cursor-pointer h-full"
+          <div className="relative px-12">
+            <Carousel
+              setApi={setApi}
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {featuredProjects.map((project, index) => (
+                  <CarouselItem key={project.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                    <Link 
+                      to={`/projects/${project.id}`}
+                      className="block group"
                     >
-                      <div className="relative overflow-hidden">
-                        <img 
-                          src={project.featured_image_url || project.image_url} 
-                          alt={project.title}
-                          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-                        <div className="absolute top-4 left-4">
-                          <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
-                            {project.category}
-                          </span>
-                        </div>
-                        
-                        {/* Netflix-style overlay on hover */}
-                        <div className="absolute inset-0 bg-portfolio-primary-dark/90 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                          <div className="text-center p-4">
-                            <h3 className="text-white font-bold text-lg mb-2">{project.title}</h3>
-                            <p className="text-portfolio-primary-light text-sm mb-4 line-clamp-3">
-                              {project.description}
-                            </p>
-                            <div className="flex gap-2 justify-center">
-                              {project.technologies.slice(0, 3).map((tech) => (
-                                <span 
-                                  key={tech}
-                                  className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-2 py-1 rounded text-xs"
-                                >
-                                  {tech}
-                                </span>
-                              ))}
+                      <Card 
+                        className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden cursor-pointer h-full"
+                      >
+                        <div className="relative overflow-hidden">
+                          <img 
+                            src={project.featured_image_url || project.image_url} 
+                            alt={project.title}
+                            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                          <div className="absolute top-4 left-4">
+                            <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
+                              {project.category}
+                            </span>
+                          </div>
+                          
+                          {/* Netflix-style overlay on hover */}
+                          <div className="absolute inset-0 bg-portfolio-primary-dark/90 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                            <div className="text-center p-4">
+                              <h3 className="text-white font-bold text-lg mb-2">{project.title}</h3>
+                              <p className="text-portfolio-primary-light text-sm mb-4 line-clamp-3">
+                                {project.description}
+                              </p>
+                              <div className="flex gap-2 justify-center">
+                                {project.technologies.slice(0, 3).map((tech) => (
+                                  <span 
+                                    key={tech}
+                                    className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-2 py-1 rounded text-xs"
+                                  >
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      
-                      <CardContent className="p-4">
-                        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors truncate">
-                          {project.title}
-                        </h3>
-                        <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-2">
-                          {project.description}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            {showLeftArrow && (
-              <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
-            )}
-            {showRightArrow && (
-              <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
-            )}
-          </Carousel>
+                        
+                        <CardContent className="p-4">
+                          <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors truncate">
+                            {project.title}
+                          </h3>
+                          <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-2">
+                            {project.description}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              {showLeftArrow && (
+                <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
+              )}
+              {showRightArrow && (
+                <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
+              )}
+            </Carousel>
+          </div>
         </div>
+      </section>
 
-        {/* Horizontal banner for "View All Projects" */}
-        <div className="mt-12">
-          <div className="w-full bg-portfolio-primary p-8 rounded-lg">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="text-center md:text-left">
-                <p className="text-white text-xl font-medium">
-                  Take a look at the other projects I've done that are public
-                </p>
-              </div>
-              <Button 
-                size="lg"
-                variant="outline"
-                className="bg-white text-portfolio-primary border-white hover:bg-gray-100 px-8 py-4 text-lg font-semibold flex-shrink-0"
-                asChild
-              >
-                <Link to="/projects">View All Projects</Link>
-              </Button>
+      {/* Full-width banner for "View All Projects" */}
+      <div className="w-full bg-portfolio-primary py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+            <div className="text-center">
+              <p className="text-white text-xl font-medium">
+                Take a look at the other projects I've done that are public
+              </p>
             </div>
+            <Button 
+              size="lg"
+              variant="outline"
+              className="bg-white text-portfolio-primary border-white hover:bg-gray-100 px-8 py-4 text-lg font-semibold flex-shrink-0"
+              asChild
+            >
+              <Link to="/projects">View All Projects</Link>
+            </Button>
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 
