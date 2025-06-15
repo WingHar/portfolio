@@ -3,7 +3,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronDown, Film, Video, Sparkles } from 'lucide-react';
 
-const Hero = () => {
+interface HeroProps {
+  onHoverChange: (isHovered: boolean) => void;
+}
+
+const Hero = ({ onHoverChange }: HeroProps) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -27,11 +31,21 @@ const Hero = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [isHovered]);
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    onHoverChange(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    onHoverChange(false);
+  };
+
   return (
     <section 
       className="relative min-h-screen flex items-center justify-center overflow-hidden cursor-none"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {/* Background overlay with interactive effects */}
       <div className="absolute inset-0 netflix-gradient z-10 transition-all duration-700" 
@@ -72,7 +86,6 @@ const Hero = () => {
         ))}
       </div>
 
-      {/* Interactive floating shapes */}
       <div className="absolute inset-0 z-15 pointer-events-none">
         <div 
           className="absolute top-20 left-10 w-8 h-8 bg-portfolio-tertiary/30 rounded-full transition-all duration-500 hover:scale-150"
@@ -94,7 +107,6 @@ const Hero = () => {
         />
       </div>
 
-      {/* Custom cursor with immediate response */}
       {isHovered && (
         <div 
           ref={cursorRef}
@@ -107,7 +119,6 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Content with enhanced animations */}
       <div className="relative z-20 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div className="animate-fade-in">
           <div className="flex items-center justify-center mb-6 group">
@@ -177,7 +188,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Enhanced scroll indicator */}
         <div 
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer group"
           style={{
@@ -195,7 +205,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Interactive glow effect */}
       {isHovered && (
         <div 
           className="absolute pointer-events-none z-30 w-96 h-96 rounded-full opacity-20 transition-all duration-300"
