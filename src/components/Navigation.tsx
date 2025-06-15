@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Film, LogOut } from 'lucide-react';
@@ -23,7 +22,7 @@ const Navigation = () => {
     { label: 'Projects', href: '/projects' },
     { label: 'Case Studies', href: '/case-studies' },
     { label: 'About', href: '/about' },
-    { label: 'Experience', href: '#experience' },
+    { label: 'Experience', href: '/experience' },
     { label: 'Contact', href: 'mailto:winghar@outlook.com' }
   ];
 
