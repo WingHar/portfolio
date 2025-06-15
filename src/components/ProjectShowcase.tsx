@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { ExternalLink, Github } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useQuery } from '@tanstack/react-query';
@@ -102,73 +103,86 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredProjects.map((project, index) => (
-            <Link 
-              key={project.id} 
-              to={`/projects/${project.id}`}
-              className="block group"
-            >
-              <Card 
-                className="bg-portfolio-primary border-portfolio-secondary overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-portfolio-tertiary/20 animate-bounce"
-                style={{ 
-                  animationDelay: `${index * 0.1}s`,
-                  animationDuration: '0.6s',
-                  animationFillMode: 'both'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.animation = 'none';
-                  e.currentTarget.style.transform = 'scale(1.05) translateY(-5px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'scale(1) translateY(0)';
-                }}
-              >
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={project.image_url} 
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {project.category}
-                    </span>
-                  </div>
-                  
-                  {/* Netflix-style overlay on hover */}
-                  <div className="absolute inset-0 bg-portfolio-primary-dark/90 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                    <div className="text-center p-4">
-                      <h3 className="text-white font-bold text-lg mb-2">{project.title}</h3>
-                      <p className="text-portfolio-primary-light text-sm mb-4 line-clamp-3">
-                        {project.description}
-                      </p>
-                      <div className="flex gap-2 justify-center">
-                        {project.technologies.slice(0, 3).map((tech) => (
-                          <span 
-                            key={tech}
-                            className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-2 py-1 rounded text-xs"
-                          >
-                            {tech}
+        <div className="relative px-12">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {featuredProjects.map((project, index) => (
+                <CarouselItem key={project.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                  <Link 
+                    to={`/projects/${project.id}`}
+                    className="block group"
+                  >
+                    <Card 
+                      className="bg-portfolio-primary border-portfolio-secondary overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-portfolio-tertiary/20 animate-bounce h-full"
+                      style={{ 
+                        animationDelay: `${index * 0.1}s`,
+                        animationDuration: '0.6s',
+                        animationFillMode: 'both'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.animation = 'none';
+                        e.currentTarget.style.transform = 'scale(1.05) translateY(-5px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'scale(1) translateY(0)';
+                      }}
+                    >
+                      <div className="relative overflow-hidden">
+                        <img 
+                          src={project.image_url} 
+                          alt={project.title}
+                          className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                        <div className="absolute top-4 left-4">
+                          <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
+                            {project.category}
                           </span>
-                        ))}
+                        </div>
+                        
+                        {/* Netflix-style overlay on hover */}
+                        <div className="absolute inset-0 bg-portfolio-primary-dark/90 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                          <div className="text-center p-4">
+                            <h3 className="text-white font-bold text-lg mb-2">{project.title}</h3>
+                            <p className="text-portfolio-primary-light text-sm mb-4 line-clamp-3">
+                              {project.description}
+                            </p>
+                            <div className="flex gap-2 justify-center">
+                              {project.technologies.slice(0, 3).map((tech) => (
+                                <span 
+                                  key={tech}
+                                  className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-2 py-1 rounded text-xs"
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <CardContent className="p-4">
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors truncate">
-                    {project.title}
-                  </h3>
-                  <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-2">
-                    {project.description}
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
+                      
+                      <CardContent className="p-4">
+                        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors truncate">
+                          {project.title}
+                        </h3>
+                        <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-2">
+                          {project.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
+            <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
+          </Carousel>
         </div>
 
         <div className="text-center mt-12">
