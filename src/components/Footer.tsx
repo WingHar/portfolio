@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Film, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
@@ -7,9 +6,9 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   const quickLinks = [
     { label: 'Projects', href: '/projects', isExternal: false },
+    { label: 'Case Studies', href: '/case-studies', isExternal: false },
     { label: 'About', href: '/about', isExternal: false },
     { label: 'Experience', href: '/experience', isExternal: false },
-    { label: 'Case Studies', href: '/case-studies', isExternal: false },
     { label: 'Contact', href: 'mailto:winghar@outlook.com', isExternal: true }
   ];
 
