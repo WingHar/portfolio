@@ -1,23 +1,31 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronDown, Film, Video, Sparkles } from 'lucide-react';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
+      const newPosition = {
         x: (e.clientX / window.innerWidth) * 100,
         y: (e.clientY / window.innerHeight) * 100,
-      });
+      };
+      setMousePosition(newPosition);
+      
+      // Update cursor position directly for immediate response
+      if (cursorRef.current && isHovered) {
+        cursorRef.current.style.left = `${e.clientX - 16}px`;
+        cursorRef.current.style.top = `${e.clientY - 16}px`;
+      }
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [isHovered]);
 
   return (
     <section 
@@ -86,13 +94,12 @@ const Hero = () => {
         />
       </div>
 
-      {/* Custom cursor */}
+      {/* Custom cursor with immediate response */}
       {isHovered && (
         <div 
-          className="fixed w-8 h-8 bg-portfolio-tertiary/20 rounded-full pointer-events-none z-50 transition-all duration-200 backdrop-blur-sm border border-portfolio-tertiary/30"
+          ref={cursorRef}
+          className="fixed w-8 h-8 bg-portfolio-tertiary/20 rounded-full pointer-events-none z-50 backdrop-blur-sm border border-portfolio-tertiary/30"
           style={{
-            left: `${mousePosition.x * window.innerWidth / 100 - 16}px`,
-            top: `${mousePosition.y * window.innerHeight / 100 - 16}px`,
             transform: 'scale(1.5)',
           }}
         >
