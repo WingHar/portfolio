@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -210,7 +211,7 @@ const CaseStudies = () => {
               {caseStudies.map((caseStudy) => (
                 <Card 
                   key={caseStudy.id} 
-                  className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden group"
+                  className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden group h-[400px] flex flex-col"
                 >
                   {caseStudy.featured && (
                     <div className="absolute top-3 right-3 z-10">
@@ -293,25 +294,25 @@ const CaseStudies = () => {
                     </div>
                   )}
                   
-                  <div className="relative overflow-hidden">
+                  <div className="relative overflow-hidden flex-shrink-0 h-48">
                     {(caseStudy.featured_image_url || caseStudy.image_url) && (
                       <img
                         src={caseStudy.featured_image_url || caseStudy.image_url || ''}
                         alt={caseStudy.title}
-                        className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                       />
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
                   </div>
                   
-                  <div className="p-4">
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors truncate">
+                  <div className="p-4 flex-1 flex flex-col">
+                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors line-clamp-2">
                       {caseStudy.title}
                     </h3>
-                    <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-2 mb-4">
+                    <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-3 mb-4 flex-1">
                       {caseStudy.body}
                     </p>
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center mt-auto">
                       <div className="text-xs text-portfolio-tertiary">
                         {new Date(caseStudy.created_at).toLocaleDateString()}
                       </div>

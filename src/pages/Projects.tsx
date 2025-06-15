@@ -152,13 +152,13 @@ const Projects = () => {
               {projects.map((project, index) => (
                 <Card 
                   key={project.id} 
-                  className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden group"
+                  className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden group h-[400px] flex flex-col"
                 >
-                  <div className="relative overflow-hidden">
+                  <div className="relative overflow-hidden flex-shrink-0 h-48">
                     <img 
                       src={project.featured_image_url || project.image_url} 
                       alt={project.title}
-                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
                     <div className="absolute top-4 left-4">
@@ -210,8 +210,8 @@ const Projects = () => {
                     )}
                   </div>
                   
-                  <CardContent className="p-4">
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors truncate">
+                  <CardContent className="p-4 flex-1 flex flex-col">
+                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors line-clamp-2">
                       {project.title}
                     </h3>
                     <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-2 mb-4">
@@ -234,7 +234,7 @@ const Projects = () => {
                       )}
                     </div>
 
-                    <div className="flex gap-2 flex-wrap">
+                    <div className="flex gap-2 flex-wrap mt-auto">
                       {project.live_url && (
                         <Button 
                           size="sm" 
