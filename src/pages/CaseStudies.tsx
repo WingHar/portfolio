@@ -4,9 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { supabase } from '@/integrations/supabase/client';
-import { Plus } from 'lucide-react';
+import { Plus, Edit, Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import CaseStudyForm from '@/components/CaseStudyForm';
+import CaseStudyEditForm from '@/components/CaseStudyEditForm';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
@@ -16,6 +17,7 @@ interface CaseStudy {
   title: string;
   body: string;
   image_url: string | null;
+  featured: boolean | null;
   created_at: string;
 }
 
@@ -23,6 +25,7 @@ const CaseStudies = () => {
   const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
+  const [editingCaseStudy, setEditingCaseStudy] = useState<CaseStudy | null>(null);
   const { isAdmin } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -63,8 +66,25 @@ const CaseStudies = () => {
     });
   };
 
+  const handleCaseStudyUpdated = () => {
+    setEditingCaseStudy(null);
+    fetchCaseStudies();
+    toast({
+      title: "Success",
+      description: "Case study updated successfully!",
+    });
+  };
+
   const handleCaseStudyClick = (id: string) => {
-    navigate(`/case-studies/${id}`);
+    if (!editingCaseStudy) {
+      navigate(`/case-studies/${id}`);
+    }
+  };
+
+  const handleEditClick = (e: React.MouseEvent, caseStudy: CaseStudy) => {
+    e.stopPropagation();
+    setEditingCaseStudy(caseStudy);
+    setShowForm(false);
   };
 
   if (loading) {
@@ -90,7 +110,10 @@ const CaseStudies = () => {
           
           {isAdmin && (
             <Button
-              onClick={() => setShowForm(true)}
+              onClick={() => {
+                setShowForm(true);
+                setEditingCaseStudy(null);
+              }}
               className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90"
             >
               <Plus className="w-4 h-4 mr-2" />
@@ -108,13 +131,41 @@ const CaseStudies = () => {
           </div>
         )}
 
+        {editingCaseStudy && (
+          <div className="mb-8">
+            <CaseStudyEditForm
+              caseStudy={editingCaseStudy}
+              onSuccess={handleCaseStudyUpdated}
+              onCancel={() => setEditingCaseStudy(null)}
+            />
+          </div>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {caseStudies.map((caseStudy) => (
             <Card 
               key={caseStudy.id} 
-              className="bg-portfolio-secondary/20 border-portfolio-tertiary/20 overflow-hidden project-card-hover cursor-pointer"
+              className="bg-portfolio-secondary/20 border-portfolio-tertiary/20 overflow-hidden project-card-hover cursor-pointer relative"
               onClick={() => handleCaseStudyClick(caseStudy.id)}
             >
+              {caseStudy.featured && (
+                <div className="absolute top-3 right-3 z-10">
+                  <Star className="w-5 h-5 text-portfolio-tertiary fill-current" />
+                </div>
+              )}
+              {isAdmin && (
+                <div className="absolute top-3 left-3 z-10">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={(e) => handleEditClick(e, caseStudy)}
+                    className="bg-portfolio-primary-dark/80 hover:bg-portfolio-primary-dark text-portfolio-tertiary hover:text-white p-2"
+                  >
+                    <Edit className="w-4 h-4" />
+                  </Button>
+                </div>
+              )}
+              
               {caseStudy.image_url && (
                 <div className="aspect-video bg-portfolio-primary-dark/50">
                   <img

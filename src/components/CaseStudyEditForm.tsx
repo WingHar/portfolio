@@ -10,15 +10,29 @@ import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Upload, X } from 'lucide-react';
 
-interface CaseStudyFormProps {
+interface CaseStudy {
+  id: string;
+  title: string;
+  body: string;
+  image_url: string | null;
+  featured: boolean | null;
+  created_at: string;
+}
+
+interface CaseStudyEditFormProps {
+  caseStudy: CaseStudy;
   onSuccess: () => void;
   onCancel: () => void;
 }
 
-const CaseStudyForm: React.FC<CaseStudyFormProps> = ({ onSuccess, onCancel }) => {
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-  const [featured, setFeatured] = useState(false);
+const CaseStudyEditForm: React.FC<CaseStudyEditFormProps> = ({ 
+  caseStudy, 
+  onSuccess, 
+  onCancel 
+}) => {
+  const [title, setTitle] = useState(caseStudy.title);
+  const [body, setBody] = useState(caseStudy.body);
+  const [featured, setFeatured] = useState(caseStudy.featured || false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
@@ -56,11 +70,11 @@ const CaseStudyForm: React.FC<CaseStudyFormProps> = ({ onSuccess, onCancel }) =>
     setLoading(true);
 
     try {
-      let imageUrl = null;
+      let imageUrl = caseStudy.image_url;
       
       if (imageFile) {
-        imageUrl = await uploadImage(imageFile);
-        if (!imageUrl) {
+        const newImageUrl = await uploadImage(imageFile);
+        if (!newImageUrl) {
           toast({
             title: "Error",
             description: "Failed to upload image",
@@ -69,18 +83,19 @@ const CaseStudyForm: React.FC<CaseStudyFormProps> = ({ onSuccess, onCancel }) =>
           setLoading(false);
           return;
         }
+        imageUrl = newImageUrl;
       }
 
       const { error } = await supabase
         .from('case_studies')
-        .insert([
-          {
-            title,
-            body,
-            featured,
-            image_url: imageUrl,
-          },
-        ]);
+        .update({
+          title,
+          body,
+          featured,
+          image_url: imageUrl,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', caseStudy.id);
 
       if (error) {
         toast({
@@ -105,7 +120,7 @@ const CaseStudyForm: React.FC<CaseStudyFormProps> = ({ onSuccess, onCancel }) =>
   return (
     <Card className="p-6 bg-portfolio-secondary/20 border-portfolio-tertiary/20">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold text-white">Create New Case Study</h2>
+        <h2 className="text-xl font-bold text-white">Edit Case Study</h2>
         <Button
           variant="ghost"
           size="sm"
@@ -158,7 +173,19 @@ const CaseStudyForm: React.FC<CaseStudyFormProps> = ({ onSuccess, onCancel }) =>
 
         <div>
           <Label htmlFor="image" className="text-portfolio-primary-light">
-            Image (optional)
+            Current Image
+          </Label>
+          {caseStudy.image_url && (
+            <div className="mt-2 mb-4">
+              <img
+                src={caseStudy.image_url}
+                alt={caseStudy.title}
+                className="w-32 h-24 object-cover rounded border border-portfolio-tertiary/30"
+              />
+            </div>
+          )}
+          <Label htmlFor="new-image" className="text-portfolio-primary-light">
+            Upload New Image (optional)
           </Label>
           <div className="mt-1">
             <label className="flex items-center justify-center w-full h-32 border-2 border-dashed border-portfolio-tertiary/30 rounded-md cursor-pointer hover:border-portfolio-tertiary/50 transition-colors">
@@ -171,12 +198,12 @@ const CaseStudyForm: React.FC<CaseStudyFormProps> = ({ onSuccess, onCancel }) =>
                 ) : (
                   <div className="text-portfolio-primary-light">
                     <Upload className="w-6 h-6 mx-auto mb-2" />
-                    <span className="text-sm">Click to upload an image</span>
+                    <span className="text-sm">Click to upload a new image</span>
                   </div>
                 )}
               </div>
               <input
-                id="image"
+                id="new-image"
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
@@ -200,7 +227,7 @@ const CaseStudyForm: React.FC<CaseStudyFormProps> = ({ onSuccess, onCancel }) =>
             disabled={loading}
             className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90"
           >
-            {loading ? 'Creating...' : 'Create Case Study'}
+            {loading ? 'Updating...' : 'Update Case Study'}
           </Button>
         </div>
       </form>
@@ -208,4 +235,4 @@ const CaseStudyForm: React.FC<CaseStudyFormProps> = ({ onSuccess, onCancel }) =>
   );
 };
 
-export default CaseStudyForm;
+export default CaseStudyEditForm;
