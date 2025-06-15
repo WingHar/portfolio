@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -76,7 +77,7 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-slide-up">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-              <span className="text-gradient">Available Projects and Experience</span>
+              <span className="text-gradient">Featured Projects and Experiences</span>
             </h2>
             <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
               A showcase of engineering excellence and marketing innovation
@@ -97,7 +98,7 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16 animate-slide-up">
               <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-                <span className="text-gradient">Available Projects and Experience</span>
+                <span className="text-gradient">Featured Projects and Experiences</span>
               </h2>
               <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
                 A showcase of engineering excellence and marketing innovation
@@ -135,7 +136,7 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-slide-up">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-              <span className="text-gradient">Available Projects and Experience</span>
+              <span className="text-gradient">Featured Projects and Experiences</span>
             </h2>
             <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
               A showcase of engineering excellence and marketing innovation
