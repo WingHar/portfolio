@@ -7,44 +7,44 @@
 
 @layer base {
   :root {
-    --background: 18 26 15;
-    --foreground: 172 190 163;
+    --background: 15 23 42;
+    --foreground: 203 213 225;
 
-    --card: 18 26 15;
-    --card-foreground: 172 190 163;
+    --card: 15 23 42;
+    --card-foreground: 203 213 225;
 
-    --popover: 18 26 15;
-    --popover-foreground: 172 190 163;
+    --popover: 15 23 42;
+    --popover-foreground: 203 213 225;
 
-    --primary: 47 75 38;
-    --primary-foreground: 172 190 163;
+    --primary: 25 123 158;
+    --primary-foreground: 203 213 225;
 
     --secondary: 64 71 109;
-    --secondary-foreground: 172 190 163;
+    --secondary-foreground: 203 213 225;
 
-    --muted: 45 51 25;
-    --muted-foreground: 172 190 163;
+    --muted: 30 41 59;
+    --muted-foreground: 203 213 225;
 
     --accent: 194 132 122;
-    --accent-foreground: 18 26 15;
+    --accent-foreground: 15 23 42;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 45 51 25;
-    --input: 45 51 25;
-    --ring: 194 132 122;
+    --border: 30 41 59;
+    --input: 30 41 59;
+    --ring: 25 123 158;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 18 26 15;
-    --sidebar-foreground: 172 190 163;
-    --sidebar-primary: 47 75 38;
-    --sidebar-primary-foreground: 172 190 163;
-    --sidebar-accent: 45 51 25;
-    --sidebar-accent-foreground: 172 190 163;
-    --sidebar-border: 45 51 25;
-    --sidebar-ring: 194 132 122;
+    --sidebar-background: 15 23 42;
+    --sidebar-foreground: 203 213 225;
+    --sidebar-primary: 25 123 158;
+    --sidebar-primary-foreground: 203 213 225;
+    --sidebar-accent: 30 41 59;
+    --sidebar-accent-foreground: 203 213 225;
+    --sidebar-border: 30 41 59;
+    --sidebar-ring: 25 123 158;
   }
 }
 
@@ -85,9 +85,9 @@
   .netflix-gradient {
     background: linear-gradient(
       180deg,
-      rgba(47, 75, 38, 0.8) 0%,
-      rgba(45, 51, 25, 0.9) 50%,
-      rgba(18, 26, 15, 1) 100%
+      rgba(25, 123, 158, 0.8) 0%,
+      rgba(30, 41, 59, 0.9) 50%,
+      rgba(15, 23, 42, 1) 100%
     );
   }
 
@@ -96,7 +96,7 @@
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, #ACBEA3 0%, #C2847A 100%);
+    background: linear-gradient(135deg, #197B9E 0%, #C2847A 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

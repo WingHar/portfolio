@@ -63,11 +63,11 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom portfolio colors
+				// Custom portfolio colors updated to blue theme
 				portfolio: {
-					primary: '#2F4B26',
-					'primary-light': '#ACBEA3',
-					'primary-dark': '#2D3319',
+					primary: '#197B9E',
+					'primary-light': '#87CEEB',
+					'primary-dark': '#0F172A',
 					secondary: '#40476D',
 					tertiary: '#C2847A',
 				}
