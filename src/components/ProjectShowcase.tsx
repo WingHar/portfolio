@@ -103,18 +103,22 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
               A showcase of engineering excellence and marketing innovation
             </p>
           </div>
-          <div className="text-center">
-            <p className="text-portfolio-primary-light mb-8">
-              No featured projects available at the moment.
-            </p>
-            <Button 
-              size="lg"
-              variant="outline"
-              className="border-portfolio-tertiary text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white px-8 py-4 text-lg font-semibold"
-              asChild
-            >
-              <Link to="/projects">View All Projects</Link>
-            </Button>
+          <div className="w-full bg-portfolio-primary p-8 rounded-lg">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="text-center md:text-left">
+                <p className="text-white text-xl font-medium">
+                  Take a look at the other projects I've done that are public
+                </p>
+              </div>
+              <Button 
+                size="lg"
+                variant="outline"
+                className="bg-white text-portfolio-primary border-white hover:bg-gray-100 px-8 py-4 text-lg font-semibold flex-shrink-0"
+                asChild
+              >
+                <Link to="/projects">View All Projects</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -208,15 +212,25 @@ const ProjectShowcase = ({ isHeroHovered }: ProjectShowcaseProps) => {
           </Carousel>
         </div>
 
-        <div className="text-center mt-12">
-          <Button 
-            size="lg"
-            variant="outline"
-            className="border-portfolio-tertiary text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white px-8 py-4 text-lg font-semibold"
-            asChild
-          >
-            <Link to="/projects">View All Projects</Link>
-          </Button>
+        {/* Horizontal banner for "View All Projects" */}
+        <div className="mt-12">
+          <div className="w-full bg-portfolio-primary p-8 rounded-lg">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="text-center md:text-left">
+                <p className="text-white text-xl font-medium">
+                  Take a look at the other projects I've done that are public
+                </p>
+              </div>
+              <Button 
+                size="lg"
+                variant="outline"
+                className="bg-white text-portfolio-primary border-white hover:bg-gray-100 px-8 py-4 text-lg font-semibold flex-shrink-0"
+                asChild
+              >
+                <Link to="/projects">View All Projects</Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
