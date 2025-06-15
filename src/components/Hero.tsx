@@ -13,7 +13,7 @@ interface HeroProps {
 
 const Hero = ({ onHoverChange }: HeroProps) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -24,32 +24,35 @@ const Hero = ({ onHoverChange }: HeroProps) => {
       setMousePosition(newPosition);
     };
 
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const isCurrentlyAtTop = scrollTop < 100; // Consider "at top" if within 100px of top
+      setIsAtTop(isCurrentlyAtTop);
+      onHoverChange(isCurrentlyAtTop);
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    window.addEventListener('scroll', handleScroll);
+    
+    // Initial check
+    handleScroll();
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-    onHoverChange(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    onHoverChange(false);
-  };
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [onHoverChange]);
 
   return (
     <section 
       className="relative min-h-screen flex items-center justify-center overflow-hidden cursor-none"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
-      <HeroBackground isHovered={isHovered} mousePosition={mousePosition} />
-      <HeroParticles isHovered={isHovered} mousePosition={mousePosition} />
+      <HeroBackground isHovered={isAtTop} mousePosition={mousePosition} />
+      <HeroParticles isHovered={isAtTop} mousePosition={mousePosition} />
       <HeroFloatingElements mousePosition={mousePosition} />
-      <HeroCustomCursor isHovered={isHovered} />
-      <HeroContent isHovered={isHovered} mousePosition={mousePosition} />
-      <HeroScrollIndicator isHovered={isHovered} mousePosition={mousePosition} />
+      <HeroCustomCursor isHovered={isAtTop} />
+      <HeroContent isHovered={isAtTop} mousePosition={mousePosition} />
+      <HeroScrollIndicator isHovered={isAtTop} mousePosition={mousePosition} />
     </section>
   );
 };
