@@ -81,7 +81,7 @@ const HeroContent = ({ isHovered, mousePosition }: HeroContentProps) => {
           <Button 
             variant="outline" 
             size="lg"
-            className="border-portfolio-primary-light text-portfolio-primary-light hover:bg-portfolio-primary-light hover:text-portfolio-primary-dark px-8 py-4 text-lg font-semibold transition-all duration-[400ms] hover:scale-110 hover:shadow-lg group"
+            className="border-portfolio-secondary text-portfolio-secondary hover:bg-portfolio-secondary hover:text-white px-8 py-4 text-lg font-semibold transition-all duration-[400ms] hover:scale-110 hover:shadow-lg group"
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = `scale(1.1) rotate(${Math.random() * 4 - 2}deg)`;
             }}
