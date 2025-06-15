@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { useToast } from '@/hooks/use-toast';
+import { ArrowLeft } from 'lucide-react';
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -62,6 +63,18 @@ const Auth = () => {
     <div className="min-h-screen bg-portfolio-primary-dark flex items-center justify-center px-4">
       <Card className="w-full max-w-md p-6 bg-portfolio-secondary/20 border-portfolio-tertiary/20">
         <div className="text-center mb-6">
+          <div className="flex justify-center mb-4">
+            <Link to="/">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-portfolio-primary-light hover:text-portfolio-tertiary hover:bg-portfolio-tertiary/10"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Home
+              </Button>
+            </Link>
+          </div>
           <h1 className="text-2xl font-bold text-white mb-2">
             {isLogin ? 'Sign In' : 'Sign Up'}
           </h1>
