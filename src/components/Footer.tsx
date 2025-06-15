@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Film, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
@@ -30,21 +31,21 @@ const Footer = () => {
               <Button 
                 variant="outline" 
                 size="sm"
-                className="border-portfolio-secondary text-portfolio-primary-light hover:bg-portfolio-secondary hover:text-white"
+                className="bg-portfolio-secondary border-portfolio-secondary text-portfolio-primary hover:bg-portfolio-secondary/80 hover:text-white"
               >
                 <Github className="w-4 h-4" />
               </Button>
               <Button 
                 variant="outline" 
                 size="sm"
-                className="border-portfolio-secondary text-portfolio-primary-light hover:bg-portfolio-secondary hover:text-white"
+                className="bg-portfolio-secondary border-portfolio-secondary text-portfolio-primary hover:bg-portfolio-secondary/80 hover:text-white"
               >
                 <Linkedin className="w-4 h-4" />
               </Button>
               <Button 
                 variant="outline" 
                 size="sm"
-                className="border-portfolio-secondary text-portfolio-primary-light hover:bg-portfolio-secondary hover:text-white"
+                className="bg-portfolio-secondary border-portfolio-secondary text-portfolio-primary hover:bg-portfolio-secondary/80 hover:text-white"
               >
                 <Mail className="w-4 h-4" />
               </Button>

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Film, LogOut } from 'lucide-react';
@@ -76,7 +77,7 @@ const Navigation = () => {
                   size="sm"
                   variant="outline"
                   onClick={handleSignOut}
-                  className="border-portfolio-tertiary/30 text-portfolio-primary-light hover:bg-portfolio-tertiary/20"
+                  className="bg-portfolio-secondary border-portfolio-secondary text-portfolio-primary hover:bg-portfolio-secondary/80 hover:text-white"
                 >
                   <LogOut className="w-4 h-4 mr-2" />
                   Sign Out
@@ -145,7 +146,7 @@ const Navigation = () => {
                       size="sm"
                       variant="outline"
                       onClick={handleSignOut}
-                      className="w-full border-portfolio-tertiary/30 text-portfolio-primary-light hover:bg-portfolio-tertiary/20"
+                      className="w-full bg-portfolio-secondary border-portfolio-secondary text-portfolio-primary hover:bg-portfolio-secondary/80 hover:text-white"
                     >
                       <LogOut className="w-4 h-4 mr-2" />
                       Sign Out
