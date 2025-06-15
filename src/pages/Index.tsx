@@ -16,6 +16,8 @@ const Index = () => {
       <Hero onHoverChange={setIsHeroHovered} />
       <ProjectShowcase isHeroHovered={isHeroHovered} />
       <FeaturedCaseStudies />
+      {/* Spacer section with dark blue background */}
+      <div className="bg-portfolio-primary-dark py-16"></div>
       <AboutSection />
       <Footer />
     </div>
