@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,12 +62,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom portfolio colors updated with yellow theme
+				// Custom portfolio colors updated with new secondary color
 				portfolio: {
 					primary: '#197B9E',
 					'primary-light': '#87CEEB',
 					'primary-dark': '#0F172A',
-					secondary: '#40476D',
+					secondary: '#7F8E99',
 					tertiary: '#E5C72C',
 				}
 			},
