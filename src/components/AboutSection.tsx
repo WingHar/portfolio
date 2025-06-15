@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Code, TrendingUp, Zap, Target, Database, BarChart } from 'lucide-react';
+import { Code, TrendingUp, Zap, Target, Database, BarChart, Lightbulb } from 'lucide-react';
 
 const skills = [
   {
@@ -15,6 +15,12 @@ const skills = [
     icon: TrendingUp,
     skills: ['Google/Facebook Ads', 'CTV/OTT Campaigns', 'Programmatic', 'Billboard/OOH', 'Analytics/Attribution', 'A/B Testing'],
     color: 'portfolio-secondary'
+  },
+  {
+    category: 'Product Management',
+    icon: Lightbulb,
+    skills: ['Product Strategy', 'Roadmap Planning', 'User Research', 'Feature Prioritization', 'A/B Testing', 'Analytics'],
+    color: 'portfolio-primary'
   }
 ];
 
@@ -40,31 +46,61 @@ const AboutSection = () => {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          {skills.map((skillGroup, index) => (
-            <Card 
-              key={skillGroup.category}
-              className="bg-portfolio-primary-dark border-portfolio-secondary project-card-hover"
-              style={{ animationDelay: `${index * 0.3}s` }}
-            >
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  <skillGroup.icon className={`w-8 h-8 text-portfolio-${skillGroup.color} mr-4`} />
-                  <h3 className="text-2xl font-bold text-white">{skillGroup.category}</h3>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  {skillGroup.skills.map((skill) => (
-                    <div 
-                      key={skill}
-                      className="bg-portfolio-primary/50 text-portfolio-primary-light px-4 py-3 rounded-lg text-center font-medium border border-portfolio-secondary/30 hover:border-portfolio-tertiary/50 transition-colors"
-                    >
-                      {skill}
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="mb-16">
+          {/* First row - Full Stack Development and Digital Marketing */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            {skills.slice(0, 2).map((skillGroup, index) => (
+              <Card 
+                key={skillGroup.category}
+                className="bg-portfolio-primary-dark border-portfolio-secondary project-card-hover"
+                style={{ animationDelay: `${index * 0.3}s` }}
+              >
+                <CardContent className="p-8">
+                  <div className="flex items-center mb-6">
+                    <skillGroup.icon className={`w-8 h-8 text-portfolio-${skillGroup.color} mr-4`} />
+                    <h3 className="text-2xl font-bold text-white">{skillGroup.category}</h3>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {skillGroup.skills.map((skill) => (
+                      <div 
+                        key={skill}
+                        className="bg-portfolio-primary/50 text-portfolio-primary-light px-4 py-3 rounded-lg text-center font-medium border border-portfolio-secondary/30 hover:border-portfolio-tertiary/50 transition-colors"
+                      >
+                        {skill}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          {/* Second row - Product Management (centered) */}
+          <div className="flex justify-center">
+            <div className="w-full max-w-md lg:max-w-lg">
+              <Card 
+                className="bg-portfolio-primary-dark border-portfolio-secondary project-card-hover"
+                style={{ animationDelay: '0.6s' }}
+              >
+                <CardContent className="p-8">
+                  <div className="flex items-center mb-6">
+                    <Lightbulb className="w-8 h-8 text-portfolio-primary mr-4" />
+                    <h3 className="text-2xl font-bold text-white">Product Management</h3>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    {skills[2].skills.map((skill) => (
+                      <div 
+                        key={skill}
+                        className="bg-portfolio-primary/50 text-portfolio-primary-light px-4 py-3 rounded-lg text-center font-medium border border-portfolio-secondary/30 hover:border-portfolio-tertiary/50 transition-colors"
+                      >
+                        {skill}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
 
         {/* Achievements */}
