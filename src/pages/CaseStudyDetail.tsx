@@ -105,7 +105,7 @@ const CaseStudyDetail = () => {
           className="mb-8 border-portfolio-tertiary/30 text-portfolio-primary-light hover:bg-portfolio-tertiary/20"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Case Studies
+          More Case Studies
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
