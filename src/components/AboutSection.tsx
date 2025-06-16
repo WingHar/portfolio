@@ -60,11 +60,12 @@ const AboutSection = () => {
                     <skillGroup.icon className={`w-8 h-8 text-portfolio-${skillGroup.color} mr-4`} />
                     <h3 className="text-2xl font-bold text-white">{skillGroup.category}</h3>
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {skillGroup.skills.map((skill) => (
                       <div 
                         key={skill}
-                        className="bg-portfolio-primary/50 text-portfolio-primary-light px-4 py-3 rounded-lg text-center font-medium border border-portfolio-secondary/30 hover:border-portfolio-tertiary/50 transition-colors"
+                        className="bg-portfolio-primary/50 text-portfolio-primary-light px-3 py-3 rounded-lg text-center font-medium border border-portfolio-secondary/30 hover:border-portfolio-tertiary/50 transition-colors break-words hyphens-auto text-sm sm:text-base"
+                        style={{ wordBreak: 'break-word' }}
                       >
                         {skill}
                       </div>
@@ -87,11 +88,12 @@ const AboutSection = () => {
                     <Lightbulb className="w-8 h-8 text-portfolio-tertiary mr-4" />
                     <h3 className="text-2xl font-bold text-white">Product Management</h3>
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {skills[2].skills.map((skill) => (
                       <div 
                         key={skill}
-                        className="bg-portfolio-primary/50 text-portfolio-primary-light px-4 py-3 rounded-lg text-center font-medium border border-portfolio-secondary/30 hover:border-portfolio-tertiary/50 transition-colors"
+                        className="bg-portfolio-primary/50 text-portfolio-primary-light px-3 py-3 rounded-lg text-center font-medium border border-portfolio-secondary/30 hover:border-portfolio-tertiary/50 transition-colors break-words hyphens-auto text-sm sm:text-base"
+                        style={{ wordBreak: 'break-word' }}
                       >
                         {skill}
                       </div>
