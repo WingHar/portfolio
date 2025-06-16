@@ -23,7 +23,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/ec2b2fb7-0847-43df-941e-bbf34c3ca753.png" 
                 alt="Wing Har Logo" 
-                className="h-32 w-auto"
+                className="h-6 w-auto"
               />
             </div>
             <p className="text-portfolio-primary-light mb-6 leading-relaxed">

@@ -37,13 +37,13 @@ const Navigation = () => {
       isScrolled ? 'bg-portfolio-primary-dark/95 backdrop-blur-md border-b border-portfolio-secondary/20' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-40">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
             <img 
               src="/lovable-uploads/ec2b2fb7-0847-43df-941e-bbf34c3ca753.png" 
               alt="Wing Har Logo" 
-              className="h-32 w-auto"
+              className="h-6 w-auto"
             />
           </Link>
 
