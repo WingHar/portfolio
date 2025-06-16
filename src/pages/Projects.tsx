@@ -105,7 +105,7 @@ const Projects = () => {
         <Navigation />
         <div className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto text-center">
-            <div className="text-xl text-portfolio-primary-light">Loading projects and jobs...</div>
+            <div className="text-xl text-portfolio-primary-light">Loading projects and experiences...</div>
           </div>
         </div>
       </div>
@@ -120,7 +120,7 @@ const Projects = () => {
       <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-5xl sm:text-6xl font-bold mb-6 animate-fade-in">
-            <span className="text-gradient">My Projects and Jobs</span>
+            <span className="text-gradient">My Projects and Experiences</span>
           </h1>
           <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto animate-fade-in">
             A collection of engineering excellence and strategic marketing innovations that showcase my expertise in full-stack development and digital marketing.
@@ -287,7 +287,7 @@ const Projects = () => {
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-xl text-portfolio-primary-light mb-8">
-              No projects and jobs have been created yet.
+              No projects and experiences have been created yet.
             </p>
             {isAdmin && (
               <Button

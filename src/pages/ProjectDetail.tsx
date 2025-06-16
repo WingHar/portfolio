@@ -109,7 +109,7 @@ const ProjectDetail = () => {
           className="mb-8 border-portfolio-tertiary/30 text-portfolio-primary-light hover:bg-portfolio-tertiary/20"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          More Projects and Jobs
+          More Projects and Experiences
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
