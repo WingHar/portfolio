@@ -1,4 +1,5 @@
 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -25,8 +26,8 @@
     --muted: 30 41 59;
     --muted-foreground: 203 213 225;
 
-    --accent: 228 193 157;
-    --accent-foreground: 15 23 42;
+    --accent: 21 66 40;
+    --accent-foreground: 203 213 225;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -96,13 +97,13 @@
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, #197B9E 0%, #e4c19d 100%);
+    background: linear-gradient(135deg, #197B9E 0%, #154228 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  /* Holographic card effect - updated to show new color border around entire card */
+  /* Holographic card effect - updated to show new green color border around entire card */
   .holographic-card {
     position: relative;
     transition: all 0.5s ease;
@@ -121,7 +122,7 @@
       0deg, 
       transparent, 
       transparent 30%, 
-      rgba(228, 193, 157, 0.3)
+      rgba(21, 66, 40, 0.3)
     );
     transform: rotate(-45deg);
     transition: all 0.5s ease;
@@ -132,8 +133,8 @@
 
   .holographic-card:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 30px rgba(228, 193, 157, 0.6), 0 0 0 2px rgba(228, 193, 157, 0.8) !important;
-    border: 2px solid rgba(228, 193, 157, 0.8) !important;
+    box-shadow: 0 0 30px rgba(21, 66, 40, 0.6), 0 0 0 2px rgba(21, 66, 40, 0.8) !important;
+    border: 2px solid rgba(21, 66, 40, 0.8) !important;
   }
 
   .holographic-card:hover::before {
@@ -163,8 +164,8 @@
     height: 200%;
     background: linear-gradient(
       45deg, 
-      rgba(228, 193, 157, 0.4) 0%,
-      rgba(228, 193, 157, 0.2) 50%,
+      rgba(21, 66, 40, 0.4) 0%,
+      rgba(21, 66, 40, 0.2) 50%,
       transparent 70%
     );
     transform: rotate(0deg);
@@ -176,8 +177,8 @@
 
   .holographic-card-reverse:hover {
     transform: scale(1.02);
-    box-shadow: 0 0 25px rgba(228, 193, 157, 0.5), 0 0 0 2px rgba(228, 193, 157, 0.6) !important;
-    border: 2px solid rgba(228, 193, 157, 0.6) !important;
+    box-shadow: 0 0 25px rgba(21, 66, 40, 0.5), 0 0 0 2px rgba(21, 66, 40, 0.6) !important;
+    border: 2px solid rgba(21, 66, 40, 0.6) !important;
   }
 
   .holographic-card-reverse:hover::before {
@@ -214,3 +215,4 @@
     overflow: hidden;
   }
 }
+

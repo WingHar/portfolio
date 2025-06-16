@@ -68,7 +68,7 @@ export default {
 					'primary-light': '#87CEEB',
 					'primary-dark': '#0F172A',
 					secondary: '#7F8E99',
-					tertiary: '#e4c19d',
+					tertiary: '#154228',
 				}
 			},
 			borderRadius: {
