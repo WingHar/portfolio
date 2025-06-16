@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Film, LogOut } from 'lucide-react';
+import { Menu, X, LogOut } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/components/auth/AuthProvider';
 
@@ -40,8 +40,11 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
-            <Film className="w-8 h-8 text-portfolio-tertiary mr-2" />
-            <span className="text-xl font-bold text-white">Portfolio</span>
+            <img 
+              src="/lovable-uploads/444f9124-0d2f-465d-8e75-a877ba7fbb7c.png" 
+              alt="Wing Har Logo" 
+              className="h-8 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}

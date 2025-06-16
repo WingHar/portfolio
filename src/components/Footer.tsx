@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Film, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -19,8 +20,11 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center mb-6">
-              <Film className="w-8 h-8 text-portfolio-tertiary mr-3" />
-              <span className="text-2xl font-bold text-white">Portfolio</span>
+              <img 
+                src="/lovable-uploads/444f9124-0d2f-465d-8e75-a877ba7fbb7c.png" 
+                alt="Wing Har Logo" 
+                className="h-8 w-auto"
+              />
             </div>
             <p className="text-portfolio-primary-light mb-6 leading-relaxed">
               Full Stack Engineer & Digital Marketing Expert creating innovative solutions 
@@ -90,7 +94,7 @@ const Footer = () => {
         <div className="border-t border-portfolio-secondary/20 mt-12 pt-8">
           <div className="flex flex-col lg:flex-row justify-between items-center">
             <p className="text-portfolio-primary-light text-sm">
-              © 2024 Portfolio. Crafted with passion and precision.
+              © 2024 Wing Har. Crafted with passion and precision.
             </p>
             <p className="text-portfolio-primary-light text-sm mt-4 lg:mt-0">
               Built with React, TypeScript & Tailwind CSS
