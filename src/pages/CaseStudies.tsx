@@ -213,88 +213,7 @@ const CaseStudies = () => {
                   key={caseStudy.id} 
                   className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden group h-[400px] flex flex-col"
                 >
-                  {caseStudy.featured && (
-                    <div className="absolute top-3 right-3 z-10">
-                      <Star className="w-5 h-5 text-portfolio-tertiary fill-current" />
-                    </div>
-                  )}
-                  {isAdmin && (
-                    <div className="absolute top-3 left-3 z-10 flex gap-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setEditingCaseStudy(caseStudy);
-                          setShowForm(false);
-                        }}
-                        className="bg-portfolio-primary-dark/80 hover:bg-portfolio-primary-dark text-portfolio-tertiary hover:text-white p-1 h-auto"
-                      >
-                        <Edit className="w-3 h-3" />
-                      </Button>
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={(e) => e.stopPropagation()}
-                            className="bg-red-600/80 hover:bg-red-600 text-white p-1 h-auto"
-                          >
-                            <Trash2 className="w-3 h-3" />
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent className="bg-portfolio-primary border-portfolio-secondary">
-                          <AlertDialogHeader>
-                            <AlertDialogTitle className="text-white">Delete Case Study</AlertDialogTitle>
-                            <AlertDialogDescription className="text-portfolio-primary-light">
-                              Are you sure you want to delete "{caseStudy.title}"? This action cannot be undone.
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel className="border-portfolio-secondary text-portfolio-primary-light hover:bg-portfolio-secondary">
-                              Cancel
-                            </AlertDialogCancel>
-                            <AlertDialogAction
-                              onClick={async () => {
-                                try {
-                                  const { error } = await supabase
-                                    .from('case_studies')
-                                    .delete()
-                                    .eq('id', caseStudy.id);
-
-                                  if (error) {
-                                    toast({
-                                      title: "Error",
-                                      description: "Failed to delete case study",
-                                      variant: "destructive",
-                                    });
-                                  } else {
-                                    fetchCaseStudies();
-                                    toast({
-                                      title: "Success",
-                                      description: "Case study deleted successfully!",
-                                    });
-                                  }
-                                } catch (error) {
-                                  console.error('Error deleting case study:', error);
-                                  toast({
-                                    title: "Error",
-                                    description: "An unexpected error occurred",
-                                    variant: "destructive",
-                                  });
-                                }
-                              }}
-                              className="bg-red-600 hover:bg-red-700 text-white"
-                            >
-                              Delete
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
-                    </div>
-                  )}
-                  
-                  <div className="relative overflow-hidden flex-shrink-0 h-48">
+                  <div className="relative overflow-hidden flex-shrink-0 h-full">
                     {(caseStudy.featured_image_url || caseStudy.image_url) && (
                       <img
                         src={caseStudy.featured_image_url || caseStudy.image_url || ''}
@@ -303,29 +222,123 @@ const CaseStudies = () => {
                       />
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-                  </div>
-                  
-                  <div className="p-4 flex-1 flex flex-col">
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-portfolio-tertiary transition-colors line-clamp-2">
-                      {caseStudy.title}
-                    </h3>
-                    <p className="text-portfolio-primary-light text-sm leading-relaxed line-clamp-3 mb-4 flex-1">
-                      {caseStudy.body}
-                    </p>
-                    <div className="flex justify-between items-center mt-auto">
-                      <div className="text-xs text-portfolio-tertiary">
-                        {new Date(caseStudy.created_at).toLocaleDateString()}
+                    
+                    {/* Featured badge */}
+                    {caseStudy.featured && (
+                      <div className="absolute top-4 right-4 z-10">
+                        <Star className="w-5 h-5 text-portfolio-tertiary fill-current" />
                       </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="border-portfolio-tertiary text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white text-xs"
-                        asChild
-                      >
-                        <Link to={`/case-studies/${caseStudy.id}`}>
-                          Read More
-                        </Link>
-                      </Button>
+                    )}
+                    
+                    {/* Case Study badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
+                        Case Study
+                      </span>
+                    </div>
+                    
+                    {isAdmin && (
+                      <div className="absolute top-12 left-4 z-10 flex gap-2">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setEditingCaseStudy(caseStudy);
+                            setShowForm(false);
+                          }}
+                          className="bg-portfolio-primary-dark/80 hover:bg-portfolio-primary-dark text-portfolio-tertiary hover:text-white p-1 h-auto"
+                        >
+                          <Edit className="w-3 h-3" />
+                        </Button>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={(e) => e.stopPropagation()}
+                              className="bg-red-600/80 hover:bg-red-600 text-white p-1 h-auto"
+                            >
+                              <Trash2 className="w-3 h-3" />
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent className="bg-portfolio-primary border-portfolio-secondary">
+                            <AlertDialogHeader>
+                              <AlertDialogTitle className="text-white">Delete Case Study</AlertDialogTitle>
+                              <AlertDialogDescription className="text-portfolio-primary-light">
+                                Are you sure you want to delete "{caseStudy.title}"? This action cannot be undone.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel className="border-portfolio-secondary text-portfolio-primary-light hover:bg-portfolio-secondary">
+                                Cancel
+                              </AlertDialogCancel>
+                              <AlertDialogAction
+                                onClick={async () => {
+                                  try {
+                                    const { error } = await supabase
+                                      .from('case_studies')
+                                      .delete()
+                                      .eq('id', caseStudy.id);
+
+                                    if (error) {
+                                      toast({
+                                        title: "Error",
+                                        description: "Failed to delete case study",
+                                        variant: "destructive",
+                                      });
+                                    } else {
+                                      fetchCaseStudies();
+                                      toast({
+                                        title: "Success",
+                                        description: "Case study deleted successfully!",
+                                      });
+                                    }
+                                  } catch (error) {
+                                    console.error('Error deleting case study:', error);
+                                    toast({
+                                      title: "Error",
+                                      description: "An unexpected error occurred",
+                                      variant: "destructive",
+                                    });
+                                  }
+                                }}
+                                className="bg-red-600 hover:bg-red-700 text-white"
+                              >
+                                Delete
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </div>
+                    )}
+                    
+                    {/* Content overlay on hover */}
+                    <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                      <div className="text-center p-6">
+                        <h3 className="text-white font-bold text-xl mb-4">{caseStudy.title}</h3>
+                        <p className="text-portfolio-primary-light text-sm mb-6 line-clamp-4 leading-relaxed">
+                          {caseStudy.body.length > 200 
+                            ? `${caseStudy.body.substring(0, 200)}...` 
+                            : caseStudy.body
+                          }
+                        </p>
+                        <div className="flex justify-center mb-4">
+                          <span className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-3 py-1 rounded text-sm">
+                            Published {new Date(caseStudy.created_at).getFullYear()}
+                          </span>
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="border-portfolio-tertiary text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white text-xs"
+                          asChild
+                        >
+                          <Link to={`/case-studies/${caseStudy.id}`}>
+                            Read More
+                          </Link>
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </Card>
