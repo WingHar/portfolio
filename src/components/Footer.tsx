@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Film, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
@@ -10,7 +9,7 @@ const Footer = () => {
     { label: 'Case Studies', href: '/case-studies', isExternal: false },
     { label: 'About', href: '/about', isExternal: false },
     { label: 'Experience', href: '/experience', isExternal: false },
-    { label: 'Contact', href: 'mailto:winghar@outlook.com', isExternal: true }
+    { label: 'Contact', href: '/contact', isExternal: false }
   ];
 
   return (
@@ -58,23 +57,13 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  {link.isExternal ? (
-                    <a 
-                      href={link.href}
-                      className="text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 flex items-center"
-                    >
-                      {link.label}
-                      <ExternalLink className="w-3 h-3 ml-1 opacity-50" />
-                    </a>
-                  ) : (
-                    <Link 
-                      to={link.href}
-                      className="text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 flex items-center"
-                    >
-                      {link.label}
-                      <ExternalLink className="w-3 h-3 ml-1 opacity-50" />
-                    </Link>
-                  )}
+                  <Link 
+                    to={link.href}
+                    className="text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 flex items-center"
+                  >
+                    {link.label}
+                    <ExternalLink className="w-3 h-3 ml-1 opacity-50" />
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -91,9 +80,9 @@ const Footer = () => {
               className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white font-semibold w-full lg:w-auto"
               asChild
             >
-              <a href="mailto:winghar@outlook.com">
+              <Link to="/contact">
                 Start a Conversation
-              </a>
+              </Link>
             </Button>
           </div>
         </div>
