@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
@@ -20,7 +21,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <div className="flex items-center mb-6">
               <img 
-                src="/lovable-uploads/444f9124-0d2f-465d-8e75-a877ba7fbb7c.png" 
+                src="/lovable-uploads/ec2b2fb7-0847-43df-941e-bbf34c3ca753.png" 
                 alt="Wing Har Logo" 
                 className="h-32 w-auto"
               />

@@ -41,7 +41,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
             <img 
-              src="/lovable-uploads/444f9124-0d2f-465d-8e75-a877ba7fbb7c.png" 
+              src="/lovable-uploads/ec2b2fb7-0847-43df-941e-bbf34c3ca753.png" 
               alt="Wing Har Logo" 
               className="h-32 w-auto"
             />
