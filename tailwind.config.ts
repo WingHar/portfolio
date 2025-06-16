@@ -62,13 +62,13 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom portfolio colors updated with new tertiary color
+				// Custom portfolio colors reverted back to beige tertiary color
 				portfolio: {
 					primary: '#197B9E',
 					'primary-light': '#87CEEB',
 					'primary-dark': '#0F172A',
 					secondary: '#7F8E99',
-					tertiary: '#154228',
+					tertiary: '#e4c19d',
 				}
 			},
 			borderRadius: {
