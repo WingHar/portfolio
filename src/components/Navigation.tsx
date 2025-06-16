@@ -43,7 +43,7 @@ const Navigation = () => {
             <img 
               src="/lovable-uploads/21308e1b-0421-41d7-8e85-230a94e7d5a1.png" 
               alt="Wing Har Logo" 
-              className="h-24 w-auto"
+              className="h-20 w-auto"
             />
           </Link>
 
