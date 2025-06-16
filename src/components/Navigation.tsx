@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, LogOut } from 'lucide-react';
@@ -20,7 +19,7 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { label: 'Projects', href: '/projects' },
+    { label: 'Projects and Jobs', href: '/projects' },
     { label: 'Case Studies', href: '/case-studies' },
     { label: 'About', href: '/about' },
     { label: 'Experience', href: '/experience' },

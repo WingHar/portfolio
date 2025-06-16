@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -110,7 +109,7 @@ const ProjectDetail = () => {
           className="mb-8 border-portfolio-tertiary/30 text-portfolio-primary-light hover:bg-portfolio-tertiary/20"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          More Projects
+          More Projects and Jobs
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
