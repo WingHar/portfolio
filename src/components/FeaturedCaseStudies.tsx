@@ -178,7 +178,7 @@ const FeaturedCaseStudies = () => {
               <span className="text-gradient">Featured Case Studies</span>
             </h2>
             <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
-              Explore some of my featured Case Studies
+              Explore Strategic Insights Through My Featured Case Studies
             </p>
           </div>
           <div className="text-center text-portfolio-primary-light">
@@ -202,7 +202,7 @@ const FeaturedCaseStudies = () => {
               <span className="text-gradient">Featured Case Studies</span>
             </h2>
             <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
-              Explore some of my featured Case Studies
+              Explore Strategic Insights Through My Featured Case Studies
             </p>
           </div>
 
