@@ -59,14 +59,15 @@ const experiences = [
   },
   {
     id: 6,
-    role: 'Technical Consultant',
-    company: 'Freelance',
-    location: 'Remote',
-    startDate: 'May 2024',
-    endDate: 'Aug 2024',
-    description: 'Provided technical consulting services to startups and established companies, focusing on architecture and scalability.',
-    skills: ['System Architecture', 'Performance Optimization', 'Team Leadership', 'Strategy'],
-    achievements: ['Consulted for 5 companies', 'Improved client performance by avg 200%', 'Designed scalable architectures']
+    role: 'Data and Marketing Technology Lead',
+    company: 'Jolt',
+    location: 'New York, NY',
+    startDate: 'Mar 2025',
+    endDate: 'Present',
+    description: 'Leading data and marketing technology initiatives, overseeing the development and implementation of advanced marketing tools and analytics platforms.',
+    skills: ['Meta Ads', 'Spotify Ads', 'Google Ads', 'X Ads', 'GA4', 'GTM', 'OOH', 'CTV', 'Asana', 'Miro', 'HTML', 'CSS (Tailwind)', 'JS', 'React', 'Next.js', 'Python', 'AWS (Athena, S3, Amplify, CloudWatch)', 'auth0', 'ActiveCampaign', 'BetterStack'],
+    achievements: ['Created UML diagram, modeled, and strategized JOLT Filmmaker Dashboard before prototyping, building, and releasing using auth0, Next.js, SQL, and AWS', 'Strategized, developed, and created JOLT Social Listening tool, allowing authorized users to search for specific keywords and phrases across the internet and various social media platforms, identifying volume of searches for that term, and sentimental analyses based on the body of the article or post. Additionally, this Social Listening tool feeds this data into the backend data lake while filtering unwanted noise, and displays graphs showcasing trends of searches over time', 'Oversaw and led content creation for all films across Paid Marketing, Organic Marketing, and YouTube', 'Oversaw and optimized automations based on website events per individual', 'Oversaw and led email marketing and paid ads marketing across a global scale'],
+    current: true
   },
   {
     id: 7,
