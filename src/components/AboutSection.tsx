@@ -25,10 +25,10 @@ const skills = [
 ];
 
 const achievements = [
-  { icon: Zap, value: '10M+', label: 'API Requests Handled Daily' },
-  { icon: Target, value: '500%', label: 'Average Campaign Growth' },
-  { icon: Database, value: '99.9%', label: 'Application Uptime' },
-  { icon: BarChart, value: '$2M+', label: 'Ad Spend Managed' }
+  { icon: Zap, value: '5M+', label: 'API Requests Handled Daily' },
+  { icon: Target, value: '220%', label: 'Average Campaign Growth' },
+  { icon: Database, value: '96%', label: 'Application Uptime' },
+  { icon: BarChart, value: '$850K', label: 'Ad Spend Managed' }
 ];
 
 const AboutSection = () => {
