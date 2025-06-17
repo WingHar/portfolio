@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -41,9 +40,9 @@ const About = () => {
 
   const achievements = [
     { icon: Building, value: '5+', label: 'Products Launched' },
-    { icon: Users, value: '15+', label: 'Team Members Led' },
-    { icon: Target, value: '$5M+', label: 'Ad Spend Managed' },
-    { icon: Zap, value: '300%', label: 'Average ROI Improvement' }
+    { icon: Users, value: '8+', label: 'Team Members Led' },
+    { icon: Target, value: '$850K+', label: 'Ad Spend Managed' },
+    { icon: Zap, value: '180%', label: 'Average ROI Improvement' }
   ];
 
   const experience = [
