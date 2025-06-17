@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Film, Video } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface HeroContentProps {
   isHovered: boolean;
@@ -82,6 +83,7 @@ const HeroContent = ({ isHovered, mousePosition }: HeroContentProps) => {
             variant="outline" 
             size="lg"
             className="bg-portfolio-secondary border-portfolio-secondary text-portfolio-tertiary hover:bg-portfolio-secondary/80 hover:text-white px-8 py-4 text-lg font-semibold transition-all duration-[400ms] hover:scale-110 hover:shadow-lg group"
+            asChild
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = `scale(1.1) rotate(${Math.random() * 4 - 2}deg)`;
             }}
@@ -89,7 +91,9 @@ const HeroContent = ({ isHovered, mousePosition }: HeroContentProps) => {
               e.currentTarget.style.transform = 'scale(1) rotate(0deg)';
             }}
           >
-            <span className="group-hover:animate-pulse">Get In Touch</span>
+            <Link to="/contact">
+              <span className="group-hover:animate-pulse">Get In Touch</span>
+            </Link>
           </Button>
         </div>
       </div>
