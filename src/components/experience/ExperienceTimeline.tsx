@@ -1,3 +1,4 @@
+
 import React from 'react';
 import ExperienceCard from './ExperienceCard';
 
@@ -6,7 +7,7 @@ const experiences = [
     id: 1,
     role: 'Full Stack Developer Intern',
     company: 'Hollywood Insider',
-    location: 'New York City, New York',
+    location: 'New York, NY',
     startDate: 'Feb 2019',
     endDate: 'Aug 2019',
     description: 'Fully developed the Hollywood Insider website and subsidiary websites, including front-end and back-end, in collaboration with Product and Design teams and other developers.',
@@ -17,7 +18,7 @@ const experiences = [
     id: 2,
     role: 'Product Marketing Manager',
     company: 'Product Gym',
-    location: 'New York, New York',
+    location: 'New York, NY',
     startDate: 'Feb 2019',
     endDate: 'Feb 2020',
     description: 'Drove Product Gym\'s digital marketing and engagement through research activities, including market and competitive analysis, ideation, presentation of new marketing strategies to co-founders and stakeholders, and market progress measurement.',
