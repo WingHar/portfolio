@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -21,7 +22,7 @@ const About = () => {
     {
       category: 'Product Management',
       icon: Lightbulb,
-      items: ['Product Strategy', 'Roadmap Planning', 'User Research', 'Feature Prioritization', 'A/B Testing', 'Analytics'],
+      items: ['Product Strategy', 'Roadmap Planning', 'User Research', 'Data Privacy Laws and Regulations', 'A/B Testing', 'Analytics'],
       color: 'portfolio-tertiary'
     },
     {
