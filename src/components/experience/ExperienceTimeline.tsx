@@ -16,7 +16,7 @@ const experiences = [
   },
   {
     id: 2,
-    role: 'Product Marketing Manager',
+    role: 'Associate Product Marketing Manager',
     company: 'Product Gym',
     location: 'New York, NY',
     startDate: 'Feb 2019',
