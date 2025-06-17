@@ -177,7 +177,7 @@ const FeaturedCaseStudies = () => {
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
               <span className="text-gradient">Featured Case Studies</span>
             </h2>
-            <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: '#ddc015' }}>
               Explore Strategic Insights Through My Featured Case Studies
             </p>
           </div>
@@ -201,7 +201,7 @@ const FeaturedCaseStudies = () => {
             <h2 className="text-4xl sm:text-5xl font-bold mb-6">
               <span className="text-gradient">Featured Case Studies</span>
             </h2>
-            <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto">
+            <p className="text-xl max-w-3xl mx-auto" style={{ color: '#ddc015' }}>
               Explore Strategic Insights Through My Featured Case Studies
             </p>
           </div>
