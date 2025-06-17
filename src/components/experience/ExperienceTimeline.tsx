@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ExperienceCard from './ExperienceCard';
 
@@ -27,14 +26,14 @@ const experiences = [
   },
   {
     id: 3,
-    role: 'Full Stack Developer',
-    company: 'GrowthTech Ltd.',
+    role: 'Product Manager',
+    company: 'Product Gym',
     location: 'New York, NY',
     startDate: 'Feb 2020',
     endDate: 'Aug 2021',
-    description: 'Expanded to full-stack development, working on both frontend and backend systems while managing database operations.',
-    skills: ['Node.js', 'Express', 'PostgreSQL', 'AWS'],
-    achievements: ['Built microservices architecture', 'Reduced server costs by 30%', 'Implemented CI/CD pipeline']
+    description: 'Managed product life cycle from inception to launch, leading cross-functional teams and utilizing communication skills to align technology with business needs.',
+    skills: ['Miro', 'Jira', 'Trello', 'HTML', 'CSS', 'JS (React)', 'Python', 'HubSpot', 'Drip', 'Kibana', 'Hotjar', 'Figma', 'Salesforce'],
+    achievements: ['Launched new Product Gym community exclusive online services hub, which featured ways to interact with the coaches directly, have courses and lessons, and AI assistance', 'Implemented data mining algorithms to analyze user behavior, leading to a 20% increase in site engagement', 'Boosted system performance and user satisfaction by 85% through Google Lighthouse analysis and code tests, enhancing responsiveness and site load speed across platforms']
   },
   {
     id: 4,
