@@ -61,7 +61,9 @@ const HeroContent = ({ isHovered, mousePosition }: HeroContentProps) => {
             transform: isHovered ? `translateY(${(mousePosition.y - 50) * -0.02}px)` : 'translateY(0px)',
           }}
         >
-          Where Product Management is connected by Full-Stack Engineering, Strategic Marketing, and Design, with User-Experience in mind.
+          Where Product Management is connected by Full-Stack Engineering, Strategic Marketing, and Design,
+          <br />
+          with User-Experience in mind.
         </p>
         
         {/* Buttons with enhanced hover effects */}
