@@ -66,7 +66,7 @@ const About = () => {
       highlights: ['Recreated code from flexML language to Ruby on Rails, resulting in scalability', 'Assisted in CI/CD pipeline', 'Mentored in FBS CREATE program for future developers']
     },
     {
-      role: 'Associate Product Manager',
+      role: 'Product Manager',
       company: 'Product Gym',
       period: '2019 - 2021',
       description: 'Oversaw the product lifecycle of a new global Product Management bootcamp community hub and online courses management system for Product Gym.',
