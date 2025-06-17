@@ -14,13 +14,13 @@ const ContactInfo = () => {
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (646) 823-7333',
-      href: 'tel:+16468237333',
+      value: '+1 (555) 123-4567',
+      href: 'tel:+15551234567',
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'New York City, New York',
+      value: 'San Francisco, CA',
       href: '#',
     },
   ];
