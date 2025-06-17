@@ -19,6 +19,20 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   const navItems = [
     { label: 'Projects and Experiences', href: '/projects' },
     { label: 'Case Studies', href: '/case-studies' },
@@ -29,6 +43,10 @@ const Navigation = () => {
 
   const handleSignOut = async () => {
     await signOut();
+    setIsOpen(false);
+  };
+
+  const handleLinkClick = () => {
     setIsOpen(false);
   };
 
@@ -94,51 +112,69 @@ const Navigation = () => {
               variant="ghost"
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-portfolio-primary-light hover:text-portfolio-tertiary"
+              className="text-portfolio-primary-light hover:text-portfolio-tertiary relative z-[60]"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </Button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden bg-portfolio-primary-dark/95 backdrop-blur-md border-t border-portfolio-secondary/20">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
+        {/* Mobile Navigation - Full Screen Overlay */}
+        <div className={`md:hidden fixed inset-0 top-0 left-0 w-full h-full bg-portfolio-primary-dark/98 backdrop-blur-lg z-[55] transition-all duration-500 ease-in-out ${
+          isOpen 
+            ? 'opacity-100 translate-y-0 visible' 
+            : 'opacity-0 -translate-y-full invisible'
+        }`}>
+          <div className="flex flex-col justify-center items-center h-full px-8">
+            <div className="space-y-8 text-center">
+              {navItems.map((item, index) => (
                 <Link
                   key={item.label}
                   to={item.href}
-                  className="block px-3 py-2 text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 font-medium"
-                  onClick={() => setIsOpen(false)}
+                  className={`block text-2xl font-medium text-portfolio-primary-light hover:text-portfolio-tertiary transition-all duration-300 transform ${
+                    isOpen 
+                      ? 'translate-y-0 opacity-100' 
+                      : 'translate-y-4 opacity-0'
+                  }`}
+                  style={{ 
+                    transitionDelay: isOpen ? `${index * 100 + 200}ms` : '0ms' 
+                  }}
+                  onClick={handleLinkClick}
                 >
                   {item.label}
                 </Link>
               ))}
               
-              <div className="px-3 py-2">
+              <div className={`pt-8 space-y-4 transform transition-all duration-300 ${
+                isOpen 
+                  ? 'translate-y-0 opacity-100' 
+                  : 'translate-y-4 opacity-0'
+              }`}
+              style={{ 
+                transitionDelay: isOpen ? `${navItems.length * 100 + 200}ms` : '0ms' 
+              }}>
                 {user ? (
-                  <div className="space-y-2">
+                  <div className="space-y-4">
                     {isAdmin && (
-                      <span className="text-xs bg-portfolio-tertiary px-2 py-1 rounded text-white">
+                      <span className="inline-block text-sm bg-portfolio-tertiary px-3 py-1 rounded text-white">
                         Admin
                       </span>
                     )}
                     <Button
-                      size="sm"
+                      size="lg"
                       variant="outline"
                       onClick={handleSignOut}
-                      className="w-full bg-portfolio-secondary border-portfolio-secondary text-portfolio-primary hover:bg-portfolio-secondary/80 hover:text-white"
+                      className="bg-portfolio-secondary border-portfolio-secondary text-portfolio-primary hover:bg-portfolio-secondary/80 hover:text-white text-lg px-8 py-3"
                     >
-                      <LogOut className="w-4 h-4 mr-2" />
+                      <LogOut className="w-5 h-5 mr-2" />
                       Sign Out
                     </Button>
                   </div>
                 ) : (
-                  <Link to="/auth" onClick={() => setIsOpen(false)}>
+                  <Link to="/auth" onClick={handleLinkClick}>
                     <Button 
-                      size="sm"
-                      className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white font-semibold w-full"
+                      size="lg"
+                      className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white font-semibold text-lg px-8 py-3"
                     >
                       Sign In
                     </Button>
@@ -147,7 +183,7 @@ const Navigation = () => {
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
