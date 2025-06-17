@@ -37,14 +37,14 @@ const experiences = [
   },
   {
     id: 4,
-    role: 'Senior Developer',
-    company: 'InnovateCorp',
-    location: 'Austin, TX',
+    role: 'Full-Stack Engineer',
+    company: 'Financial Business Systems (FBS)',
+    location: 'Remote',
     startDate: 'Sep 2021',
-    endDate: 'Sep 2022',
-    description: 'Led development initiatives and mentored junior developers while architecting scalable solutions for enterprise clients.',
-    skills: ['Python', 'Docker', 'Kubernetes', 'MongoDB'],
-    achievements: ['Led team of 5 developers', 'Delivered 3 major projects', 'Reduced deployment time by 60%']
+    endDate: 'May 2024',
+    description: 'Leveraged management skills and HTML, CSS, JS, RoR, Python, SQL, and company-created language "FlexMLS" coding expertise to modernize code, resolve bugs, analyze data, and develop new featured and products in a dynamic agile environment',
+    skills: ['Kibana', 'Jira', 'Miro', 'HTML', 'CSS', 'JS', 'FlexML', 'RoR', 'Jenkins', 'Git', 'mongoDB', 'DBeaver', 'DIG', 'BrowserStack'],
+    achievements: ['Mentored underprivileged individuals in the FBS "CREATE" program on SQL, HTML, CSS, JavaScript, Bootstrap, MongoDB, and career development', 'Was on the front development team for the new flexMLS product which moved the codebase from archaic flexML code to RoR, and implementing new featured such as skeletal loading and 3D model tours', 'Regularly monitored and evaluated system performance through the CI/CD pipeline and Jenkins, resulting in 95% fewer potential issue occurrences on staging and production']
   },
   {
     id: 5,
