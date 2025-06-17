@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -224,7 +223,7 @@ const About = () => {
                     solutions and contribute to implementation when needed.
                   </p>
                   <p>
-                    <strong className="text-portfolio-tertiary">Growth-Focused Leadership:</strong> Having led marketing teams, I understand the 
+                    <strong className="text-portfolio-tertiary">Growth-Focused Leadership:</strong> Having led multiple cross-functional teams, I understand the 
                     importance of clear communication, setting measurable goals, and creating an environment where team members 
                     can excel while delivering exceptional results.
                   </p>
