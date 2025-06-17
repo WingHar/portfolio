@@ -1,9 +1,10 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ExternalLink, Github } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface Project {
   id: string;
@@ -26,13 +27,33 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
   const [isMobileOverlayVisible, setIsMobileOverlayVisible] = useState(false);
+  const isMobile = useIsMobile();
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isMobile && isMobileOverlayVisible && cardRef.current && !cardRef.current.contains(event.target as Node)) {
+        setIsMobileOverlayVisible(false);
+      }
+    };
+
+    if (isMobile && isMobileOverlayVisible) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [isMobile, isMobileOverlayVisible]);
 
   const handleMobileImageClick = () => {
-    setIsMobileOverlayVisible(!isMobileOverlayVisible);
+    if (isMobile) {
+      setIsMobileOverlayVisible(!isMobileOverlayVisible);
+    }
   };
 
   return (
     <Card 
+      ref={cardRef}
       className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden group"
     >
       <div className="relative overflow-hidden">
@@ -57,7 +78,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         }`}>
           <div className="text-center p-4">
             <h3 className="text-white font-bold text-lg mb-4">{project.title}</h3>
-            <div className="flex gap-2 justify-center">
+            <div className="flex flex-col gap-3 justify-center">
               {project.live_url && (
                 <Button 
                   size="sm" 

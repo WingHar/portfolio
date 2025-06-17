@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
@@ -6,6 +6,7 @@ import { Calendar } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface CaseStudy {
   id: string;
@@ -20,9 +21,29 @@ interface CaseStudy {
 
 const CaseStudyCard = ({ caseStudy }: { caseStudy: CaseStudy }) => {
   const [isMobileOverlayVisible, setIsMobileOverlayVisible] = useState(false);
+  const isMobile = useIsMobile();
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  const handleMobileImageClick = () => {
-    setIsMobileOverlayVisible(!isMobileOverlayVisible);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isMobile && isMobileOverlayVisible && cardRef.current && !cardRef.current.contains(event.target as Node)) {
+        setIsMobileOverlayVisible(false);
+      }
+    };
+
+    if (isMobile && isMobileOverlayVisible) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [isMobile, isMobileOverlayVisible]);
+
+  const handleMobileImageClick = (e: React.MouseEvent) => {
+    if (isMobile) {
+      e.preventDefault();
+      setIsMobileOverlayVisible(!isMobileOverlayVisible);
+    }
   };
 
   return (
@@ -31,6 +52,7 @@ const CaseStudyCard = ({ caseStudy }: { caseStudy: CaseStudy }) => {
       className="block group md:block"
     >
       <Card 
+        ref={cardRef}
         className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden cursor-pointer h-full"
       >
         <div className="relative overflow-hidden h-full">
@@ -39,13 +61,7 @@ const CaseStudyCard = ({ caseStudy }: { caseStudy: CaseStudy }) => {
               src={caseStudy.featured_image_url || caseStudy.image_url || ''} 
               alt={caseStudy.title}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 cursor-pointer md:cursor-default"
-              onClick={(e) => {
-                // Only handle click on mobile, prevent navigation
-                if (window.innerWidth < 768) {
-                  e.preventDefault();
-                  handleMobileImageClick();
-                }
-              }}
+              onClick={handleMobileImageClick}
             />
           ) : (
             <div className="w-full h-full bg-portfolio-secondary/50 flex items-center justify-center">
