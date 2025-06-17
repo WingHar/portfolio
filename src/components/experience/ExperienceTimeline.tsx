@@ -15,14 +15,14 @@ const experiences = [
   },
   {
     id: 2,
-    role: 'Frontend Developer',
-    company: 'Digital Solutions Co.',
-    location: 'Remote',
+    role: 'Product Marketing Manager',
+    company: 'Product Gym',
+    location: 'New York, New York',
     startDate: 'Feb 2019',
     endDate: 'Feb 2020',
-    description: 'Focused on frontend development, creating responsive user interfaces and improving user experience across multiple projects.',
-    skills: ['React', 'TypeScript', 'Sass', 'Webpack'],
-    achievements: ['Improved page load times by 40%', 'Led UI redesign project', 'Mentored new team members']
+    description: 'Drove Product Gym\'s digital marketing and engagement through research activities, including market and competitive analysis, ideation, presentation of new marketing strategies to co-founders and stakeholders, and market progress measurement.',
+    skills: ['Salesforce', 'GA4', 'Hotjar', 'Miro', 'Jira', 'Trello', 'HubSpot', 'Figma'],
+    achievements: ['Boosted audience retention and engagement by 60% through automations', 'Analyzed optimal times of each day through A/B testing and began marketing advertisements to increase audience clickthrough rate from 40% to 65%', 'Created marketing funnel flow to lead towards sales, optimizing the people we target']
   },
   {
     id: 3,
