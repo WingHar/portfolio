@@ -132,17 +132,30 @@ const FeaturedCaseStudies = () => {
                             </div>
                           )}
                           
-                          <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity hidden md:block" />
                           
-                          {/* Case Study badge - always visible */}
-                          <div className="absolute top-4 left-4">
+                          {/* Case Study badge - hidden on mobile */}
+                          <div className="absolute top-4 left-4 hidden md:block">
                             <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
                               Case Study
                             </span>
                           </div>
                           
-                          {/* Centered overlay on hover */}
-                          <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                          {/* Mobile overlay - always visible */}
+                          <div className="absolute inset-0 bg-portfolio-primary-dark/90 flex items-center justify-center md:hidden">
+                            <div className="text-center p-4">
+                              <h3 className="text-white font-bold text-lg mb-4">{caseStudy.title}</h3>
+                              <Button
+                                size="sm"
+                                className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white text-sm"
+                              >
+                                Read More
+                              </Button>
+                            </div>
+                          </div>
+                          
+                          {/* Desktop centered overlay on hover */}
+                          <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-300 items-center justify-center hidden md:flex">
                             <div className="text-center p-6">
                               <h3 className="text-white font-bold text-xl mb-4">{caseStudy.title}</h3>
                               <p className="text-portfolio-primary-light text-sm mb-6 line-clamp-4 leading-relaxed">

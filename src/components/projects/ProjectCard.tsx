@@ -35,17 +35,48 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           alt={project.title}
           className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity md:block hidden" />
         
-        {/* Category badge */}
-        <div className="absolute top-4 left-4">
+        {/* Category badge - hidden on mobile */}
+        <div className="absolute top-4 left-4 hidden md:block">
           <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
             {project.category}
           </span>
         </div>
         
-        {/* Content overlay on hover */}
-        <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+        {/* Mobile overlay - always visible */}
+        <div className="absolute inset-0 bg-portfolio-primary-dark/90 flex items-center justify-center md:hidden">
+          <div className="text-center p-4">
+            <h3 className="text-white font-bold text-lg mb-4">{project.title}</h3>
+            <div className="flex gap-2 justify-center">
+              {project.live_url ? (
+                <Button 
+                  size="sm" 
+                  className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white text-sm"
+                  asChild
+                >
+                  <a href={project.live_url} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Demo
+                  </a>
+                </Button>
+              ) : (
+                <Button
+                  size="sm"
+                  className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white text-sm"
+                  asChild
+                >
+                  <Link to={`/projects/${project.id}`}>
+                    Read More
+                  </Link>
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
+        
+        {/* Desktop content overlay on hover */}
+        <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-300 items-center justify-center hidden md:flex">
           <div className="text-center p-6">
             <h3 className="text-white font-bold text-xl mb-4">{project.title}</h3>
             <p className="text-portfolio-primary-light text-sm mb-6 line-clamp-4 leading-relaxed">
