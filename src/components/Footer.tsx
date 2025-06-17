@@ -63,12 +63,15 @@ const Footer = () => {
                   </a>
                 </Button>
               </div>
-              <button
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="bg-portfolio-secondary border-portfolio-secondary hover:bg-portfolio-secondary/80 w-fit"
+                style={{ color: '#ddc015' }}
                 onClick={handleResumeDownload}
-                className="text-portfolio-tertiary hover:text-portfolio-tertiary/80 transition-colors duration-200 text-left body-font"
               >
-                Download Resume
-              </button>
+                <span className="body-font" style={{ color: '#ddc015' }}>Download Resume</span>
+              </Button>
             </div>
           </div>
 
