@@ -9,7 +9,7 @@ const ContactHero = () => {
           <span className="text-gradient">Get In Touch</span>
         </h1>
         <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto animate-fade-in">
-          Ready to discuss your next project or my next career move? I'd love to hear from you and explore how I can make an impact for you!
+          Ready to discuss your next project or my next career move? I'd love to hear more and explore how I can make an impact for you.
         </p>
       </div>
     </section>
