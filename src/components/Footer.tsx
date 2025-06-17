@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Github, Linkedin, FileText, ExternalLink } from 'lucide-react';
+import { Github, Linkedin, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -37,38 +38,37 @@ const Footer = () => {
               Product Manager who combines Engineering and Marketing to create innovative solutions 
               that bridge technological and strategic growth.
             </p>
-            <div className="flex space-x-4">
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="bg-portfolio-secondary border-portfolio-secondary hover:bg-portfolio-secondary/80"
-                style={{ color: '#ddc015' }}
-                asChild
-              >
-                <a href="https://github.com/winghar" target="_blank" rel="noopener noreferrer">
-                  <Github className="w-4 h-4" style={{ color: '#ddc015' }} />
-                </a>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="bg-portfolio-secondary border-portfolio-secondary hover:bg-portfolio-secondary/80"
-                style={{ color: '#ddc015' }}
-                asChild
-              >
-                <a href="https://www.linkedin.com/in/winghar/" target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="w-4 h-4" style={{ color: '#ddc015' }} />
-                </a>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="bg-portfolio-secondary border-portfolio-secondary hover:bg-portfolio-secondary/80"
-                style={{ color: '#ddc015' }}
+            <div className="flex flex-col space-y-4">
+              <div className="flex space-x-4">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="bg-portfolio-secondary border-portfolio-secondary hover:bg-portfolio-secondary/80"
+                  style={{ color: '#ddc015' }}
+                  asChild
+                >
+                  <a href="https://github.com/winghar" target="_blank" rel="noopener noreferrer">
+                    <Github className="w-4 h-4" style={{ color: '#ddc015' }} />
+                  </a>
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="bg-portfolio-secondary border-portfolio-secondary hover:bg-portfolio-secondary/80"
+                  style={{ color: '#ddc015' }}
+                  asChild
+                >
+                  <a href="https://www.linkedin.com/in/winghar/" target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="w-4 h-4" style={{ color: '#ddc015' }} />
+                  </a>
+                </Button>
+              </div>
+              <button
                 onClick={handleResumeDownload}
+                className="text-portfolio-tertiary hover:text-portfolio-tertiary/80 transition-colors duration-200 text-left body-font"
               >
-                <FileText className="w-4 h-4" style={{ color: '#ddc015' }} />
-              </Button>
+                Download Resume
+              </button>
             </div>
           </div>
 
