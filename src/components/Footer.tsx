@@ -34,23 +34,26 @@ const Footer = () => {
               <Button 
                 variant="outline" 
                 size="sm"
-                className="bg-portfolio-secondary border-portfolio-secondary text-portfolio-primary hover:bg-portfolio-secondary/80 hover:text-white"
+                className="bg-portfolio-secondary border-portfolio-secondary hover:bg-portfolio-secondary/80"
+                style={{ color: '#ddc015' }}
               >
-                <Github className="w-4 h-4" />
+                <Github className="w-4 h-4" style={{ color: '#ddc015' }} />
               </Button>
               <Button 
                 variant="outline" 
                 size="sm"
-                className="bg-portfolio-secondary border-portfolio-secondary text-portfolio-primary hover:bg-portfolio-secondary/80 hover:text-white"
+                className="bg-portfolio-secondary border-portfolio-secondary hover:bg-portfolio-secondary/80"
+                style={{ color: '#ddc015' }}
               >
-                <Linkedin className="w-4 h-4" />
+                <Linkedin className="w-4 h-4" style={{ color: '#ddc015' }} />
               </Button>
               <Button 
                 variant="outline" 
                 size="sm"
-                className="bg-portfolio-secondary border-portfolio-secondary text-portfolio-primary hover:bg-portfolio-secondary/80 hover:text-white"
+                className="bg-portfolio-secondary border-portfolio-secondary hover:bg-portfolio-secondary/80"
+                style={{ color: '#ddc015' }}
               >
-                <Mail className="w-4 h-4" />
+                <Mail className="w-4 h-4" style={{ color: '#ddc015' }} />
               </Button>
             </div>
           </div>
