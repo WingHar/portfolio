@@ -32,7 +32,7 @@ const HeroContent = ({ isHovered, mousePosition }: HeroContentProps) => {
             }}
           />
           <span className="text-portfolio-primary-light font-medium tracking-wide transition-all duration-[600ms] group-hover:text-portfolio-tertiary body-font">
-            FULL STACK ENGINEER • DIGITAL MARKETER
+            PRODUCT • ENGINEERING • MARKETING
           </span>
           <Video 
             className="w-8 h-8 text-portfolio-tertiary ml-3 transition-all duration-[800ms] group-hover:-rotate-12 group-hover:scale-110" 
