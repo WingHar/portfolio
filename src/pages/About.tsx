@@ -48,7 +48,7 @@ const About = () => {
 
   const experience = [
     {
-      role: 'Data and Marketing Technologies Lead',
+      role: 'Data and Marketing Technology Lead',
       company: 'Jolt',
       period: '2024 - Present',
       description: 'Lead in charge of overseeing all marketing, from organic marketing to paid ads marketing, as well as content creation and management. Additionally, created applications for company growth and usage across various teams, and maintained exposure to the data across all platforms for the backend data lake.',
@@ -60,7 +60,7 @@ const About = () => {
       ]
     },
     {
-      role: 'Full Stack Engineer',
+      role: 'Full-Stack Engineer',
       company: 'FBS Data: Financial Business Systems',
       period: '2021 - 2024',
       description: 'Full Stack Engineer working on lead engineering team, helping to build future products using new innovative technology and strategies.',
