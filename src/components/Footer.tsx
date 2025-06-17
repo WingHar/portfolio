@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Github, Linkedin, LetterText, ExternalLink } from 'lucide-react';
+import { Github, Linkedin, FileText, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -53,7 +52,7 @@ const Footer = () => {
                 className="bg-portfolio-secondary border-portfolio-secondary hover:bg-portfolio-secondary/80"
                 style={{ color: '#ddc015' }}
               >
-                <LetterText className="w-4 h-4" style={{ color: '#ddc015' }} />
+                <FileText className="w-4 h-4" style={{ color: '#ddc015' }} />
               </Button>
             </div>
           </div>
