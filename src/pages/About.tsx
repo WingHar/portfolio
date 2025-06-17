@@ -65,7 +65,7 @@ const About = () => {
       company: 'Product Gym',
       period: '2019 - 2021',
       description: 'Oversaw the product lifecycle of a new global Product Management bootcamp community hub and online courses management system for Product Gym.',
-      highlights: ['Architected online global community hub and course manager', 'Implemented features like an A.I. chatbot and third-party DRIP integrations, resulting in a 95%-member increase and 40% less support calls', 'Implemented CI/CD pipelines']
+      highlights: ['Architected online global community hub and course manager', 'Implemented features like an A.I. chatbot and third-party DRIP integrations']
     }
   ];
 
