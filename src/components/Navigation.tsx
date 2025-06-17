@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, LogOut } from 'lucide-react';
@@ -40,8 +41,8 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
             <img 
-              src="/lovable-uploads/21308e1b-0421-41d7-8e85-230a94e7d5a1.png" 
-              alt="Wing Har Logo" 
+              src="/lovable-uploads/64faefab-ebff-4c54-9e53-439da8474a8f.png" 
+              alt="VH Logo" 
               className="h-20 w-auto"
             />
           </Link>
