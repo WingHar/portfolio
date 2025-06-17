@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Code, TrendingUp, Zap, Target, Database, BarChart, Lightbulb } from 'lucide-react';
@@ -123,7 +124,7 @@ const AboutSection = () => {
 
         {/* Personal Touch */}
         <div className="mt-16 text-center bg-portfolio-primary-dark rounded-2xl p-8 border border-portfolio-secondary">
-          <p className="text-lg text-portfolio-primary-light max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg max-w-4xl mx-auto leading-relaxed" style={{ color: '#ddc015' }}>
             When I'm not building applications, optimizing campaigns, organizing marketing content, or leading new product charges, you can find me spending valuable time with my dogs, hiking, gaming, and reading up on all of the latest trends across the development and marketing world.
           </p>
         </div>
