@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
-import { Calendar } from 'lucide-react';
+import { Calendar, ChevronRight } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
@@ -63,6 +63,9 @@ const FeaturedCaseStudies = () => {
   const showLeftArrow = shouldShowArrows && canScrollPrev;
   const showRightArrow = shouldShowArrows && canScrollNext;
 
+  // Mobile: show arrow indicator if there are more than 1 case studies
+  const showMobileArrow = featuredCaseStudies.length > 1;
+
   if (isLoading) {
     return (
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-portfolio-primary-dark">
@@ -100,7 +103,8 @@ const FeaturedCaseStudies = () => {
             </p>
           </div>
 
-          <div className="relative px-12">
+          {/* Desktop view with standard carousel */}
+          <div className="hidden md:block relative px-12">
             <Carousel
               setApi={setApi}
               opts={{
@@ -174,6 +178,78 @@ const FeaturedCaseStudies = () => {
                 <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 bg-portfolio-secondary/20 border-portfolio-tertiary/30 text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white" />
               )}
             </Carousel>
+          </div>
+
+          {/* Mobile view with horizontal scroll */}
+          <div className="md:hidden px-4">
+            <div className="relative">
+              <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
+                {featuredCaseStudies.map((caseStudy, index) => (
+                  <div key={caseStudy.id} className="flex-none w-80 snap-start relative">
+                    <Link 
+                      to={`/case-studies/${caseStudy.id}`}
+                      className="block group"
+                    >
+                      <Card 
+                        className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden cursor-pointer h-full"
+                      >
+                        <div className="relative overflow-hidden h-full">
+                          {(caseStudy.featured_image_url || caseStudy.image_url) ? (
+                            <img 
+                              src={caseStudy.featured_image_url || caseStudy.image_url || ''} 
+                              alt={caseStudy.title}
+                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-portfolio-secondary/50 flex items-center justify-center">
+                              <Calendar className="w-12 h-12 text-portfolio-tertiary/50" />
+                            </div>
+                          )}
+                          
+                          <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                          
+                          {/* Case Study badge - always visible */}
+                          <div className="absolute top-4 left-4">
+                            <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
+                              Case Study
+                            </span>
+                          </div>
+                          
+                          {/* Centered overlay on hover */}
+                          <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                            <div className="text-center p-6">
+                              <h3 className="text-white font-bold text-xl mb-4">{caseStudy.title}</h3>
+                              <p className="text-portfolio-primary-light text-sm mb-6 line-clamp-4 leading-relaxed">
+                                {caseStudy.body.length > 200 
+                                  ? `${caseStudy.body.substring(0, 200)}...` 
+                                  : caseStudy.body
+                                }
+                              </p>
+                              <div className="flex justify-center mb-4">
+                                <span className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-3 py-1 rounded text-sm">
+                                  Published {new Date(caseStudy.created_at).getFullYear()}
+                                </span>
+                              </div>
+                              <div className="text-portfolio-tertiary text-sm font-medium">
+                                Click to read full case study →
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </Card>
+                    </Link>
+                    {/* Show arrow on first item if there are more items */}
+                    {index === 0 && showMobileArrow && (
+                      <div className="absolute top-1/2 -right-2 -translate-y-1/2 z-10">
+                        <div className="bg-portfolio-tertiary/90 rounded-full p-2 shadow-lg animate-pulse">
+                          <ChevronRight className="w-4 h-4 text-white" />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
