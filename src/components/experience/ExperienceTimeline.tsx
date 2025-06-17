@@ -1,18 +1,17 @@
-
 import React from 'react';
 import ExperienceCard from './ExperienceCard';
 
 const experiences = [
   {
     id: 1,
-    role: 'Junior Developer',
-    company: 'TechStart Inc.',
-    location: 'San Francisco, CA',
+    role: 'Full Stack Developer Intern',
+    company: 'Hollywood Insider',
+    location: 'New York City, New York',
     startDate: 'Feb 2019',
     endDate: 'Aug 2019',
-    description: 'Started my career as a junior developer, learning the fundamentals of web development and working on small features for client projects.',
-    skills: ['JavaScript', 'HTML/CSS', 'React', 'Git'],
-    achievements: ['Built first production feature', 'Completed onboarding program', 'Collaborated with senior developers']
+    description: 'Fully developed the Hollywood Insider website and subsidiary websites, including front-end and back-end, in collaboration with Product and Design teams and other developers.',
+    skills: ['JavaScript', 'HTML/CSS', 'React', 'Git', 'Kibana', 'GA4', 'GTM'],
+    achievements: ['Helped build HollywoodInsider.com from the ground-up', 'Help created partner websites for Hollywood Insider', 'Managed and resolved potential security breach incidents through application of best practices such as with input sanitation']
   },
   {
     id: 2,
