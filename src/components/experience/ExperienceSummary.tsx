@@ -10,15 +10,15 @@ const ExperienceSummary = () => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-center">
-            <div className="text-4xl font-bold text-portfolio-tertiary mb-2">5+ Years</div>
+            <div className="text-4xl font-bold text-portfolio-tertiary mb-2">6+ Years</div>
             <div className="text-portfolio-primary-light">Professional Experience</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-portfolio-tertiary mb-2">7</div>
+            <div className="text-4xl font-bold text-portfolio-tertiary mb-2">6</div>
             <div className="text-portfolio-primary-light">Different Roles</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-portfolio-tertiary mb-2">20+</div>
+            <div className="text-4xl font-bold text-portfolio-tertiary mb-2">12+</div>
             <div className="text-portfolio-primary-light">Technologies Mastered</div>
           </div>
         </div>
