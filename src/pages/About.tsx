@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -54,11 +55,11 @@ const About = () => {
       highlights: ['Launched 3 major features', 'Increased user engagement by 40%', 'Reduced churn by 25%']
     },
     {
-      role: 'Marketing Team Lead & Full Stack Developer',
-      company: 'GrowthCo',
-      period: '2020 - 2022',
-      description: 'Dual role managing paid advertising campaigns while building internal tools and analytics dashboards.',
-      highlights: ['Managed $2M+ annual ad spend', 'Built custom attribution platform', 'Led team of 8 marketers']
+      role: 'Full Stack Engineer',
+      company: 'FBS Data: Financial Business Systems',
+      period: '2021 - 2024',
+      description: 'Full Stack Engineer working on lead engineering team, helping to build future products using new innovative technology and strategies.',
+      highlights: ['Recreated code from flexML language to Ruby on Rails, resulting in scalability', 'Assisted in CI/CD pipeline', 'Mentored in FBS CREATE program for future developers']
     },
     {
       role: 'Associate Product Manager',
