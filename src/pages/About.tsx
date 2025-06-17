@@ -34,7 +34,7 @@ const About = () => {
     {
       category: 'Marketing Leadership',
       icon: TrendingUp,
-      items: ['Paid Advertising', 'Team Management', 'Campaign Strategy', 'Budget Optimization', 'Performance Marketing', 'Attribution Modeling'],
+      items: ['Paid Advertising', 'Team Management', 'Campaign Strategy', 'Budget Optimization', 'Performance Marketing', 'Content Management'],
       color: 'portfolio-primary'
     }
   ];
