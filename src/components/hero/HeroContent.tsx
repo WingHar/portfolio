@@ -49,9 +49,9 @@ const HeroContent = ({ isHovered, mousePosition }: HeroContentProps) => {
             transform: isHovered ? `perspective(1000px) rotateX(${(mousePosition.y - 50) * 0.1}deg) rotateY(${(mousePosition.x - 50) * 0.1}deg)` : 'none',
           }}
         >
-          <span className="text-gradient">Crafting Digital</span>
+          <span className="text-gradient">Welcome to my Digital</span>
           <br />
-          <span className="text-white">Experiences</span>
+          <span className="text-white">Portfolio</span>
         </h1>
         
         {/* Description with smooth transition */}
@@ -61,7 +61,7 @@ const HeroContent = ({ isHovered, mousePosition }: HeroContentProps) => {
             transform: isHovered ? `translateY(${(mousePosition.y - 50) * -0.02}px)` : 'translateY(0px)',
           }}
         >
-          Where full-stack engineering meets strategic marketing. I build scalable applications and run high-converting campaigns across digital platforms, CTV, and beyond.
+          Where Product Management is connected by Full-Stack Engineering, Strategic Marketing, and Design, with User-Experience in mind.
         </p>
         
         {/* Buttons with enhanced hover effects */}
