@@ -58,6 +58,11 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
+  /* Typography hierarchy with Playfair Display for headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
@@ -100,6 +105,16 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* Typography utilities */
+  .title-font {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .body-font {
+    font-family: 'Inter', sans-serif;
   }
 
   /* Holographic card effect - updated to show golden yellow color border around entire card */

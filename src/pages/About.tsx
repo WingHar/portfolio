@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -82,21 +83,21 @@ const About = () => {
         {/* Hero Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl sm:text-6xl font-bold mb-6">
+            <h1 className="text-5xl sm:text-6xl font-bold mb-6 title-font">
               <span className="text-gradient">About Me</span>
             </h1>
-            <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto leading-relaxed mb-8">
+            <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto leading-relaxed mb-8 body-font">
               A unique blend of product vision, technical expertise, and marketing acumen. I bridge the gap 
               between what users need, what's technically possible, and what drives business growth.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
-              <Badge variant="outline" className="bg-portfolio-tertiary/20 text-portfolio-tertiary border-portfolio-tertiary/30">
+              <Badge variant="outline" className="bg-portfolio-tertiary/20 text-portfolio-tertiary border-portfolio-tertiary/30 body-font">
                 Product Manager
               </Badge>
-              <Badge variant="outline" className="bg-portfolio-secondary/20 text-portfolio-secondary border-portfolio-secondary/30">
+              <Badge variant="outline" className="bg-portfolio-secondary/20 text-portfolio-secondary border-portfolio-secondary/30 body-font">
                 Full Stack Engineer
               </Badge>
-              <Badge variant="outline" className="bg-portfolio-primary/20 text-portfolio-primary-light border-portfolio-primary-light/30">
+              <Badge variant="outline" className="bg-portfolio-primary/20 text-portfolio-primary-light border-portfolio-primary-light/30 body-font">
                 Marketing Leader
               </Badge>
             </div>
@@ -106,7 +107,7 @@ const About = () => {
         {/* Skills Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-portfolio-primary/50">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">
+            <h2 className="text-4xl font-bold text-center mb-12 title-font">
               <span className="text-gradient">Core Competencies</span>
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -118,13 +119,13 @@ const About = () => {
                   <CardContent className="p-8">
                     <div className="flex items-center mb-6">
                       <skillGroup.icon className={`w-8 h-8 text-${skillGroup.color} mr-4`} />
-                      <h3 className="text-2xl font-bold text-white">{skillGroup.category}</h3>
+                      <h3 className="text-2xl font-bold text-white title-font">{skillGroup.category}</h3>
                     </div>
                     <div className="space-y-3">
                       {skillGroup.items.map((skill) => (
                         <div 
                           key={skill}
-                          className="bg-portfolio-primary/50 text-portfolio-primary-light px-4 py-3 rounded-lg font-medium border border-portfolio-secondary/30"
+                          className="bg-portfolio-primary/50 text-portfolio-primary-light px-4 py-3 rounded-lg font-medium border border-portfolio-secondary/30 body-font"
                         >
                           {skill}
                         </div>
@@ -140,7 +141,7 @@ const About = () => {
         {/* Achievements */}
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">
+            <h2 className="text-4xl font-bold text-center mb-12 title-font">
               <span className="text-gradient">Key Achievements</span>
             </h2>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
@@ -151,8 +152,8 @@ const About = () => {
                 >
                   <div className="bg-portfolio-primary-dark border border-portfolio-secondary rounded-lg p-6 hover:border-portfolio-tertiary/50 transition-colors">
                     <achievement.icon className="w-8 h-8 text-portfolio-tertiary mx-auto mb-4" />
-                    <div className="text-3xl font-bold text-white mb-2">{achievement.value}</div>
-                    <div className="text-portfolio-primary-light text-sm">{achievement.label}</div>
+                    <div className="text-3xl font-bold text-white mb-2 title-font">{achievement.value}</div>
+                    <div className="text-portfolio-primary-light text-sm body-font">{achievement.label}</div>
                   </div>
                 </div>
               ))}
@@ -163,7 +164,7 @@ const About = () => {
         {/* Experience Timeline */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-portfolio-primary/50">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">
+            <h2 className="text-4xl font-bold text-center mb-12 title-font">
               <span className="text-gradient">Most Recent Job Titles</span>
             </h2>
             <div className="space-y-8">
@@ -175,14 +176,14 @@ const About = () => {
                   <CardContent className="p-8">
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                       <div>
-                        <h3 className="text-2xl font-bold text-white mb-1">{job.role}</h3>
-                        <p className="text-portfolio-tertiary font-semibold">{job.company}</p>
+                        <h3 className="text-2xl font-bold text-white mb-1 title-font">{job.role}</h3>
+                        <p className="text-portfolio-tertiary font-semibold title-font">{job.company}</p>
                       </div>
-                      <div className="text-portfolio-primary-light font-medium mt-2 md:mt-0">
+                      <div className="text-portfolio-primary-light font-medium mt-2 md:mt-0 body-font">
                         {job.period}
                       </div>
                     </div>
-                    <p className="text-portfolio-primary-light mb-4 leading-relaxed">
+                    <p className="text-portfolio-primary-light mb-4 leading-relaxed body-font">
                       {job.description}
                     </p>
                     <div className="flex flex-wrap gap-2">
@@ -190,7 +191,7 @@ const About = () => {
                         <Badge 
                           key={highlight}
                           variant="outline" 
-                          className="bg-portfolio-secondary/20 text-portfolio-secondary border-portfolio-secondary/30"
+                          className="bg-portfolio-secondary/20 text-portfolio-secondary border-portfolio-secondary/30 body-font"
                         >
                           {highlight}
                         </Badge>
@@ -206,29 +207,29 @@ const About = () => {
         {/* Personal Philosophy */}
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">
+            <h2 className="text-4xl font-bold text-center mb-12 title-font">
               <span className="text-gradient">My Approach</span>
             </h2>
             <Card className="bg-portfolio-primary-dark border-portfolio-secondary">
               <CardContent className="p-8">
-                <div className="text-lg text-portfolio-primary-light leading-relaxed space-y-6">
+                <div className="text-lg text-portfolio-primary-light leading-relaxed space-y-6 body-font">
                   <p>
-                    <strong className="text-portfolio-tertiary">Data-Driven Decision Making:</strong> I believe in letting data guide product decisions, 
+                    <strong className="text-portfolio-tertiary title-font">Data-Driven Decision Making:</strong> I believe in letting data guide product decisions, 
                     whether it's user analytics, A/B test results, or campaign performance metrics. Every feature, every campaign, 
                     and every strategy is validated through measurable outcomes.
                   </p>
                   <p>
-                    <strong className="text-portfolio-tertiary">Technical Empathy:</strong> My engineering background allows me to work seamlessly 
+                    <strong className="text-portfolio-tertiary title-font">Technical Empathy:</strong> My engineering background allows me to work seamlessly 
                     with development teams, understanding technical constraints while advocating for user needs. I can prototype 
                     solutions and contribute to implementation when needed.
                   </p>
                   <p>
-                    <strong className="text-portfolio-tertiary">Growth-Focused Leadership:</strong> Having led multiple cross-functional teams, I understand the 
+                    <strong className="text-portfolio-tertiary title-font">Growth-Focused Leadership:</strong> Having led multiple cross-functional teams, I understand the 
                     importance of clear communication, setting measurable goals, and creating an environment where team members 
                     can excel while delivering exceptional results.
                   </p>
                   <p>
-                    <strong className="text-portfolio-tertiary">User-Centric Innovation:</strong> Whether building products or running campaigns, 
+                    <strong className="text-portfolio-tertiary title-font">User-Centric Innovation:</strong> Whether building products or running campaigns, 
                     I start with understanding user needs and pain points. The best solutions solve real problems in elegant ways 
                     that users love and businesses can scale.
                   </p>

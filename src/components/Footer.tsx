@@ -26,7 +26,7 @@ const Footer = () => {
                 className="h-20 w-auto"
               />
             </div>
-            <p className="text-portfolio-primary-light mb-6 leading-relaxed">
+            <p className="text-portfolio-primary-light mb-6 leading-relaxed body-font">
               Product Manager who combines Engineering and Marketing to create innovative solutions 
               that bridge technological and strategic growth.
             </p>
@@ -66,13 +66,13 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="lg:col-span-1">
-            <h3 className="text-lg font-semibold text-white mb-6">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-white mb-6 title-font">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.label}>
                   <Link 
                     to={link.href}
-                    className="text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 flex items-center"
+                    className="text-portfolio-primary-light hover:text-portfolio-tertiary transition-colors duration-200 flex items-center body-font"
                   >
                     {link.label}
                     <ExternalLink className="w-3 h-3 ml-1 opacity-50" />
@@ -84,13 +84,13 @@ const Footer = () => {
 
           {/* Contact CTA */}
           <div className="lg:col-span-1">
-            <h3 className="text-lg font-semibold text-white mb-6">Let's Work Together</h3>
-            <p className="text-portfolio-primary-light mb-6">
+            <h3 className="text-lg font-semibold text-white mb-6 title-font">Let's Work Together</h3>
+            <p className="text-portfolio-primary-light mb-6 body-font">
               Ready to build something amazing? Let's discuss your next project.
             </p>
             <Button 
               size="lg"
-              className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white font-semibold w-full lg:w-auto"
+              className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white font-semibold w-full lg:w-auto body-font"
               asChild
             >
               <Link to="/contact">
@@ -102,10 +102,10 @@ const Footer = () => {
 
         <div className="border-t border-portfolio-secondary/20 mt-12 pt-8">
           <div className="flex flex-col lg:flex-row justify-between items-center">
-            <p className="text-portfolio-primary-light text-sm">
+            <p className="text-portfolio-primary-light text-sm body-font">
               © 2024 Wing Har. Crafted with passion and precision.
             </p>
-            <p className="text-portfolio-primary-light text-sm mt-4 lg:mt-0">
+            <p className="text-portfolio-primary-light text-sm mt-4 lg:mt-0 body-font">
               Built with React, TypeScript & Tailwind CSS
             </p>
           </div>

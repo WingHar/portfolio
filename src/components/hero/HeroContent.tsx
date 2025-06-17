@@ -31,7 +31,7 @@ const HeroContent = ({ isHovered, mousePosition }: HeroContentProps) => {
               transform: isHovered ? `rotate(${mousePosition.x * 0.1}deg)` : 'rotate(0deg)',
             }}
           />
-          <span className="text-portfolio-primary-light font-medium tracking-wide transition-all duration-[600ms] group-hover:text-portfolio-tertiary">
+          <span className="text-portfolio-primary-light font-medium tracking-wide transition-all duration-[600ms] group-hover:text-portfolio-tertiary body-font">
             FULL STACK ENGINEER • DIGITAL MARKETER
           </span>
           <Video 
@@ -44,7 +44,7 @@ const HeroContent = ({ isHovered, mousePosition }: HeroContentProps) => {
         
         {/* Main heading with slower 3D transition */}
         <h1 
-          className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight transition-all duration-[1000ms] ease-out"
+          className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight transition-all duration-[1000ms] ease-out title-font"
           style={{
             transform: isHovered ? `perspective(1000px) rotateX(${(mousePosition.y - 50) * 0.1}deg) rotateY(${(mousePosition.x - 50) * 0.1}deg)` : 'none',
           }}
@@ -56,7 +56,7 @@ const HeroContent = ({ isHovered, mousePosition }: HeroContentProps) => {
         
         {/* Description with smooth transition */}
         <p 
-          className="text-xl sm:text-2xl text-portfolio-primary-light mb-8 max-w-3xl mx-auto leading-relaxed transition-all duration-[800ms] ease-out"
+          className="text-xl sm:text-2xl text-portfolio-primary-light mb-8 max-w-3xl mx-auto leading-relaxed transition-all duration-[800ms] ease-out body-font"
           style={{
             transform: isHovered ? `translateY(${(mousePosition.y - 50) * -0.02}px)` : 'translateY(0px)',
           }}
@@ -68,7 +68,7 @@ const HeroContent = ({ isHovered, mousePosition }: HeroContentProps) => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button 
             size="lg" 
-            className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white px-8 py-4 text-lg font-semibold transition-all duration-[400ms] hover:scale-110 hover:shadow-lg hover:shadow-portfolio-tertiary/30 group"
+            className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white px-8 py-4 text-lg font-semibold transition-all duration-[400ms] hover:scale-110 hover:shadow-lg hover:shadow-portfolio-tertiary/30 group body-font"
             onClick={handleViewWorkClick}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = `scale(1.1) rotate(${Math.random() * 4 - 2}deg)`;
@@ -82,7 +82,7 @@ const HeroContent = ({ isHovered, mousePosition }: HeroContentProps) => {
           <Button 
             variant="outline" 
             size="lg"
-            className="bg-portfolio-secondary border-portfolio-secondary text-portfolio-tertiary hover:bg-portfolio-secondary/80 hover:text-white px-8 py-4 text-lg font-semibold transition-all duration-[400ms] hover:scale-110 hover:shadow-lg group"
+            className="bg-portfolio-secondary border-portfolio-secondary text-portfolio-tertiary hover:bg-portfolio-secondary/80 hover:text-white px-8 py-4 text-lg font-semibold transition-all duration-[400ms] hover:scale-110 hover:shadow-lg group body-font"
             asChild
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = `scale(1.1) rotate(${Math.random() * 4 - 2}deg)`;
