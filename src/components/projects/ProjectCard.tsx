@@ -63,7 +63,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-110 md:block cursor-pointer md:cursor-default"
           onClick={handleMobileImageClick}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity md:block hidden" />
+        <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity md:block hidden pointer-events-none" />
         
         {/* Category badge - hidden on mobile */}
         <div className="absolute top-4 left-4 hidden md:block">

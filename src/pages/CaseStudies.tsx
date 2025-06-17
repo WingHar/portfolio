@@ -221,7 +221,7 @@ const CaseStudies = () => {
                         className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-110"
                       />
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                     
                     {/* Featured badge */}
                     {caseStudy.featured && (
@@ -231,14 +231,14 @@ const CaseStudies = () => {
                     )}
                     
                     {/* Case Study badge */}
-                    <div className="absolute top-4 left-4">
+                    <div className="absolute top-4 left-4 z-10">
                       <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
                         Case Study
                       </span>
                     </div>
                     
                     {isAdmin && (
-                      <div className="absolute top-12 left-4 z-10 flex gap-2">
+                      <div className="absolute top-12 left-4 z-20 flex gap-2">
                         <Button
                           variant="ghost"
                           size="sm"
@@ -247,7 +247,7 @@ const CaseStudies = () => {
                             setEditingCaseStudy(caseStudy);
                             setShowForm(false);
                           }}
-                          className="bg-portfolio-primary-dark/80 hover:bg-portfolio-primary-dark text-portfolio-tertiary hover:text-white p-1 h-auto"
+                          className="bg-portfolio-primary-dark/80 hover:bg-portfolio-primary-dark text-portfolio-tertiary hover:text-white p-1 h-auto pointer-events-auto"
                         >
                           <Edit className="w-3 h-3" />
                         </Button>
@@ -257,7 +257,7 @@ const CaseStudies = () => {
                               variant="ghost"
                               size="sm"
                               onClick={(e) => e.stopPropagation()}
-                              className="bg-red-600/80 hover:bg-red-600 text-white p-1 h-auto"
+                              className="bg-red-600/80 hover:bg-red-600 text-white p-1 h-auto pointer-events-auto"
                             >
                               <Trash2 className="w-3 h-3" />
                             </Button>
@@ -314,7 +314,7 @@ const CaseStudies = () => {
                     )}
                     
                     {/* Content overlay on hover */}
-                    <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center pointer-events-none">
                       <div className="text-center p-6">
                         <h3 className="text-white font-bold text-xl mb-4">{caseStudy.title}</h3>
                         <p className="text-portfolio-primary-light text-sm mb-6 line-clamp-4 leading-relaxed">
@@ -331,7 +331,7 @@ const CaseStudies = () => {
                         <Button
                           variant="outline"
                           size="sm"
-                          className="border-portfolio-tertiary text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white text-xs"
+                          className="border-portfolio-tertiary text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white text-xs pointer-events-auto"
                           asChild
                         >
                           <Link to={`/case-studies/${caseStudy.id}`}>

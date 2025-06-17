@@ -54,22 +54,25 @@ const ProjectsGrid = ({ projects, isAdmin, onEditProject, onDeleteProject }: Pro
                   alt={project.title}
                   className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                 
                 {/* Category badge */}
-                <div className="absolute top-4 left-4">
+                <div className="absolute top-4 left-4 z-10">
                   <span className="bg-portfolio-tertiary text-white px-3 py-1 rounded-full text-sm font-medium">
                     {project.category}
                   </span>
                 </div>
                 
                 {isAdmin && (
-                  <div className="absolute top-4 right-4 flex gap-2">
+                  <div className="absolute top-4 right-4 flex gap-2 z-20">
                     <Button
                       size="sm"
                       variant="outline"
-                      onClick={() => onEditProject(project)}
-                      className="bg-portfolio-primary-dark/80 border-portfolio-secondary hover:bg-portfolio-secondary p-1 h-auto"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onEditProject(project);
+                      }}
+                      className="bg-portfolio-primary-dark/80 border-portfolio-secondary hover:bg-portfolio-secondary p-1 h-auto pointer-events-auto"
                     >
                       <Edit className="w-3 h-3" />
                     </Button>
@@ -78,7 +81,8 @@ const ProjectsGrid = ({ projects, isAdmin, onEditProject, onDeleteProject }: Pro
                         <Button
                           size="sm"
                           variant="destructive"
-                          className="bg-red-600/80 hover:bg-red-600 p-1 h-auto"
+                          onClick={(e) => e.stopPropagation()}
+                          className="bg-red-600/80 hover:bg-red-600 p-1 h-auto pointer-events-auto"
                         >
                           <Trash2 className="w-3 h-3" />
                         </Button>
@@ -107,7 +111,7 @@ const ProjectsGrid = ({ projects, isAdmin, onEditProject, onDeleteProject }: Pro
                 )}
                 
                 {/* Content overlay on hover */}
-                <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center pointer-events-none">
                   <div className="text-center p-6">
                     <h3 className="text-white font-bold text-xl mb-4">{project.title}</h3>
                     <p className="text-portfolio-primary-light text-sm mb-6 line-clamp-4 leading-relaxed">
@@ -133,7 +137,7 @@ const ProjectsGrid = ({ projects, isAdmin, onEditProject, onDeleteProject }: Pro
                       )}
                     </div>
 
-                    <div className="flex gap-2 flex-wrap justify-center">
+                    <div className="flex gap-2 flex-wrap justify-center pointer-events-auto">
                       {project.live_url && (
                         <Button 
                           size="sm" 
