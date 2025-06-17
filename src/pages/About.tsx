@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -48,10 +47,10 @@ const About = () => {
 
   const experience = [
     {
-      role: 'Senior Product Manager',
-      company: 'TechCorp',
-      period: '2022 - Present',
-      description: 'Led cross-functional teams to deliver B2B SaaS products, managing roadmaps for 100K+ users while maintaining 99.9% uptime.',
+      role: 'Data and Marketing Technologies Lead',
+      company: 'Jolt',
+      period: '2024 - Present',
+      description: 'Lead in charge of overseeing all marketing, from organic marketing to paid ads marketing, as well as content creation and management. Additionally, created applications for company growth and usage across various teams, and maintained exposure to the data across all platforms for the backend data lake.',
       highlights: ['Launched 3 major features', 'Increased user engagement by 40%', 'Reduced churn by 25%']
     },
     {
@@ -69,8 +68,6 @@ const About = () => {
       highlights: ['Architected online global community hub and course manager', 'Implemented features like an A.I. chatbot and third-party DRIP integrations']
     }
   ];
-
-  // ... keep existing code (return statement and all JSX components)
 
   return (
     <div className="min-h-screen bg-portfolio-primary-dark flex flex-col">
