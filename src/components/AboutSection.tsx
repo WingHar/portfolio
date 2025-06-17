@@ -19,7 +19,7 @@ const skills = [
   {
     category: 'Product Management',
     icon: Lightbulb,
-    skills: ['Product Strategy', 'Roadmap Planning', 'User Research', 'Feature Prioritization', 'A/B Testing', 'Analytics'],
+    skills: ['Product Strategy', 'Roadmap Planning', 'User Research', 'Data Privacy Laws and Regulations', 'A/B Testing', 'Analytics'],
     color: 'portfolio-tertiary'
   }
 ];
