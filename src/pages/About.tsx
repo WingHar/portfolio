@@ -61,10 +61,10 @@ const About = () => {
       highlights: ['Managed $2M+ annual ad spend', 'Built custom attribution platform', 'Led team of 8 marketers']
     },
     {
-      role: 'Full Stack Engineer',
-      company: 'StartupXYZ',
-      period: '2018 - 2020',
-      description: 'Built scalable web applications from ground up, focusing on user experience and performance optimization.',
+      role: 'Associate Product Manager',
+      company: 'Product Gym',
+      period: '2019 - 2021',
+      description: 'Oversaw the product lifecycle of a new global Product Management bootcamp community hub and online courses management system for Product Gym.',
       highlights: ['Architected microservices platform', 'Improved page load times by 60%', 'Implemented CI/CD pipelines']
     }
   ];
@@ -159,7 +159,7 @@ const About = () => {
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-portfolio-primary/50">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">
-              <span className="text-gradient">Professional Journey</span>
+              <span className="text-gradient">Most Recent Job Titles</span>
             </h2>
             <div className="space-y-8">
               {experience.map((job, index) => (
