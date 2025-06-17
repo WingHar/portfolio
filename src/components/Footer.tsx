@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, FileText, ExternalLink } from 'lucide-react';
@@ -12,6 +11,14 @@ const Footer = () => {
     { label: 'Career Timeline', href: '/experience', isExternal: false },
     { label: 'Contact', href: '/contact', isExternal: false }
   ];
+
+  const handleResumeDownload = () => {
+    // Create a link element to trigger the download
+    const link = document.createElement('a');
+    link.href = '/resume.pdf'; // Path to your PDF file in the public folder
+    link.download = 'Wing_Har_Resume.pdf'; // Name for the downloaded file
+    link.click();
+  };
 
   return (
     <footer className="bg-portfolio-primary-dark border-t border-portfolio-secondary/20 py-16">
@@ -58,6 +65,7 @@ const Footer = () => {
                 size="sm"
                 className="bg-portfolio-secondary border-portfolio-secondary hover:bg-portfolio-secondary/80"
                 style={{ color: '#ddc015' }}
+                onClick={handleResumeDownload}
               >
                 <FileText className="w-4 h-4" style={{ color: '#ddc015' }} />
               </Button>
