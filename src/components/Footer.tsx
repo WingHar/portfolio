@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, FileText, ExternalLink } from 'lucide-react';
@@ -35,16 +36,22 @@ const Footer = () => {
                 size="sm"
                 className="bg-portfolio-secondary border-portfolio-secondary hover:bg-portfolio-secondary/80"
                 style={{ color: '#ddc015' }}
+                asChild
               >
-                <Github className="w-4 h-4" style={{ color: '#ddc015' }} />
+                <a href="https://github.com/winghar" target="_blank" rel="noopener noreferrer">
+                  <Github className="w-4 h-4" style={{ color: '#ddc015' }} />
+                </a>
               </Button>
               <Button 
                 variant="outline" 
                 size="sm"
                 className="bg-portfolio-secondary border-portfolio-secondary hover:bg-portfolio-secondary/80"
                 style={{ color: '#ddc015' }}
+                asChild
               >
-                <Linkedin className="w-4 h-4" style={{ color: '#ddc015' }} />
+                <a href="https://www.linkedin.com/in/winghar/" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="w-4 h-4" style={{ color: '#ddc015' }} />
+                </a>
               </Button>
               <Button 
                 variant="outline" 
