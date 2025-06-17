@@ -31,7 +31,7 @@ const ContactInfo = () => {
         <h2 className="text-3xl font-bold text-white mb-6">Let's Connect</h2>
         <p className="text-portfolio-primary-light text-lg leading-relaxed mb-8">
           Whether you're looking to build a new application, optimize your marketing campaigns, 
-          or discuss strategic partnerships, I'm here to help turn your vision into reality.
+          optimize and automate your processes, or need a consultation on your company growth and products, I'm here to help turn your vision into reality.
         </p>
       </div>
 
