@@ -48,14 +48,14 @@ const experiences = [
   },
   {
     id: 5,
-    role: 'Lead Developer',
-    company: 'ScaleTech Solutions',
-    location: 'Seattle, WA',
-    startDate: 'Sep 2022',
-    endDate: 'May 2024',
-    description: 'Spearheaded technical strategy and product development, working closely with stakeholders to deliver high-impact solutions.',
-    skills: ['React Native', 'GraphQL', 'Redis', 'Terraform'],
-    achievements: ['Launched mobile app with 100K+ users', 'Improved system reliability to 99.9%', 'Built development team from 3 to 12']
+    role: 'Front-End Data and Marketing Lead',
+    company: 'Jolt',
+    location: 'New York, NY',
+    startDate: 'Aug 2024',
+    endDate: 'Mar 2025',
+    description: 'Oversaw the data flow from the frontend (website, paid marketing platforms, organic marketing platforms, GA4) into the backend data lake, and utilized this data to assess best marketing trends, audience data, and optimize paid ads marketing based on existing data collected.',
+    skills: ['Asana', 'Meta', 'Google Ads', 'YouTube Ads', 'OOH', 'CTV', 'Podcast Ads', 'Spotify Ads', 'X Ads', 'LinkedIn Ads', 'JS (Next.js)', 'Python', 'ActiveCampaign'],
+    achievements: ['Proposed and launched new audience paid marketing schema, resulting in an overall increase in conversions, decrease in CPC, and increased ROI', 'Fixed up all event tracking across the board, unifying them into GTM through code pushes into the data layer, and assigning events to these triggers', 'Created and optimized full automations that take in website events for each user, appending tags and trigger points to them, and assessing where they are in the automation to optimize getting them to purchase and finish watching films']
   },
   {
     id: 6,
