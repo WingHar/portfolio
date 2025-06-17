@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -147,19 +148,20 @@ const Projects = () => {
       {projects.length > 0 && (
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
                 <Card 
                   key={project.id} 
-                  className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden group h-[400px] flex flex-col"
+                  className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden group"
                 >
-                  <div className="relative overflow-hidden flex-shrink-0 h-full">
-                    <img 
-                      src={project.featured_image_url || project.image_url} 
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                  <div className="relative">
+                    <div className="aspect-[16/10] overflow-hidden">
+                      <img 
+                        src={project.featured_image_url || project.image_url} 
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
                     
                     {/* Category badge */}
                     <div className="absolute top-4 left-4">
@@ -210,71 +212,68 @@ const Projects = () => {
                         </AlertDialog>
                       </div>
                     )}
-                    
-                    {/* Content overlay on hover */}
-                    <div className="absolute inset-0 bg-portfolio-primary-dark/95 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                      <div className="text-center p-6">
-                        <h3 className="text-white font-bold text-xl mb-4">{project.title}</h3>
-                        <p className="text-portfolio-primary-light text-sm mb-6 line-clamp-4 leading-relaxed">
-                          {project.description}
-                        </p>
-                        
-                        <div className="flex flex-wrap gap-1 mb-6 justify-center">
-                          {project.technologies.slice(0, 3).map((tech) => (
-                            <span 
-                              key={tech}
-                              className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-2 py-1 rounded text-xs"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                          {project.technologies.length > 3 && (
-                            <span className="text-portfolio-primary-light text-xs px-2 py-1">
-                              +{project.technologies.length - 3} more
-                            </span>
-                          )}
-                        </div>
-
-                        <div className="flex gap-2 flex-wrap justify-center">
-                          {project.live_url && (
-                            <Button 
-                              size="sm" 
-                              className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white text-xs"
-                              asChild
-                            >
-                              <a href={project.live_url} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="w-3 h-3 mr-1" />
-                                Demo
-                              </a>
-                            </Button>
-                          )}
-                          {project.github_url && (
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              className="border-portfolio-secondary text-portfolio-primary-light hover:bg-portfolio-secondary hover:text-white text-xs"
-                              asChild
-                            >
-                              <a href={project.github_url} target="_blank" rel="noopener noreferrer">
-                                <Github className="w-3 h-3 mr-1" />
-                                Code
-                              </a>
-                            </Button>
-                          )}
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="border-portfolio-tertiary text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white text-xs"
-                            asChild
-                          >
-                            <Link to={`/projects/${project.id}`}>
-                              Read More
-                            </Link>
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
                   </div>
+                  
+                  <CardContent className="p-6">
+                    <h3 className="text-white font-bold text-xl mb-3">{project.title}</h3>
+                    <p className="text-portfolio-primary-light text-sm mb-4 line-clamp-3 leading-relaxed">
+                      {project.description}
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.technologies.slice(0, 3).map((tech) => (
+                        <span 
+                          key={tech}
+                          className="bg-portfolio-tertiary/20 text-portfolio-tertiary px-2 py-1 rounded text-xs"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies.length > 3 && (
+                        <span className="text-portfolio-primary-light text-xs px-2 py-1">
+                          +{project.technologies.length - 3} more
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex gap-2 flex-wrap">
+                      {project.live_url && (
+                        <Button 
+                          size="sm" 
+                          className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white text-xs"
+                          asChild
+                        >
+                          <a href={project.live_url} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="w-3 h-3 mr-1" />
+                            Demo
+                          </a>
+                        </Button>
+                      )}
+                      {project.github_url && (
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          className="border-portfolio-secondary text-portfolio-primary-light hover:bg-portfolio-secondary hover:text-white text-xs"
+                          asChild
+                        >
+                          <a href={project.github_url} target="_blank" rel="noopener noreferrer">
+                            <Github className="w-3 h-3 mr-1" />
+                            Code
+                          </a>
+                        </Button>
+                      )}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="border-portfolio-tertiary text-portfolio-tertiary hover:bg-portfolio-tertiary hover:text-white text-xs"
+                        asChild
+                      >
+                        <Link to={`/projects/${project.id}`}>
+                          Read More
+                        </Link>
+                      </Button>
+                    </div>
+                  </CardContent>
                 </Card>
               ))}
             </div>
