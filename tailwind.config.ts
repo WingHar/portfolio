@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -62,13 +63,13 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom portfolio colors reverted back to beige tertiary color
+				// Custom portfolio colors - changed tertiary from beige to golden yellow
 				portfolio: {
 					primary: '#197B9E',
 					'primary-light': '#87CEEB',
 					'primary-dark': '#0F172A',
 					secondary: '#7F8E99',
-					tertiary: '#e4c19d',
+					tertiary: '#DDC015',
 				}
 			},
 			borderRadius: {
