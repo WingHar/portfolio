@@ -211,17 +211,17 @@ const CaseStudies = () => {
               {caseStudies.map((caseStudy) => (
                 <Card 
                   key={caseStudy.id} 
-                  className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden group h-[400px] flex flex-col"
+                  className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden group"
                 >
-                  <div className="relative overflow-hidden flex-shrink-0 h-full">
+                  <div className="relative overflow-hidden">
                     {(caseStudy.featured_image_url || caseStudy.image_url) && (
                       <img
                         src={caseStudy.featured_image_url || caseStudy.image_url || ''}
                         alt={caseStudy.title}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                        className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-110"
                       />
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     
                     {/* Featured badge */}
                     {caseStudy.featured && (
