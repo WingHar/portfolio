@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
@@ -27,8 +26,8 @@ const Footer = () => {
               />
             </div>
             <p className="text-portfolio-primary-light mb-6 leading-relaxed">
-              Full Stack Engineer & Digital Marketing Expert creating innovative solutions 
-              that bridge technology and strategic growth.
+              Product Manager who combines Engineering and Marketing to create innovative solutions 
+              that bridge technological and strategic growth.
             </p>
             <div className="flex space-x-4">
               <Button 
