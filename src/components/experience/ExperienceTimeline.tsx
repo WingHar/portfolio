@@ -68,18 +68,6 @@ const experiences = [
     skills: ['Meta Ads', 'Spotify Ads', 'Google Ads', 'X Ads', 'GA4', 'GTM', 'OOH', 'CTV', 'Asana', 'Miro', 'HTML', 'CSS (Tailwind)', 'JS', 'React', 'Next.js', 'Python', 'AWS (Athena, S3, Amplify, CloudWatch)', 'auth0', 'ActiveCampaign', 'BetterStack'],
     achievements: ['Created UML diagram, modeled, and strategized JOLT Filmmaker Dashboard before prototyping, building, and releasing using auth0, Next.js, SQL, and AWS', 'Strategized, developed, and created JOLT Social Listening tool, allowing authorized users to search for specific keywords and phrases across the internet and various social media platforms, identifying volume of searches for that term, and sentimental analyses based on the body of the article or post. Additionally, this Social Listening tool feeds this data into the backend data lake while filtering unwanted noise, and displays graphs showcasing trends of searches over time', 'Oversaw and led content creation for all films across Paid Marketing, Organic Marketing, and YouTube', 'Oversaw and optimized automations based on website events per individual', 'Oversaw and led email marketing and paid ads marketing across a global scale'],
     current: true
-  },
-  {
-    id: 7,
-    role: 'Senior Product Manager',
-    company: 'TechCorp Industries',
-    location: 'San Francisco, CA',
-    startDate: 'Aug 2024',
-    endDate: 'Present',
-    description: 'Currently leading product strategy and cross-functional teams to deliver innovative solutions that drive business growth.',
-    skills: ['Product Strategy', 'Data Analytics', 'Team Management', 'Stakeholder Relations'],
-    achievements: ['Managing $2M+ product budget', 'Leading team of 15+', 'Launching 3 major features'],
-    current: true
   }
 ];
 
