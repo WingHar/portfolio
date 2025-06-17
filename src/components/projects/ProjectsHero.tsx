@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
@@ -16,7 +15,7 @@ const ProjectsHero = ({ isAdmin, onCreateProject }: ProjectsHeroProps) => {
           <span className="text-gradient">My Projects and Experiences</span>
         </h1>
         <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto animate-fade-in">
-          A collection of engineering excellence and strategic marketing innovations that showcase my expertise in full-stack development and digital marketing.
+          Demonstrating technical acumen and marketing foresight through a portfolio of full-stack development projects and digital strategy execution.
         </p>
         
         {isAdmin && (
