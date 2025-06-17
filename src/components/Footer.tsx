@@ -103,7 +103,7 @@ const Footer = () => {
         <div className="border-t border-portfolio-secondary/20 mt-12 pt-8">
           <div className="flex flex-col lg:flex-row justify-between items-center">
             <p className="text-portfolio-primary-light text-sm body-font">
-              © 2024 Wing Har. Crafted with passion and precision.
+              © 2025 Wing Har. Developed and inspired by films and coding.
             </p>
             <p className="text-portfolio-primary-light text-sm mt-4 lg:mt-0 body-font">
               Built with React, TypeScript & Tailwind CSS
