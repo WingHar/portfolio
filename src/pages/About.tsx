@@ -51,7 +51,12 @@ const About = () => {
       company: 'Jolt',
       period: '2024 - Present',
       description: 'Lead in charge of overseeing all marketing, from organic marketing to paid ads marketing, as well as content creation and management. Additionally, created applications for company growth and usage across various teams, and maintained exposure to the data across all platforms for the backend data lake.',
-      highlights: ['Launched 3 major features', 'Increased user engagement by 40%', 'Reduced churn by 25%']
+      highlights: [
+        'Built and deployed Jolt Filmmaker Dashboard', 
+        'Developed new and improved Paid Marketing funnel strategy', 
+        'Created automations for email marketing based on website events',
+        'Automated processes cross-functionally for teams through creation of standardization via Asana'
+      ]
     },
     {
       role: 'Full Stack Engineer',
