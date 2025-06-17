@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ExternalLink, Github } from 'lucide-react';
@@ -25,6 +25,12 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
+  const [isMobileOverlayVisible, setIsMobileOverlayVisible] = useState(false);
+
+  const handleMobileImageClick = () => {
+    setIsMobileOverlayVisible(!isMobileOverlayVisible);
+  };
+
   return (
     <Card 
       className="holographic-card bg-portfolio-primary border-portfolio-secondary overflow-hidden group"
@@ -33,7 +39,8 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         <img 
           src={project.featured_image_url || project.image_url} 
           alt={project.title}
-          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-110"
+          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-110 md:block cursor-pointer md:cursor-default"
+          onClick={handleMobileImageClick}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-portfolio-primary-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity md:block hidden" />
         
@@ -44,12 +51,14 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           </span>
         </div>
         
-        {/* Mobile overlay - always visible */}
-        <div className="absolute inset-0 bg-portfolio-primary-dark/90 flex items-center justify-center md:hidden">
+        {/* Mobile overlay - only visible when clicked */}
+        <div className={`absolute inset-0 bg-portfolio-primary-dark/90 flex items-center justify-center md:hidden transition-opacity duration-300 ${
+          isMobileOverlayVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}>
           <div className="text-center p-4">
             <h3 className="text-white font-bold text-lg mb-4">{project.title}</h3>
             <div className="flex gap-2 justify-center">
-              {project.live_url ? (
+              {project.live_url && (
                 <Button 
                   size="sm" 
                   className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white text-sm"
@@ -60,17 +69,16 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                     Demo
                   </a>
                 </Button>
-              ) : (
-                <Button
-                  size="sm"
-                  className="bg-portfolio-tertiary hover:bg-portfolio-tertiary/90 text-white text-sm"
-                  asChild
-                >
-                  <Link to={`/projects/${project.id}`}>
-                    Read More
-                  </Link>
-                </Button>
               )}
+              <Button
+                size="sm"
+                className="bg-portfolio-secondary hover:bg-portfolio-secondary/90 text-white text-sm"
+                asChild
+              >
+                <Link to={`/projects/${project.id}`}>
+                  Read More
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
