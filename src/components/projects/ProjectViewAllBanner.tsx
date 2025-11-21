@@ -19,7 +19,7 @@ const ProjectViewAllBanner = () => {
             className="bg-white text-portfolio-primary border-white hover:bg-gray-100 px-8 py-4 text-lg font-semibold flex-shrink-0"
             asChild
           >
-            <Link to="/projects">View All Projects</Link>
+            <Link to="/engineering">View All Projects</Link>
           </Button>
         </div>
       </div>
