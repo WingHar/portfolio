@@ -12,7 +12,7 @@ const ProjectsHero = ({ isAdmin, onCreateProject }: ProjectsHeroProps) => {
     <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto text-center">
         <h1 className="text-5xl sm:text-6xl font-bold mb-6 animate-fade-in">
-          <span className="text-gradient">My Projects and Experiences</span>
+          <span className="text-gradient">My Professional Journey</span>
         </h1>
         <p className="text-xl text-portfolio-primary-light max-w-3xl mx-auto animate-fade-in">
           Demonstrating technical acumen and marketing foresight through a portfolio of full-stack development projects and digital strategy execution.

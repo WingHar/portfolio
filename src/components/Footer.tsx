@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const quickLinks = [
-    { label: 'Projects and Experiences', href: '/projects', isExternal: false },
+    { label: 'Experience', href: '/experience', isExternal: false },
     { label: 'Case Studies', href: '/case-studies', isExternal: false },
     { label: 'About', href: '/about', isExternal: false },
-    { label: 'Career Timeline', href: '/experience', isExternal: false },
+    { label: 'Career Timeline', href: '/career-timeline', isExternal: false },
     { label: 'Contact', href: '/contact', isExternal: false }
   ];
 

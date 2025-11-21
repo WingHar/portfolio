@@ -13,7 +13,7 @@ const ProjectsEmptyState = ({ isAdmin, onCreateProject }: ProjectsEmptyStateProp
     <section className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto text-center">
         <p className="text-xl text-portfolio-primary-light mb-8">
-          No projects and experiences have been created yet.
+          No projects have been created yet.
         </p>
         {isAdmin && (
           <Button

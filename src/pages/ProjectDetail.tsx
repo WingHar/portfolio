@@ -104,12 +104,12 @@ const ProjectDetail = () => {
       
       <div className="flex-1 max-w-6xl mx-auto px-4 py-16 mt-16">
         <Button
-          onClick={() => navigate('/projects')}
+          onClick={() => navigate('/experience')}
           variant="outline"
           className="mb-8 border-portfolio-tertiary/30 text-portfolio-primary-light hover:bg-portfolio-tertiary/20"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          More Projects and Experiences
+          Back to Experience
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">

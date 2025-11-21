@@ -58,11 +58,11 @@ const Navigation = () => {
   }, [isOpen]);
 
   const navItems = [
-    { label: 'Projects and Experiences', href: '/projects' },
+    { label: 'Experience', href: '/experience' },
     { label: 'Case Studies', href: '/case-studies' },
     { label: 'Engineering', href: '/engineering' },
     { label: 'About', href: '/about' },
-    { label: 'Career Timeline', href: '/experience' },
+    { label: 'Career Timeline', href: '/career-timeline' },
     { label: 'Contact', href: '/contact' }
   ];
 

@@ -95,7 +95,7 @@ const Projects = () => {
         <Navigation />
         <div className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto text-center">
-            <div className="text-xl text-portfolio-primary-light">Loading projects and experiences...</div>
+            <div className="text-xl text-portfolio-primary-light">Loading experience...</div>
           </div>
         </div>
       </div>
