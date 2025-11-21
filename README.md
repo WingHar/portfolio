@@ -1,4 +1,4 @@
-# 🚀 Portfolio Website
+# Portfolio Website
 
 A modern, interactive portfolio website showcasing full-stack development projects, engineering visualizations, and professional experience. Built with React, TypeScript, and cutting-edge web technologies.
 
@@ -6,33 +6,33 @@ A modern, interactive portfolio website showcasing full-stack development projec
 
 ---
 
-## ✨ Features
+## Features
 
-### 🎨 **Interactive Design**
+### **Interactive Design**
 - **Animated Hero Section** with particle effects and custom cursor interactions
 - **Holographic card effects** with smooth hover animations
 - **Responsive design** optimized for all devices
 - **Dark theme** with gradient accents and modern UI components
 
-### 📊 **Engineering Visualizations**
+### **Engineering Visualizations**
 - **Dijkstra's Algorithm Visualizer** - Interactive graph pathfinding demonstration
 - **Neural Network Playground** - Real-time ML visualization with customizable data points
 - **Sorting Algorithm Visualizer** - Side-by-side comparison of Bubble Sort and Merge Sort
 
-### 💼 **Professional Sections**
+### **Professional Sections**
 - **Project Showcase** - Featured projects with detailed case studies
 - **Experience Timeline** - Interactive career progression display
 - **About Section** - Skills, achievements, and professional background
 - **Contact Form** - Integrated contact system with Supabase backend
 
-### 🔐 **Backend Integration**
+### **Backend Integration**
 - **Supabase Authentication** - Secure user authentication system
 - **Database Management** - Projects and case studies stored in Supabase
 - **Email Integration** - Contact form email notifications via Supabase Edge Functions
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### **Frontend**
 - **React 18.3.1** - UI library
@@ -57,7 +57,7 @@ A modern, interactive portfolio website showcasing full-stack development projec
 
 ---
 
-## 🚦 Getting Started
+## Getting Started
 
 ### **Prerequisites**
 - Node.js 18+ (recommended: use [nvm](https://github.com/nvm-sh/nvm))
@@ -100,7 +100,7 @@ A modern, interactive portfolio website showcasing full-stack development projec
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Portfolio/
@@ -129,7 +129,7 @@ Portfolio/
 
 ---
 
-## 🎯 Available Scripts
+## Available Scripts
 
 | Command | Description |
 |---------|-------------|
@@ -141,7 +141,7 @@ Portfolio/
 
 ---
 
-## 🎨 Key Features Explained
+## Key Features Explained
 
 ### **Interactive Hero Section**
 - Custom cursor effects that respond to mouse movement
@@ -162,7 +162,7 @@ Portfolio/
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 ### **Tailwind CSS**
 Custom color palette defined in `tailwind.config.ts`:
@@ -178,18 +178,18 @@ Custom color palette defined in `tailwind.config.ts`:
 
 ---
 
-## 📱 Responsive Design
+## Responsive Design
 
 The portfolio is fully responsive and optimized for:
-- 📱 Mobile devices (320px+)
-- 📱 Tablets (768px+)
-- 💻 Laptops (1024px+)
-- 🖥️ Desktops (1280px+)
-- 🖥️ Large screens (1920px+)
+- Mobile devices (320px+)
+- Tablets (768px+)
+- Laptops (1024px+)
+- Desktops (1280px+)
+- Large screens (1920px+)
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 ### **Build for Production**
 ```bash
@@ -206,7 +206,7 @@ The `dist/` folder will contain the production-ready files.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -218,13 +218,13 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-## 📄 License
+## License
 
 This project is private and proprietary. All rights reserved.
 
 ---
 
-## 👤 Author
+## Author
 
 **Your Name**
 - Portfolio: [Your Portfolio URL]
@@ -233,7 +233,7 @@ This project is private and proprietary. All rights reserved.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [shadcn/ui](https://ui.shadcn.com/) for the amazing component library
 - [Radix UI](https://www.radix-ui.com/) for accessible primitives
@@ -243,7 +243,7 @@ This project is private and proprietary. All rights reserved.
 
 ---
 
-## 📊 Project Stats
+## Project Stats
 
 ![GitHub stars](https://img.shields.io/github/stars/yourusername/portfolio?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/yourusername/portfolio?style=social)
@@ -254,8 +254,8 @@ This project is private and proprietary. All rights reserved.
 
 <div align="center">
 
-**Built with ❤️ using React, TypeScript, and modern web technologies**
+**Built with React, TypeScript, and modern web technologies**
 
-⭐ Star this repo if you find it helpful!
+Star this repo if you find it helpful!
 
 </div>
