@@ -1,0 +1,15 @@
+# Navigate to your dist folder
+cd dist
+
+# Connect via FTP
+ftp ftp.yourdomain.com
+
+# Enter your credentials when prompted
+# Navigate to public directory
+cd public_html
+
+# Upload all files
+mput *
+
+# For subdirectories, use recursive put
+# Note: Not all FTP servers support this
