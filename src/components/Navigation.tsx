@@ -60,6 +60,7 @@ const Navigation = () => {
   const navItems = [
     { label: 'Projects and Experiences', href: '/projects' },
     { label: 'Case Studies', href: '/case-studies' },
+    { label: 'Engineering', href: '/engineering' },
     { label: 'About', href: '/about' },
     { label: 'Career Timeline', href: '/experience' },
     { label: 'Contact', href: '/contact' }
