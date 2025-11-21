@@ -484,7 +484,7 @@ const SortingVisualizer = () => {
                 <li>• Time Complexity: O(n²)</li>
                 <li>• Space Complexity: O(1)</li>
                 <li>• Stable: Yes</li>
-                <li>• Best for: Small datasets, educational purposes</li>
+                <li>• Best for: Smaller datasets</li>
               </ul>
             </div>
             <div>
@@ -493,7 +493,7 @@ const SortingVisualizer = () => {
                 <li>• Time Complexity: O(n log n)</li>
                 <li>• Space Complexity: O(n)</li>
                 <li>• Stable: Yes</li>
-                <li>• Best for: Large datasets, guaranteed performance</li>
+                <li>• Best for: Larger datasets</li>
               </ul>
             </div>
           </div>
