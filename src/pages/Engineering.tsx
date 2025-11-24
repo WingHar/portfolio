@@ -22,7 +22,7 @@ const Engineering = () => {
       id: '1',
       title: 'Dijkstra\'s Algorithm Visualization',
       description: 'An interactive visualization of Dijkstra\'s shortest path algorithm, demonstrating fundamental graph theory concepts and algorithm design principles. Features step-by-step execution, customizable graph, and real-time pathfinding visualization.',
-      image_url: '/lovable-uploads/21308e1b-0421-41d7-8e85-230a94e7d5a1.png',
+      image_url: '/lovable-uploads/Dijkstra\'s Algorithm.png',
       live_url: '/engineering/dijkstra',
       github_url: undefined // Optional: add GitHub link if you have one
     },
@@ -30,7 +30,7 @@ const Engineering = () => {
       id: '2',
       title: 'Neural Network Playground',
       description: 'An interactive machine learning visualization showcasing how neural networks learn through backpropagation. Add your own data points, adjust network parameters, and watch the decision boundary evolve in real-time as the network trains.',
-      image_url: '/lovable-uploads/3feaeebe-a551-4337-b8c7-efc9e556d630.png',
+      image_url: '/lovable-uploads/Neural Network.png',
       live_url: '/engineering/neural-network',
       github_url: undefined
     },
@@ -38,7 +38,7 @@ const Engineering = () => {
       id: '3',
       title: 'Sorting Algorithm Visualizer',
       description: 'Compare Bubble Sort and Merge Sort algorithms side by side. Visualize how different sorting strategies work with real-time step-by-step execution, performance metrics, and interactive controls to understand time and space complexity differences.',
-      image_url: '/lovable-uploads/444f9124-0d2f-465d-8e75-a877ba7fbb7c.png',
+      image_url: '/lovable-uploads/Sorting Algorithm.png',
       live_url: '/engineering/sorting',
       github_url: undefined
     }
