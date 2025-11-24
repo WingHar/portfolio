@@ -25,6 +25,7 @@ const CaseStudyDetail = () => {
   const [caseStudy, setCaseStudy] = useState<CaseStudy | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -185,7 +186,35 @@ const CaseStudyDetail = () => {
             </h1>
             
             <div className="text-xl text-portfolio-primary-light mb-6 leading-relaxed">
-              {caseStudy.body.substring(0, 200)}...
+              {isDescriptionExpanded ? (
+                <div>
+                  {caseStudy.body}
+                  <Button
+                    onClick={() => setIsDescriptionExpanded(false)}
+                    variant="link"
+                    className="text-portfolio-tertiary hover:text-portfolio-tertiary/80 mt-4 p-0 h-auto"
+                  >
+                    Read Less
+                  </Button>
+                </div>
+              ) : (
+                <div>
+                  {caseStudy.body.length > 200 ? (
+                    <>
+                      {caseStudy.body.substring(0, 200)}...
+                      <Button
+                        onClick={() => setIsDescriptionExpanded(true)}
+                        variant="link"
+                        className="text-portfolio-tertiary hover:text-portfolio-tertiary/80 mt-4 p-0 h-auto"
+                      >
+                        Read More
+                      </Button>
+                    </>
+                  ) : (
+                    caseStudy.body
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Tags Section */}

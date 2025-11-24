@@ -29,7 +29,7 @@ const HeroCustomCursor = ({ isHovered }: HeroCustomCursorProps) => {
         transform: 'scale(1.5)',
       }}
     >
-      <Sparkles className="w-4 h-4 text-white m-2 animate-spin" />
+      <Sparkles className="w-4 h-4 text-white m-2" />
     </div>
   );
 };

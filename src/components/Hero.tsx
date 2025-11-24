@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import HeroBackground from './hero/HeroBackground';
 import HeroParticles from './hero/HeroParticles';
 import HeroFloatingElements from './hero/HeroFloatingElements';
-import HeroCustomCursor from './hero/HeroCustomCursor';
 import HeroContent from './hero/HeroContent';
 import HeroScrollIndicator from './hero/HeroScrollIndicator';
 
@@ -45,12 +44,11 @@ const Hero = ({ onHoverChange }: HeroProps) => {
 
   return (
     <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden cursor-none"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       <HeroBackground isHovered={isAtTop} mousePosition={mousePosition} />
       <HeroParticles isHovered={isAtTop} mousePosition={mousePosition} />
       <HeroFloatingElements mousePosition={mousePosition} />
-      <HeroCustomCursor isHovered={isAtTop} />
       <HeroContent isHovered={isAtTop} mousePosition={mousePosition} />
       <HeroScrollIndicator isHovered={isAtTop} mousePosition={mousePosition} />
     </section>
