@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ArrowLeft, Play, Pause, RotateCcw, Info } from 'lucide-react';
@@ -39,15 +39,31 @@ const DijkstraVisualization = () => {
   const [selectedEnd, setSelectedEnd] = useState<string>('F');
   const [showInfo, setShowInfo] = useState(true);
 
-  // Graph structure
-  const nodes: Node[] = [
-    { id: 'A', x: 100, y: 150, label: 'A' },
-    { id: 'B', x: 250, y: 100, label: 'B' },
-    { id: 'C', x: 400, y: 150, label: 'C' },
-    { id: 'D', x: 250, y: 250, label: 'D' },
-    { id: 'E', x: 100, y: 300, label: 'E' },
-    { id: 'F', x: 400, y: 300, label: 'F' },
-  ];
+  // Graph structure - responsive positions
+  const [canvasSize, setCanvasSize] = useState({ width: 500, height: 400 });
+  
+  useEffect(() => {
+    const updateCanvasSize = () => {
+      const isMobile = window.innerWidth < 768;
+      setCanvasSize({
+        width: isMobile ? Math.min(window.innerWidth - 64, 500) : 500,
+        height: isMobile ? Math.min((window.innerWidth - 64) * 0.8, 400) : 400,
+      });
+    };
+    
+    updateCanvasSize();
+    window.addEventListener('resize', updateCanvasSize);
+    return () => window.removeEventListener('resize', updateCanvasSize);
+  }, []);
+
+  const nodes: Node[] = useMemo(() => [
+    { id: 'A', x: canvasSize.width * 0.2, y: canvasSize.height * 0.375, label: 'A' },
+    { id: 'B', x: canvasSize.width * 0.5, y: canvasSize.height * 0.25, label: 'B' },
+    { id: 'C', x: canvasSize.width * 0.8, y: canvasSize.height * 0.375, label: 'C' },
+    { id: 'D', x: canvasSize.width * 0.5, y: canvasSize.height * 0.625, label: 'D' },
+    { id: 'E', x: canvasSize.width * 0.2, y: canvasSize.height * 0.75, label: 'E' },
+    { id: 'F', x: canvasSize.width * 0.8, y: canvasSize.height * 0.75, label: 'F' },
+  ], [canvasSize.width, canvasSize.height]);
 
   const edges: Edge[] = [
     { from: 'A', to: 'B', weight: 4 },
@@ -303,10 +319,10 @@ const DijkstraVisualization = () => {
 
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-5xl sm:text-6xl font-bold mb-4">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-4">
             <span className="text-gradient">Dijkstra's Algorithm Visualization</span>
           </h1>
-          <p className="text-xl text-portfolio-primary-light max-w-3xl">
+          <p className="text-base sm:text-xl text-portfolio-primary-light max-w-3xl">
             An interactive visualization of Dijkstra's shortest path algorithm, demonstrating fundamental graph theory and algorithm design principles.
           </p>
         </div>
@@ -440,7 +456,7 @@ const DijkstraVisualization = () => {
               </div>
             </div>
           </div>
-          <div className="flex gap-6 text-sm">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 text-sm">
             <div>
               <span className="text-portfolio-primary-light">Step: </span>
               <span className="text-white font-bold">{currentStep}</span>
@@ -449,7 +465,7 @@ const DijkstraVisualization = () => {
               <span className="text-portfolio-primary-light">Shortest Distance: </span>
               <span className="text-white font-bold">{shortestPathDistance}</span>
             </div>
-            <div>
+            <div className="break-words">
               <span className="text-portfolio-primary-light">Path: </span>
               <span className="text-white font-bold">
                 {dijkstraState.path.length > 0 
@@ -461,21 +477,21 @@ const DijkstraVisualization = () => {
         </Card>
 
         {/* Visualization Canvas */}
-        <Card className="bg-portfolio-primary border-portfolio-secondary p-6 mb-8">
-          <div className="flex justify-center">
+        <Card className="bg-portfolio-primary border-portfolio-secondary p-4 sm:p-6 mb-8">
+          <div className="flex justify-center overflow-x-auto">
             <canvas
               ref={canvasRef}
-              width={500}
-              height={400}
-              className="border border-portfolio-secondary rounded"
+              width={canvasSize.width}
+              height={canvasSize.height}
+              className="border border-portfolio-secondary rounded max-w-full"
             />
           </div>
         </Card>
 
         {/* Legend */}
-        <Card className="bg-portfolio-primary border-portfolio-secondary p-6">
-          <h3 className="text-xl font-bold text-white mb-4">Legend</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <Card className="bg-portfolio-primary border-portfolio-secondary p-4 sm:p-6">
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-4">Legend</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-green-500 border-2 border-white"></div>
               <span className="text-portfolio-primary-light">Start/Path</span>

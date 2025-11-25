@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ArrowLeft, Play, Pause, RotateCcw, Info, Brain } from 'lucide-react';
@@ -23,6 +23,27 @@ const NeuralNetworkPlayground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const networkCanvasRef = useRef<HTMLCanvasElement>(null);
   const [isTraining, setIsTraining] = useState(false);
+  const [canvasSize, setCanvasSize] = useState({ width: 400, height: 400 });
+  const [networkCanvasSize, setNetworkCanvasSize] = useState({ width: 400, height: 300 });
+
+  useEffect(() => {
+    const updateCanvasSizes = () => {
+      const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth < 1024;
+      setCanvasSize({
+        width: isMobile ? Math.min(window.innerWidth - 64, 400) : 400,
+        height: isMobile ? Math.min(window.innerWidth - 64, 400) : 400,
+      });
+      setNetworkCanvasSize({
+        width: isMobile ? Math.min(window.innerWidth - 64, 400) : isTablet ? 350 : 400,
+        height: isMobile ? Math.min((window.innerWidth - 64) * 0.75, 300) : 300,
+      });
+    };
+    
+    updateCanvasSizes();
+    window.addEventListener('resize', updateCanvasSizes);
+    return () => window.removeEventListener('resize', updateCanvasSizes);
+  }, []);
   const [epoch, setEpoch] = useState(0);
   const [loss, setLoss] = useState(0);
   const [learningRate, setLearningRate] = useState(0.1);
@@ -219,6 +240,12 @@ const NeuralNetworkPlayground = () => {
   const drawDataCanvas = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas || !network) return;
+    
+    // Update canvas size if needed
+    if (canvas.width !== canvasSize.width || canvas.height !== canvasSize.height) {
+      canvas.width = canvasSize.width;
+      canvas.height = canvasSize.height;
+    }
 
     // Validate network structure
     if (!network.hiddenLayer.weights.length || 
@@ -265,6 +292,12 @@ const NeuralNetworkPlayground = () => {
   const drawNetwork = useCallback(() => {
     const canvas = networkCanvasRef.current;
     if (!canvas || !network) return;
+    
+    // Update canvas size if needed
+    if (canvas.width !== networkCanvasSize.width || canvas.height !== networkCanvasSize.height) {
+      canvas.width = networkCanvasSize.width;
+      canvas.height = networkCanvasSize.height;
+    }
 
     // Validate network structure
     if (!network.hiddenLayer.weights.length || 
@@ -379,7 +412,7 @@ const NeuralNetworkPlayground = () => {
         drawNetwork();
       });
     }
-  }, [network, dataPoints, hiddenNeurons, drawDataCanvas, drawNetwork]);
+  }, [network, dataPoints, hiddenNeurons, canvasSize, networkCanvasSize, drawDataCanvas, drawNetwork]);
 
   // Training loop
   useEffect(() => {
@@ -429,13 +462,13 @@ const NeuralNetworkPlayground = () => {
 
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-5xl sm:text-6xl font-bold mb-4">
-            <span className="text-gradient flex items-center gap-3">
-              <Brain className="w-12 h-12" />
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-4">
+            <span className="text-gradient flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
+              <Brain className="w-8 h-8 sm:w-12 sm:h-12" />
               Neural Network Playground
             </span>
           </h1>
-          <p className="text-xl text-portfolio-primary-light max-w-3xl">
+          <p className="text-base sm:text-xl text-portfolio-primary-light max-w-3xl">
             An interactive visualization of a neural network learning to classify data points. Watch as the network learns through backpropagation and gradient descent.
           </p>
         </div>
@@ -568,7 +601,7 @@ const NeuralNetworkPlayground = () => {
               </div>
             </div>
           </div>
-          <div className="flex gap-6 text-sm">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 text-sm">
             <div>
               <span className="text-portfolio-primary-light">Epoch: </span>
               <span className="text-white font-bold">{epoch}</span>
@@ -592,13 +625,13 @@ const NeuralNetworkPlayground = () => {
             <p className="text-sm text-portfolio-primary-light mb-4">
               Click to add data points. The colored background shows the network's decision boundary.
             </p>
-            <div className="flex justify-center">
+            <div className="flex justify-center overflow-x-auto">
               <canvas
                 ref={canvasRef}
-                width={400}
-                height={400}
+                width={canvasSize.width}
+                height={canvasSize.height}
                 onClick={handleCanvasClick}
-                className="border border-portfolio-secondary rounded cursor-crosshair"
+                className="border border-portfolio-secondary rounded cursor-crosshair max-w-full"
               />
             </div>
           </Card>
@@ -609,21 +642,21 @@ const NeuralNetworkPlayground = () => {
             <p className="text-sm text-portfolio-primary-light mb-4">
               Visual representation of the network. Line thickness and color represent weight values.
             </p>
-            <div className="flex justify-center">
+            <div className="flex justify-center overflow-x-auto">
               <canvas
                 ref={networkCanvasRef}
-                width={400}
-                height={300}
-                className="border border-portfolio-secondary rounded"
+                width={networkCanvasSize.width}
+                height={networkCanvasSize.height}
+                className="border border-portfolio-secondary rounded max-w-full"
               />
             </div>
           </Card>
         </div>
 
         {/* Legend */}
-        <Card className="bg-portfolio-primary border-portfolio-secondary p-6">
-          <h3 className="text-xl font-bold text-white mb-4">Legend</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <Card className="bg-portfolio-primary border-portfolio-secondary p-4 sm:p-6">
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-4">Legend</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-green-500 border-2 border-white"></div>
               <span className="text-portfolio-primary-light">Class 1</span>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ArrowLeft, Play, Pause, RotateCcw, Info, Shuffle } from 'lucide-react';
@@ -18,6 +18,22 @@ const SortingVisualizer = () => {
   const bubbleCanvasRef = useRef<HTMLCanvasElement>(null);
   const mergeCanvasRef = useRef<HTMLCanvasElement>(null);
   const [arraySize, setArraySize] = useState(20);
+  const [canvasSize, setCanvasSize] = useState({ width: 500, height: 300 });
+
+  useEffect(() => {
+    const updateCanvasSize = () => {
+      const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth < 1024;
+      setCanvasSize({
+        width: isMobile ? Math.min(window.innerWidth - 64, 500) : isTablet ? 450 : 500,
+        height: isMobile ? Math.min((window.innerWidth - 64) * 0.6, 300) : 300,
+      });
+    };
+    
+    updateCanvasSize();
+    window.addEventListener('resize', updateCanvasSize);
+    return () => window.removeEventListener('resize', updateCanvasSize);
+  }, []);
   const [speed, setSpeed] = useState(50);
   const [isRunning, setIsRunning] = useState(false);
   const [currentAlgorithm, setCurrentAlgorithm] = useState<Algorithm | null>(null);
@@ -191,6 +207,12 @@ const SortingVisualizer = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Update canvas size if needed
+    if (canvas.width !== canvasSize.width || canvas.height !== canvasSize.height) {
+      canvas.width = canvasSize.width;
+      canvas.height = canvasSize.height;
+    }
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     const barWidth = canvas.width / array.length;
@@ -258,7 +280,7 @@ const SortingVisualizer = () => {
     if (mergeCanvasRef.current) {
       drawBars(mergeCanvasRef.current, mergeArray, 'merge');
     }
-  }, [bubbleArray, mergeArray, drawBars]);
+  }, [bubbleArray, mergeArray, canvasSize, drawBars]);
 
   const handleReset = () => {
     setIsRunning(false);
@@ -286,10 +308,10 @@ const SortingVisualizer = () => {
 
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-5xl sm:text-6xl font-bold mb-4">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-4">
             <span className="text-gradient">Sorting Algorithm Visualizer</span>
           </h1>
-          <p className="text-xl text-portfolio-primary-light max-w-3xl">
+          <p className="text-base sm:text-xl text-portfolio-primary-light max-w-3xl">
             Compare Bubble Sort and Merge Sort side by side. Watch how different algorithms approach the same problem with varying time complexities and strategies.
           </p>
         </div>
@@ -422,7 +444,7 @@ const SortingVisualizer = () => {
           {/* Bubble Sort */}
           <Card className="bg-portfolio-primary border-portfolio-secondary p-6">
             <h3 className="text-xl font-bold text-white mb-4">Bubble Sort</h3>
-            <div className="mb-4 flex gap-4 text-sm">
+            <div className="mb-4 flex flex-col sm:flex-row gap-2 sm:gap-4 text-sm">
               <div>
                 <span className="text-portfolio-primary-light">Comparisons: </span>
                 <span className="text-white font-bold">{bubbleComparisons}</span>
@@ -436,12 +458,12 @@ const SortingVisualizer = () => {
                 <span className="text-white font-bold">{bubbleStepIndex} / {bubbleSteps.length - 1}</span>
               </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center overflow-x-auto">
               <canvas
                 ref={bubbleCanvasRef}
-                width={500}
-                height={300}
-                className="border border-portfolio-secondary rounded"
+                width={canvasSize.width}
+                height={canvasSize.height}
+                className="border border-portfolio-secondary rounded max-w-full"
               />
             </div>
           </Card>
@@ -449,7 +471,7 @@ const SortingVisualizer = () => {
           {/* Merge Sort */}
           <Card className="bg-portfolio-primary border-portfolio-secondary p-6">
             <h3 className="text-xl font-bold text-white mb-4">Merge Sort</h3>
-            <div className="mb-4 flex gap-4 text-sm">
+            <div className="mb-4 flex flex-col sm:flex-row gap-2 sm:gap-4 text-sm">
               <div>
                 <span className="text-portfolio-primary-light">Comparisons: </span>
                 <span className="text-white font-bold">{mergeComparisons}</span>
@@ -463,21 +485,21 @@ const SortingVisualizer = () => {
                 <span className="text-white font-bold">{mergeStepIndex} / {mergeSteps.length - 1}</span>
               </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center overflow-x-auto">
               <canvas
                 ref={mergeCanvasRef}
-                width={500}
-                height={300}
-                className="border border-portfolio-secondary rounded"
+                width={canvasSize.width}
+                height={canvasSize.height}
+                className="border border-portfolio-secondary rounded max-w-full"
               />
             </div>
           </Card>
         </div>
 
         {/* Comparison Stats */}
-        <Card className="bg-portfolio-primary border-portfolio-secondary p-6">
-          <h3 className="text-xl font-bold text-white mb-4">Algorithm Comparison</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card className="bg-portfolio-primary border-portfolio-secondary p-4 sm:p-6">
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-4">Algorithm Comparison</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
               <h4 className="text-lg font-semibold text-portfolio-tertiary mb-2">Bubble Sort</h4>
               <ul className="text-portfolio-primary-light space-y-1 text-sm">
